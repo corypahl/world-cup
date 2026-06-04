@@ -114,9 +114,9 @@ The leaderboard sorts by:
 
 Rows with equal total points and equal tiebreaker display the same rank.
 
-## Max Possible Points
+## Max Points
 
-The Max Possible Points section uses current points plus remaining advancement bonuses for teams that are not marked `eliminated`. Future goals are not guessed; they are added only after `goalsFor` is updated in `data/team-results.json`.
+The leaderboard's Max Points column uses current points plus remaining advancement bonuses for teams that are not marked `eliminated`. Future goals are not guessed; they are added only after `goalsFor` is updated in `data/team-results.json`.
 
 ## Deploy to GitHub Pages
 
