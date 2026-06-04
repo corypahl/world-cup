@@ -173,8 +173,8 @@
                         ${statusBadge}
                     </td>
                     <td class="numeric strong">${entry.totalPoints}</td>
-                    <td class="numeric strong">${entry.maxPossiblePoints}</td>
                     <td class="numeric">${entry.tiebreaker}</td>
+                    <td class="numeric strong">${entry.maxPossiblePoints}</td>
                     <td>${formatBudget(entry.budgetUsed, entry.remainingBudget)}</td>
                     <td><div class="pick-strip">${picks}</div></td>
                 </tr>

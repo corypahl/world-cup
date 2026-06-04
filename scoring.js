@@ -205,6 +205,10 @@
                 return b.tiebreaker - a.tiebreaker;
             }
 
+            if (b.maxPossiblePoints !== a.maxPossiblePoints) {
+                return b.maxPossiblePoints - a.maxPossiblePoints;
+            }
+
             return a.originalIndex - b.originalIndex;
         });
     }
@@ -213,15 +217,18 @@
         let currentRank = 0;
         let previousScore = null;
         let previousTiebreaker = null;
+        let previousMaxPossible = null;
 
         return entries.map((entry, index) => {
             const scoreChanged = entry.totalPoints !== previousScore;
             const tiebreakerChanged = entry.tiebreaker !== previousTiebreaker;
+            const maxPossibleChanged = entry.maxPossiblePoints !== previousMaxPossible;
 
-            if (scoreChanged || tiebreakerChanged) {
+            if (scoreChanged || tiebreakerChanged || maxPossibleChanged) {
                 currentRank = index + 1;
                 previousScore = entry.totalPoints;
                 previousTiebreaker = entry.tiebreaker;
+                previousMaxPossible = entry.maxPossiblePoints;
             }
 
             return currentRank;

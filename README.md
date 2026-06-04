@@ -108,11 +108,12 @@ Advancement bonuses are cumulative. A semifinalist receives the Round of 32, Rou
 
 The leaderboard sorts by:
 
-1. Total points, descending
-2. Highest goals scored by a single team on the roster, descending
-3. Original participant order if still tied
+1. Current points, descending
+2. Tiebreaker, descending
+3. Max points, descending
+4. Original participant order if still tied
 
-Rows with equal total points and equal tiebreaker display the same rank.
+Rows with equal current points, tiebreaker, and max points display the same rank.
 
 ## Max Points
 
