@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Cup Budget Picks</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="site-header__inner">
+            <p class="eyebrow">2026 Draft Order Contest</p>
+            <h1>World Cup Budget Picks</h1>
+            <p class="subtitle">Fantasy Football Draft Order Contest</p>
+            <div class="rule-chips" aria-label="Contest summary">
+                <span>$100 budget</span>
+                <span>Pick exactly 5 teams</span>
+                <span>Most points drafts first</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="status-strip" aria-live="polite">
+            <div>
+                <span class="label">Data Status</span>
+                <span id="lastUpdated">Loading contest data...</span>
+            </div>
+            <button id="refreshDataButton" type="button">Refresh Data</button>
+        </section>
+
+        <section class="section-band" aria-labelledby="leaderboardTitle">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Current Standings</p>
+                    <h2 id="leaderboardTitle">Leaderboard</h2>
+                </div>
+                <span class="zone-key">Top 4: Draft Advantage Zone</span>
+            </div>
+
+            <div class="table-shell">
+                <table class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Fantasy Team</th>
+                            <th>Owner(s)</th>
+                            <th>Total Points</th>
+                            <th>Single-Team Goals</th>
+                            <th>Budget Used</th>
+                            <th>Picks</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboardBody">
+                        <tr>
+                            <td colspan="7" class="empty-cell">Loading leaderboard...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="section-band" aria-labelledby="chalkTitle">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Pick Distribution</p>
+                    <h2 id="chalkTitle">Chalk Meter</h2>
+                </div>
+            </div>
+            <div id="chalkMeter" class="chalk-grid">
+                <p class="placeholder">Submitted picks will appear here.</p>
+            </div>
+        </section>
+
+        <section class="section-band" aria-labelledby="participantsTitle">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Lineup Detail</p>
+                    <h2 id="participantsTitle">Participants</h2>
+                </div>
+            </div>
+            <div id="participantCards" class="participant-grid">
+                <p class="placeholder">Loading participants...</p>
+            </div>
+        </section>
+
+        <section class="section-band" aria-labelledby="teamScoresTitle">
+            <div class="section-heading section-heading--with-control">
+                <div>
+                    <p class="eyebrow">Scoring Audit</p>
+                    <h2 id="teamScoresTitle">Team Scores</h2>
+                </div>
+                <label class="search-control">
+                    <span>Search teams</span>
+                    <input id="teamSearch" type="search" placeholder="France, BRA, goals..." autocomplete="off">
+                </label>
+            </div>
+
+            <div class="table-shell">
+                <table class="team-table">
+                    <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>Cost</th>
+                            <th>Wins</th>
+                            <th>Draws</th>
+                            <th>Goals</th>
+                            <th>Round Reached</th>
+                            <th>Points</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="teamScoresBody">
+                        <tr>
+                            <td colspan="8" class="empty-cell">Loading team scores...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="section-band rules-section" aria-labelledby="rulesTitle">
+            <details open>
+                <summary>
+                    <span>
+                        <span class="eyebrow">Contest Setup</span>
+                        <span id="rulesTitle">Rules</span>
+                    </span>
+                </summary>
+
+                <div class="rules-layout">
+                    <div>
+                        <h3>Scoring</h3>
+                        <div class="rules-table" id="scoringRules"></div>
+                    </div>
+                    <div>
+                        <h3>Lineups</h3>
+                        <ul class="plain-list">
+                            <li>Each participant submits exactly 5 national teams.</li>
+                            <li>Each lineup must cost $100 or less.</li>
+                            <li>Multiple participants may pick the same team.</li>
+                            <li>Picks are final once submitted.</li>
+                        </ul>
+
+                        <h3>Tiebreaker</h3>
+                        <p>The primary tiebreaker is the most goals scored by a single team on that participant's roster. Remaining ties stay tied.</p>
+                    </div>
+                </div>
+            </details>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <span>World Cup Budget Picks</span>
+        <span>Manual JSON updates, static GitHub Pages deployment</span>
+    </footer>
+
+    <script src="data-loader.js"></script>
+    <script src="scoring.js"></script>
+    <script src="leaderboard.js"></script>
+</body>
+</html>

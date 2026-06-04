@@ -1,0 +1,11 @@
+{
+  "groupWin": 3,
+  "groupDraw": 1,
+  "goal": 1,
+  "roundOf32": 5,
+  "roundOf16": 8,
+  "quarterfinal": 12,
+  "semifinal": 18,
+  "final": 25,
+  "worldCupWinner": 40
+}

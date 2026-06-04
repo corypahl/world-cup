@@ -1,0 +1,86 @@
+[
+  {
+    "id": "andrew-magiril",
+    "teamName": "Brent's Daddy",
+    "owners": ["Andrew Magiril"],
+    "previousRank": 1,
+    "picks": []
+  },
+  {
+    "id": "allen-fredrick",
+    "teamName": "Metcalf Hurts",
+    "owners": ["Allen Fredrick"],
+    "previousRank": 2,
+    "picks": []
+  },
+  {
+    "id": "robby-copeland",
+    "teamName": "Team Camouflage Cndm",
+    "owners": ["Robby Copeland"],
+    "previousRank": 3,
+    "picks": []
+  },
+  {
+    "id": "michael-hebert",
+    "teamName": "Team Megatronless",
+    "owners": ["Michael Hebert"],
+    "previousRank": 4,
+    "picks": []
+  },
+  {
+    "id": "brent-hull-allie-hull",
+    "teamName": "Bijan Mustard",
+    "owners": ["Brent Hull", "Allie Hull"],
+    "previousRank": 5,
+    "picks": []
+  },
+  {
+    "id": "jon-koyn",
+    "teamName": "Team koyn",
+    "owners": ["Jon Koyn"],
+    "previousRank": 6,
+    "picks": []
+  },
+  {
+    "id": "eric-broadworth",
+    "teamName": "Team Godfather",
+    "owners": ["Eric Broadworth"],
+    "previousRank": 7,
+    "picks": []
+  },
+  {
+    "id": "jordan-koyn",
+    "teamName": "Team Jordan",
+    "owners": ["Jordan Koyn"],
+    "previousRank": 8,
+    "picks": []
+  },
+  {
+    "id": "cory-pahl",
+    "teamName": "Team Pahl",
+    "owners": ["Cory Pahl"],
+    "previousRank": 9,
+    "picks": ["BRA", "NED", "MAR", "JPN", "SUI"]
+  },
+  {
+    "id": "randy-hebert",
+    "teamName": "Team Choo Choo",
+    "owners": ["Randy Hebert"],
+    "previousRank": 10,
+    "picks": []
+  },
+  {
+    "id": "nick-mcbride",
+    "teamName": "Hubba Hubba CD's Nutz \ud83c\udf57",
+    "owners": ["Nick McBride"],
+    "previousRank": 11,
+    "picks": []
+  },
+  {
+    "id": "daniel-mack",
+    "teamName": "Team Mack",
+    "owners": ["Daniel Mack"],
+    "previousRank": 12,
+    "picks": []
+  }
+]
