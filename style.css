@@ -117,8 +117,7 @@ h3 {
     gap: 0.5rem;
 }
 
-.rule-chips span,
-.zone-key {
+.rule-chips span {
     display: inline-flex;
     align-items: center;
     min-height: 2rem;
@@ -657,10 +656,6 @@ details[open] summary::after {
 
     .status-strip {
         display: grid;
-    }
-
-    .zone-key {
-        width: fit-content;
     }
 
     .metrics,
