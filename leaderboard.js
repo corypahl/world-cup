@@ -122,8 +122,8 @@
     function renderAll() {
         renderDataStatus();
         renderLeaderboard(state.entries);
+        renderMaxPossible(state.entries);
         renderTeamScores(state.teamScores);
-        renderChalkMeter();
         renderScoringRules(state.data.scoringConfig);
     }
 
@@ -187,50 +187,6 @@
         }).join("");
     }
 
-    function renderChalkMeter() {
-        const container = document.getElementById("chalkMeter");
-        if (!container) {
-            return;
-        }
-
-        const submittedCount = state.data.participants.filter((participant) => (
-            Array.isArray(participant.picks) && participant.picks.length > 0
-        )).length;
-
-        const pickedTeams = state.teamScores
-            .filter((teamScore) => teamScore.pickedBy.length > 0)
-            .sort((a, b) => {
-                if (b.pickedBy.length !== a.pickedBy.length) {
-                    return b.pickedBy.length - a.pickedBy.length;
-                }
-
-                return a.team.name.localeCompare(b.team.name);
-            });
-
-        if (!pickedTeams.length) {
-            container.innerHTML = `<p class="placeholder">Submitted picks will appear here.</p>`;
-            return;
-        }
-
-        container.innerHTML = pickedTeams.map((teamScore) => {
-            const percentage = submittedCount ? Math.round((teamScore.pickedBy.length / submittedCount) * 100) : 0;
-            const ownerNames = teamScore.pickedBy.map((pick) => pick.teamName).join(", ");
-
-            return `
-                <article class="chalk-item">
-                    <div>
-                        <strong>${escapeHtml(teamScore.team.name)}</strong>
-                        <span>${teamScore.pickedBy.length} roster${teamScore.pickedBy.length === 1 ? "" : "s"} - ${percentage}%</span>
-                    </div>
-                    <div class="meter" aria-label="${percentage}% ownership">
-                        <span style="width: ${percentage}%"></span>
-                    </div>
-                    <p>${escapeHtml(ownerNames)}</p>
-                </article>
-            `;
-        }).join("");
-    }
-
     function renderTeamScores(teamScores) {
         const tbody = document.getElementById("teamScoresBody");
         if (!tbody) {
@@ -281,6 +237,101 @@
                 </tr>
             `;
         }).join("");
+    }
+
+    function renderMaxPossible(entries) {
+        const tbody = document.getElementById("maxPossibleBody");
+        if (!tbody) {
+            return;
+        }
+
+        if (!entries.length) {
+            tbody.innerHTML = `<tr><td colspan="5" class="empty-cell">No participants found.</td></tr>`;
+            return;
+        }
+
+        const maxEntries = [...entries].sort((a, b) => {
+            if (b.maxPossiblePoints !== a.maxPossiblePoints) {
+                return b.maxPossiblePoints - a.maxPossiblePoints;
+            }
+
+            if (b.totalPoints !== a.totalPoints) {
+                return b.totalPoints - a.totalPoints;
+            }
+
+            return a.originalIndex - b.originalIndex;
+        });
+
+        tbody.innerHTML = maxEntries.map((entry) => {
+            const participant = entry.participant;
+            const rowClasses = ["max-row"];
+
+            if (participant.id === "cory-pahl") {
+                rowClasses.push("max-row--current");
+            }
+
+            return `
+                <tr class="${rowClasses.join(" ")}">
+                    <td>
+                        <strong>${escapeHtml(participant.teamName)}</strong>
+                        <span class="budget-note">${escapeHtml((participant.owners || []).join(", "))}</span>
+                        ${renderStatusBadge(entry.validation)}
+                    </td>
+                    <td class="numeric strong">${entry.totalPoints}</td>
+                    <td class="numeric strong">${entry.maxPossiblePoints}</td>
+                    <td class="numeric">${entry.upside}</td>
+                    <td>${renderRootingGuide(entry)}</td>
+                </tr>
+            `;
+        }).join("");
+    }
+
+    function renderRootingGuide(entry) {
+        if (entry.validation.status === "pending") {
+            return `<span class="muted">Awaiting picks.</span>`;
+        }
+
+        if (entry.validation.status === "invalid") {
+            return `<span class="muted">Lineup needs attention before a rooting guide is available.</span>`;
+        }
+
+        const validPicks = entry.pickDetails.filter((pick) => pick.team);
+        const alivePicks = validPicks
+            .filter((pick) => !pick.eliminated)
+            .sort((a, b) => {
+                if (b.upside !== a.upside) {
+                    return b.upside - a.upside;
+                }
+
+                return a.team.name.localeCompare(b.team.name);
+            });
+        const eliminatedPicks = validPicks.filter((pick) => pick.eliminated);
+
+        if (!alivePicks.length) {
+            return `<span class="muted">No alive teams remaining.${eliminatedPicks.length ? ` Eliminated: ${escapeHtml(eliminatedPicks.map((pick) => pick.team.id).join(", "))}.` : ""}</span>`;
+        }
+
+        const biggestUpside = alivePicks[0];
+        const soloPicks = alivePicks.filter((pick) => (state.ownership.get(pick.team.id) || []).length === 1);
+        const sharedPicks = alivePicks.filter((pick) => (state.ownership.get(pick.team.id) || []).length > 1);
+
+        return `
+            <div class="rooting-guide">
+                <div class="rooting-chips">
+                    ${alivePicks.map((pick) => `
+                        <span class="root-chip">
+                            ${escapeHtml(pick.team.id)}
+                            <strong>+${pick.upside}</strong>
+                        </span>
+                    `).join("")}
+                </div>
+                <p>Root for ${escapeHtml(alivePicks.map((pick) => pick.team.name).join(", "))}.</p>
+                <p>Biggest upside: ${escapeHtml(biggestUpside.team.name)} (+${biggestUpside.upside}).</p>
+                ${soloPicks.length ? `<p>Solo leverage: ${escapeHtml(soloPicks.map((pick) => pick.team.id).join(", "))}.</p>` : ""}
+                ${!soloPicks.length && sharedPicks.length ? `<p>All alive picks are shared with at least one other roster.</p>` : ""}
+                ${eliminatedPicks.length ? `<p>Eliminated: ${escapeHtml(eliminatedPicks.map((pick) => pick.team.id).join(", "))}.</p>` : ""}
+            </div>
+        `;
     }
 
     function renderScoringRules(config) {
