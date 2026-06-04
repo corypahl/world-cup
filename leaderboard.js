@@ -145,7 +145,7 @@
         }
 
         if (!entries.length) {
-            tbody.innerHTML = `<tr><td colspan="7" class="empty-cell">No participants found.</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="6" class="empty-cell">No participants found.</td></tr>`;
             return;
         }
 
@@ -156,10 +156,6 @@
                 ? entry.pickDetails.map(renderCompactPick).join("")
                 : `<span class="muted">Awaiting picks</span>`;
             const rowClasses = ["leaderboard-row"];
-
-            if (entry.rowIndex < 4) {
-                rowClasses.push("leaderboard-row--top-four");
-            }
 
             if (participant.id === "cory-pahl") {
                 rowClasses.push("leaderboard-row--current");
@@ -174,10 +170,9 @@
                     <td><span class="rank-badge">${entry.rank}</span></td>
                     <td>
                         <strong>${escapeHtml(participant.teamName)}</strong>
-                        ${entry.rowIndex < 4 ? `<span class="zone-pill">Draft Advantage Zone</span>` : ""}
+                        <span class="budget-note">${escapeHtml((participant.owners || []).join(", "))}</span>
                         ${statusBadge}
                     </td>
-                    <td>${escapeHtml((participant.owners || []).join(", "))}</td>
                     <td class="numeric strong">${entry.totalPoints}</td>
                     <td class="numeric">${entry.tiebreaker}</td>
                     <td>${formatBudget(entry.budgetUsed, entry.remainingBudget)}</td>

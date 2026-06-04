@@ -218,10 +218,6 @@ tbody tr:hover {
     background: #f8f1ce;
 }
 
-.leaderboard-row--top-four {
-    background: #f1ffd1;
-}
-
 .leaderboard-row--current {
     box-shadow: inset 6px 0 0 var(--blue);
 }
@@ -242,7 +238,6 @@ tbody tr:hover {
     font-weight: 900;
 }
 
-.zone-pill,
 .status-badge,
 .team-code,
 .ownership-note {
@@ -255,11 +250,6 @@ tbody tr:hover {
     font-size: 0.72rem;
     font-weight: 900;
     text-transform: uppercase;
-}
-
-.zone-pill {
-    color: var(--ink);
-    background: var(--green);
 }
 
 .status-badge {
