@@ -374,129 +374,9 @@ tbody tr:hover {
     background: var(--blue);
 }
 
-.participant-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 0.85rem;
-}
-
-.participant-card {
-    border: 2px solid var(--ink);
-    border-radius: 8px;
-    padding: 0.85rem;
-    background: #fffdf4;
-}
-
-.participant-card--current {
-    box-shadow: inset 0 0 0 4px #dceaff;
-}
-
-.participant-card--invalid {
-    background: var(--red-soft);
-}
-
-.participant-card__header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 0.75rem;
-    min-height: 4rem;
-}
-
-.participant-card__header h3 {
-    margin-bottom: 0.15rem;
-}
-
-.participant-card__header p,
 .placeholder {
     margin: 0;
     color: var(--muted);
-}
-
-.metrics {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 0.45rem;
-    margin: 0.75rem 0;
-}
-
-.metrics div {
-    border: 1px solid var(--line);
-    border-radius: 6px;
-    padding: 0.45rem;
-    background: var(--cream);
-}
-
-.metrics span {
-    display: block;
-    color: var(--muted);
-    font-size: 0.7rem;
-    font-weight: 900;
-    text-transform: uppercase;
-}
-
-.metrics strong {
-    font-size: 1.1rem;
-}
-
-.validation-list {
-    margin: 0.5rem 0;
-    padding-left: 1rem;
-    color: #8b160d;
-    font-size: 0.86rem;
-}
-
-.pick-grid {
-    display: grid;
-    gap: 0.45rem;
-}
-
-.pick-placeholder {
-    border: 2px dashed var(--line);
-    border-radius: 8px;
-    padding: 1rem;
-    color: var(--muted);
-    background: var(--cream);
-    text-align: center;
-}
-
-.pick-card {
-    display: grid;
-    gap: 0.45rem;
-    border: 1px solid var(--line);
-    border-radius: 6px;
-    padding: 0.65rem;
-    background: var(--cream);
-}
-
-.pick-card--eliminated,
-.pick-card--invalid {
-    background: var(--red-soft);
-}
-
-.pick-card span {
-    display: block;
-    color: var(--muted);
-    font-size: 0.8rem;
-}
-
-.pick-card dl {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 0.35rem;
-    margin: 0;
-}
-
-.pick-card dt {
-    color: var(--muted);
-    font-size: 0.68rem;
-    font-weight: 900;
-    text-transform: uppercase;
-}
-
-.pick-card dd {
-    margin: 0;
-    font-weight: 800;
 }
 
 .search-control {
@@ -658,11 +538,6 @@ details[open] summary::after {
         display: grid;
     }
 
-    .metrics,
-    .pick-card dl {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
     .rules-layout {
         grid-template-columns: 1fr;
     }
@@ -678,11 +553,6 @@ details[open] summary::after {
         padding: 0.65rem;
     }
 
-    .metrics {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .participant-grid,
     .chalk-grid {
         grid-template-columns: 1fr;
     }

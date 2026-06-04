@@ -122,9 +122,8 @@
     function renderAll() {
         renderDataStatus();
         renderLeaderboard(state.entries);
-        renderChalkMeter();
-        renderParticipantCards(state.entries);
         renderTeamScores(state.teamScores);
+        renderChalkMeter();
         renderScoringRules(state.data.scoringConfig);
     }
 
@@ -232,63 +231,6 @@
         }).join("");
     }
 
-    function renderParticipantCards(entries) {
-        const container = document.getElementById("participantCards");
-        if (!container) {
-            return;
-        }
-
-        container.innerHTML = entries.map((entry) => {
-            const participant = entry.participant;
-            const cardClasses = ["participant-card", `participant-card--${entry.validation.status}`];
-
-            if (participant.id === "cory-pahl") {
-                cardClasses.push("participant-card--current");
-            }
-
-            const pickMarkup = entry.pickDetails.length
-                ? entry.pickDetails.map(renderPickCard).join("")
-                : `<div class="pick-placeholder">No lineup submitted yet.</div>`;
-
-            return `
-                <article class="${cardClasses.join(" ")}">
-                    <header class="participant-card__header">
-                        <div>
-                            <h3>${escapeHtml(participant.teamName)}</h3>
-                            <p>${escapeHtml((participant.owners || []).join(", "))}</p>
-                        </div>
-                        ${renderStatusBadge(entry.validation)}
-                    </header>
-
-                    <div class="metrics">
-                        <div>
-                            <span>Total</span>
-                            <strong>${entry.totalPoints}</strong>
-                        </div>
-                        <div>
-                            <span>Budget</span>
-                            <strong>$${entry.budgetUsed}</strong>
-                        </div>
-                        <div>
-                            <span>Remaining</span>
-                            <strong>${entry.remainingBudget >= 0 ? `$${entry.remainingBudget}` : `-$${Math.abs(entry.remainingBudget)}`}</strong>
-                        </div>
-                        <div>
-                            <span>Tiebreaker</span>
-                            <strong>${entry.tiebreaker}</strong>
-                        </div>
-                    </div>
-
-                    ${renderValidationMessages(entry.validation)}
-
-                    <div class="pick-grid">
-                        ${pickMarkup}
-                    </div>
-                </article>
-            `;
-        }).join("");
-    }
-
     function renderTeamScores(teamScores) {
         const tbody = document.getElementById("teamScoresBody");
         if (!tbody) {
@@ -380,44 +322,6 @@
         `;
     }
 
-    function renderPickCard(pick) {
-        if (!pick.team) {
-            return `
-                <div class="pick-card pick-card--invalid">
-                    <strong>${escapeHtml(pick.teamId)}</strong>
-                    <span>Unknown team ID</span>
-                </div>
-            `;
-        }
-
-        return `
-            <div class="pick-card ${pick.eliminated ? "pick-card--eliminated" : ""}">
-                <div>
-                    <strong>${escapeHtml(pick.team.name)}</strong>
-                    <span>${escapeHtml(pick.team.id)} - $${Number(pick.team.cost)}</span>
-                </div>
-                <dl>
-                    <div>
-                        <dt>Score</dt>
-                        <dd>${pick.score}</dd>
-                    </div>
-                    <div>
-                        <dt>Goals</dt>
-                        <dd>${pick.goals}</dd>
-                    </div>
-                    <div>
-                        <dt>Round</dt>
-                        <dd>${escapeHtml(pick.roundReached)}</dd>
-                    </div>
-                    <div>
-                        <dt>Status</dt>
-                        <dd>${pick.eliminated ? "Eliminated" : "Alive"}</dd>
-                    </div>
-                </dl>
-            </div>
-        `;
-    }
-
     function renderStatusBadge(validation) {
         if (validation.status === "pending") {
             return `<span class="status-badge status-badge--pending">Awaiting Picks</span>`;
@@ -428,18 +332,6 @@
         }
 
         return `<span class="status-badge status-badge--valid">Valid</span>`;
-    }
-
-    function renderValidationMessages(validation) {
-        if (!validation.errors.length && !validation.warnings.length) {
-            return "";
-        }
-
-        const messages = [...validation.errors, ...validation.warnings]
-            .map((message) => `<li>${escapeHtml(message)}</li>`)
-            .join("");
-
-        return `<ul class="validation-list">${messages}</ul>`;
     }
 
     function renderTeamStatus(result) {
