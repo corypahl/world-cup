@@ -67,7 +67,7 @@ button:disabled {
 .site-header__inner {
     width: min(1180px, calc(100% - 2rem));
     margin: 0 auto;
-    padding: 2.5rem 0 2rem;
+    padding: 2.25rem 0 2rem;
 }
 
 .eyebrow {
@@ -101,33 +101,6 @@ h2 {
 h3 {
     margin: 0 0 0.65rem;
     font-size: 1rem;
-}
-
-.subtitle {
-    max-width: 620px;
-    margin: 0.75rem 0 1.2rem;
-    color: #ded8bf;
-    font-size: 1.25rem;
-    font-weight: 700;
-}
-
-.rule-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.rule-chips span {
-    display: inline-flex;
-    align-items: center;
-    min-height: 2rem;
-    border: 2px solid currentColor;
-    border-radius: 999px;
-    padding: 0.25rem 0.75rem;
-    color: var(--ink);
-    background: var(--green);
-    font-size: 0.85rem;
-    font-weight: 900;
 }
 
 main {
