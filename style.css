@@ -67,7 +67,7 @@ button:disabled {
 .site-header__inner {
     width: min(1180px, calc(100% - 2rem));
     margin: 0 auto;
-    padding: 2.25rem 0 2rem;
+    padding: 2rem 0 1.85rem;
 }
 
 .eyebrow {
@@ -266,7 +266,7 @@ tbody tr:hover {
     display: flex;
     flex-wrap: wrap;
     gap: 0.35rem;
-    min-width: 14rem;
+    min-width: 12rem;
 }
 
 .pick-chip {
@@ -445,6 +445,27 @@ details[open] summary::after {
 }
 
 @media (max-width: 820px) {
+    body {
+        background-size: 24px 24px;
+    }
+
+    .site-header__inner {
+        padding: 1.35rem 0 1.2rem;
+    }
+
+    h1 {
+        font-size: clamp(2.65rem, 16vw, 4.5rem);
+    }
+
+    h2 {
+        font-size: clamp(1.9rem, 11vw, 3rem);
+    }
+
+    main {
+        width: min(100% - 1rem, 1180px);
+        padding-top: 0.85rem;
+    }
+
     .status-strip,
     .section-heading,
     .section-heading--with-control,
@@ -455,10 +476,115 @@ details[open] summary::after {
 
     .status-strip {
         display: grid;
+        gap: 0.75rem;
+        padding: 0.8rem;
+    }
+
+    .status-strip button {
+        width: 100%;
     }
 
     .rules-layout {
         grid-template-columns: 1fr;
+    }
+
+    .table-shell {
+        overflow-x: visible;
+        border: 0;
+        background: transparent;
+    }
+
+    table,
+    thead,
+    tbody,
+    tr,
+    th,
+    td {
+        display: block;
+        width: 100%;
+        min-width: 0;
+    }
+
+    thead {
+        display: none;
+    }
+
+    tbody {
+        display: grid;
+        gap: 0.75rem;
+    }
+
+    tr {
+        border: 2px solid var(--ink);
+        border-radius: 8px;
+        overflow: hidden;
+        background: #fffdf4;
+    }
+
+    tbody tr:hover {
+        background: #fffdf4;
+    }
+
+    td {
+        display: grid;
+        grid-template-columns: minmax(6.75rem, 38%) minmax(0, 1fr);
+        align-items: start;
+        gap: 0.75rem;
+        padding: 0.65rem 0.75rem;
+        border-bottom: 1px solid var(--line);
+        text-align: left;
+    }
+
+    td::before {
+        content: attr(data-label);
+        color: var(--muted);
+        font-size: 0.7rem;
+        font-weight: 900;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+    }
+
+    td.numeric {
+        text-align: left;
+    }
+
+    .leaderboard-row--current {
+        box-shadow: inset 5px 0 0 var(--blue);
+    }
+
+    .rank-badge {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    .pick-strip {
+        min-width: 0;
+        justify-content: flex-start;
+    }
+
+    .pick-chip {
+        min-height: 1.8rem;
+    }
+
+    .search-control {
+        width: 100%;
+    }
+
+    .search-control input {
+        min-height: 2.85rem;
+        font-size: 1rem;
+    }
+
+    details summary {
+        padding: 0.85rem;
+    }
+
+    details summary span span:last-child {
+        font-size: 2rem;
+    }
+
+    .site-footer {
+        padding: 1rem;
     }
 }
 
@@ -470,6 +596,18 @@ details[open] summary::after {
 
     .section-band {
         padding: 0.65rem;
+        box-shadow: 4px 4px 0 var(--ink);
     }
 
+    td {
+        grid-template-columns: minmax(5.9rem, 35%) minmax(0, 1fr);
+        gap: 0.55rem;
+        padding: 0.6rem;
+    }
+
+    .status-badge,
+    .team-code,
+    .ownership-note {
+        font-size: 0.68rem;
+    }
 }

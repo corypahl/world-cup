@@ -166,17 +166,17 @@
 
             return `
                 <tr class="${rowClasses.join(" ")}">
-                    <td><span class="rank-badge">${entry.rank}</span></td>
-                    <td>
+                    <td data-label="Rank"><span class="rank-badge">${entry.rank}</span></td>
+                    <td data-label="Fantasy Team">
                         <strong>${escapeHtml(participant.teamName)}</strong>
                         <span class="budget-note">${escapeHtml((participant.owners || []).join(", "))}</span>
                         ${statusBadge}
                     </td>
-                    <td class="numeric strong">${entry.totalPoints}</td>
-                    <td class="numeric">${entry.tiebreaker}</td>
-                    <td class="numeric strong">${entry.maxPossiblePoints}</td>
-                    <td>${formatBudget(entry.budgetUsed, entry.remainingBudget)}</td>
-                    <td><div class="pick-strip">${picks}</div></td>
+                    <td data-label="Current Points" class="numeric strong">${entry.totalPoints}</td>
+                    <td data-label="Tiebreaker" class="numeric">${entry.tiebreaker}</td>
+                    <td data-label="Max Points" class="numeric strong">${entry.maxPossiblePoints}</td>
+                    <td data-label="Budget Used">${formatBudget(entry.budgetUsed, entry.remainingBudget)}</td>
+                    <td data-label="Picks"><div class="pick-strip">${picks}</div></td>
                 </tr>
             `;
         }).join("");
@@ -217,18 +217,18 @@
 
             return `
                 <tr>
-                    <td>
+                    <td data-label="Team">
                         <strong>${escapeHtml(teamScore.team.name)}</strong>
                         <span class="team-code">${escapeHtml(teamScore.team.id)}</span>
                         ${pickedByLabel}
                     </td>
-                    <td class="numeric">$${Number(teamScore.team.cost)}</td>
-                    <td class="numeric">${Number(result.groupWins) || 0}</td>
-                    <td class="numeric">${Number(result.groupDraws) || 0}</td>
-                    <td class="numeric">${Number(result.goalsFor) || 0}</td>
-                    <td>${escapeHtml(teamScore.roundReached)}</td>
-                    <td class="numeric strong">${teamScore.points}</td>
-                    <td>${renderTeamStatus(result)}</td>
+                    <td data-label="Cost" class="numeric">$${Number(teamScore.team.cost)}</td>
+                    <td data-label="Wins" class="numeric">${Number(result.groupWins) || 0}</td>
+                    <td data-label="Draws" class="numeric">${Number(result.groupDraws) || 0}</td>
+                    <td data-label="Goals" class="numeric">${Number(result.goalsFor) || 0}</td>
+                    <td data-label="Round Reached">${escapeHtml(teamScore.roundReached)}</td>
+                    <td data-label="Points" class="numeric strong">${teamScore.points}</td>
+                    <td data-label="Status">${renderTeamStatus(result)}</td>
                 </tr>
             `;
         }).join("");
