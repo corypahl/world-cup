@@ -9,16 +9,11 @@
 
     document.addEventListener("DOMContentLoaded", () => {
         bindControls();
-        refreshData(false);
+        refreshData();
     });
 
     function bindControls() {
-        const refreshButton = document.getElementById("refreshDataButton");
         const teamSearch = document.getElementById("teamSearch");
-
-        if (refreshButton) {
-            refreshButton.addEventListener("click", () => refreshData(true));
-        }
 
         if (teamSearch) {
             teamSearch.addEventListener("input", (event) => {
@@ -28,26 +23,14 @@
         }
     }
 
-    async function refreshData(cacheBust) {
-        const refreshButton = document.getElementById("refreshDataButton");
-
-        if (refreshButton) {
-            refreshButton.disabled = true;
-            refreshButton.textContent = cacheBust ? "Refreshing..." : "Loading...";
-        }
-
+    async function refreshData() {
         try {
-            const data = await window.WorldCupDataLoader.loadContestData({ cacheBust });
+            const data = await window.WorldCupDataLoader.loadContestData();
             state.data = data;
             buildContestState(data);
             renderAll();
         } catch (error) {
             renderFatalError(error);
-        } finally {
-            if (refreshButton) {
-                refreshButton.disabled = false;
-                refreshButton.textContent = "Refresh Data";
-            }
         }
     }
 
@@ -120,21 +103,9 @@
     }
 
     function renderAll() {
-        renderDataStatus();
         renderLeaderboard(state.entries);
         renderTeamScores(state.teamScores);
         renderScoringRules(state.data.scoringConfig);
-    }
-
-    function renderDataStatus() {
-        const lastUpdated = document.getElementById("lastUpdated");
-        if (!lastUpdated) {
-            return;
-        }
-
-        const rawTimestamp = state.data.teamResultsMeta.lastUpdated;
-        const formatted = rawTimestamp ? formatDate(rawTimestamp) : "Last updated timestamp not set.";
-        lastUpdated.textContent = `Last updated: ${formatted}`;
     }
 
     function renderLeaderboard(entries) {
@@ -308,19 +279,6 @@
     function formatBudget(used, remaining) {
         const remainingLabel = remaining >= 0 ? `$${remaining} left` : `$${Math.abs(remaining)} over`;
         return `<strong>$${used}</strong><span class="budget-note">${remainingLabel}</span>`;
-    }
-
-    function formatDate(value) {
-        const date = new Date(value);
-
-        if (Number.isNaN(date.getTime())) {
-            return value;
-        }
-
-        return new Intl.DateTimeFormat(undefined, {
-            dateStyle: "medium",
-            timeStyle: "short"
-        }).format(date);
     }
 
     function escapeHtml(value) {

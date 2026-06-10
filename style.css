@@ -109,30 +109,12 @@ main {
     padding: 1.5rem 0 3rem;
 }
 
-.status-strip,
 .section-band {
     margin-bottom: 1.25rem;
     border: 2px solid var(--ink);
     border-radius: 8px;
     background: var(--cream);
     box-shadow: 5px 5px 0 var(--ink);
-}
-
-.status-strip {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 0.85rem;
-}
-
-.label {
-    display: block;
-    color: var(--muted);
-    font-size: 0.75rem;
-    font-weight: 900;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
 }
 
 .section-band {
@@ -466,22 +448,11 @@ details[open] summary::after {
         padding-top: 0.85rem;
     }
 
-    .status-strip,
     .section-heading,
     .section-heading--with-control,
     .site-footer {
         align-items: stretch;
         flex-direction: column;
-    }
-
-    .status-strip {
-        display: grid;
-        gap: 0.75rem;
-        padding: 0.8rem;
-    }
-
-    .status-strip button {
-        width: 100%;
     }
 
     .rules-layout {
