@@ -25,7 +25,7 @@
     "teamName": "Team Megatronless",
     "owners": ["Michael Hebert"],
     "previousRank": 4,
-    "picks": []
+    "picks": ["NED", "NOR", "USA", "BRA", "NZL"]
   },
   {
     "id": "brent-hull-allie-hull",
