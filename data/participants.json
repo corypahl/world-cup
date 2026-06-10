@@ -4,21 +4,21 @@
     "teamName": "Brent's Daddy",
     "owners": ["Andrew Magiril"],
     "previousRank": 1,
-    "picks": []
+    "picks": ["POR", "USA", "GER", "NED", "EGY"]
   },
   {
     "id": "allen-fredrick",
     "teamName": "Metcalf Hurts",
     "owners": ["Allen Fredrick"],
     "previousRank": 2,
-    "picks": []
+    "picks": ["ESP", "NED", "JPN", "URU", "KOR"]
   },
   {
     "id": "robby-copeland",
     "teamName": "Team Camouflage Cndm",
     "owners": ["Robby Copeland"],
     "previousRank": 3,
-    "picks": []
+    "picks": ["ESP", "ARG", "AUS", "QAT", "KSA"]
   },
   {
     "id": "michael-hebert",
@@ -32,7 +32,7 @@
     "teamName": "Bijan Mustard",
     "owners": ["Brent Hull", "Allie Hull"],
     "previousRank": 5,
-    "picks": []
+    "picks": ["FRA", "NED", "COL", "PAR", "AUS"]
   },
   {
     "id": "jon-koyn",
@@ -46,7 +46,7 @@
     "teamName": "Team Godfather",
     "owners": ["Eric Broadworth"],
     "previousRank": 7,
-    "picks": []
+    "picks": ["FRA", "NED", "USA", "CAN", "EGY"]
   },
   {
     "id": "jordan-koyn",
@@ -67,20 +67,20 @@
     "teamName": "Team Choo Choo",
     "owners": ["Randy Hebert"],
     "previousRank": 10,
-    "picks": []
+    "picks": ["ENG", "NED", "USA", "JPN", "MEX"]
   },
   {
     "id": "nick-mcbride",
     "teamName": "Hubba Hubba CD's Nutz \ud83c\udf57",
     "owners": ["Nick McBride"],
     "previousRank": 11,
-    "picks": []
+    "picks": ["ARG", "USA", "AUT", "MEX", "POR"]
   },
   {
     "id": "daniel-mack",
     "teamName": "Team Mack",
     "owners": ["Daniel Mack"],
     "previousRank": 12,
-    "picks": []
+    "picks": ["ESP", "COL", "MAR", "ECU", "USA"]
   }
 ]

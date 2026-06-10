@@ -1,4 +1,6 @@
 (function () {
+    const DATA_VERSION = "20260609-picks";
+
     const DATA_FILES = {
         participants: "data/participants.json",
         teams: "data/teams.json",
@@ -7,7 +9,7 @@
     };
 
     async function fetchJson(path, cacheBust) {
-        const suffix = cacheBust ? `?t=${Date.now()}` : "";
+        const suffix = cacheBust ? `?t=${Date.now()}` : `?v=${DATA_VERSION}`;
         const response = await fetch(`${path}${suffix}`, { cache: cacheBust ? "reload" : "default" });
 
         if (!response.ok) {
