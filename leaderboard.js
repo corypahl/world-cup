@@ -5,6 +5,7 @@
         teamScores: [],
         ownership: new Map(),
         expandedParticipantId: null,
+        expandedTeamId: null,
         teamSearch: ""
     };
 
@@ -15,6 +16,7 @@
 
     function bindControls() {
         const leaderboardBody = document.getElementById("leaderboardBody");
+        const teamScoresBody = document.getElementById("teamScoresBody");
         const teamSearch = document.getElementById("teamSearch");
 
         if (leaderboardBody) {
@@ -42,6 +44,31 @@
             });
         }
 
+        if (teamScoresBody) {
+            teamScoresBody.addEventListener("click", (event) => {
+                const row = event.target.closest(".team-row");
+                if (!row) {
+                    return;
+                }
+
+                toggleTeamRow(row.dataset.teamId);
+            });
+
+            teamScoresBody.addEventListener("keydown", (event) => {
+                if (event.key !== "Enter" && event.key !== " ") {
+                    return;
+                }
+
+                const row = event.target.closest(".team-row");
+                if (!row) {
+                    return;
+                }
+
+                event.preventDefault();
+                toggleTeamRow(row.dataset.teamId);
+            });
+        }
+
         if (teamSearch) {
             teamSearch.addEventListener("input", (event) => {
                 state.teamSearch = event.target.value.trim().toLowerCase();
@@ -53,6 +80,11 @@
     function toggleLeaderboardRow(participantId) {
         state.expandedParticipantId = state.expandedParticipantId === participantId ? null : participantId;
         renderLeaderboard(state.entries);
+    }
+
+    function toggleTeamRow(teamId) {
+        state.expandedTeamId = state.expandedTeamId === teamId ? null : teamId;
+        renderTeamScores(state.teamScores);
     }
 
     async function refreshData() {
@@ -191,9 +223,9 @@
             : `<span class="muted">Awaiting picks</span>`;
 
         return `
-            <tr class="leaderboard-detail-row" id="details-${escapeHtml(entry.participant.id)}">
-                <td colspan="3" class="leaderboard-detail-cell">
-                    <div class="leaderboard-details">
+            <tr class="detail-row" id="details-${escapeHtml(entry.participant.id)}">
+                <td colspan="3" class="detail-cell">
+                    <div class="expanded-details">
                         <div class="detail-group detail-group--picks">
                             <span class="detail-label">Teams</span>
                             <div class="pick-strip">${picks}</div>
@@ -228,40 +260,83 @@
                 teamScore.team.name,
                 teamScore.roundReached,
                 teamScore.result.notes,
-                teamScore.pickedBy.map((pick) => pick.teamName).join(" ")
+                teamScore.pickedBy.map((pick) => `${pick.teamName} ${(pick.owners || []).join(" ")}`).join(" ")
             ].join(" ").toLowerCase();
 
             return haystack.includes(state.teamSearch);
         });
 
         if (!filteredScores.length) {
-            tbody.innerHTML = `<tr><td colspan="8" class="empty-cell">No teams match that search.</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="3" class="empty-cell">No teams match that search.</td></tr>`;
             return;
         }
 
         tbody.innerHTML = filteredScores.map((teamScore) => {
             const result = teamScore.result;
-            const pickedByLabel = teamScore.pickedBy.length
-                ? `<span class="ownership-note">Picked by ${teamScore.pickedBy.length}</span>`
-                : "";
+            const isExpanded = state.expandedTeamId === teamScore.team.id;
+            const rowClasses = ["team-row"];
+
+            if (isExpanded) {
+                rowClasses.push("team-row--expanded");
+            }
 
             return `
-                <tr>
+                <tr class="${rowClasses.join(" ")}" data-team-id="${escapeHtml(teamScore.team.id)}" tabindex="0" role="button" aria-expanded="${isExpanded}" aria-controls="team-details-${escapeHtml(teamScore.team.id)}">
                     <td data-label="Team">
-                        <strong>${escapeHtml(teamScore.team.name)}</strong>
                         <span class="team-code ${result.eliminated ? "team-code--eliminated" : "team-code--active"}">${escapeHtml(teamScore.team.id)}</span>
-                        ${pickedByLabel}
                     </td>
-                    <td data-label="Cost" class="numeric">$${Number(teamScore.team.cost)}</td>
-                    <td data-label="Wins" class="numeric">${Number(result.groupWins) || 0}</td>
-                    <td data-label="Draws" class="numeric">${Number(result.groupDraws) || 0}</td>
-                    <td data-label="Goals" class="numeric">${Number(result.goalsFor) || 0}</td>
-                    <td data-label="Round Reached">${escapeHtml(teamScore.roundReached)}</td>
                     <td data-label="Points" class="numeric strong">${teamScore.points}</td>
-                    <td data-label="Status">${renderTeamStatus(result)}</td>
+                    <td data-label="Picked By" class="numeric strong">${teamScore.pickedBy.length}</td>
                 </tr>
+                ${isExpanded ? renderTeamDetails(teamScore) : ""}
             `;
         }).join("");
+    }
+
+    function renderTeamDetails(teamScore) {
+        const result = teamScore.result;
+        const pickedBy = teamScore.pickedBy.length
+            ? teamScore.pickedBy.map(renderPickedBy).join("")
+            : `<span class="muted">Not picked</span>`;
+
+        return `
+            <tr class="detail-row" id="team-details-${escapeHtml(teamScore.team.id)}">
+                <td colspan="3" class="detail-cell">
+                    <div class="expanded-details team-details">
+                        <div class="detail-group detail-group--picks">
+                            <span class="detail-label">Team</span>
+                            <strong>${escapeHtml(teamScore.team.name)}</strong>
+                            ${renderTeamStatus(result)}
+                        </div>
+                        <div class="detail-stat">
+                            <span class="detail-label">Cost</span>
+                            <strong>$${Number(teamScore.team.cost)}</strong>
+                        </div>
+                        <div class="detail-stat">
+                            <span class="detail-label">Record</span>
+                            <strong>${Number(result.groupWins) || 0}-${Number(result.groupDraws) || 0}</strong>
+                        </div>
+                        <div class="detail-stat">
+                            <span class="detail-label">Goals</span>
+                            <strong>${Number(result.goalsFor) || 0}</strong>
+                        </div>
+                        <div class="detail-stat">
+                            <span class="detail-label">Round</span>
+                            <strong>${escapeHtml(teamScore.roundReached)}</strong>
+                        </div>
+                        <div class="detail-group detail-group--picks detail-group--picked-by">
+                            <span class="detail-label">Picked By</span>
+                            <div class="pick-strip">${pickedBy}</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        `;
+    }
+
+    function renderPickedBy(pick) {
+        const owners = pick.owners && pick.owners.length ? ` (${pick.owners.join(", ")})` : "";
+        return `<span class="pick-chip">${escapeHtml(pick.teamName)}${escapeHtml(owners)}</span>`;
     }
 
     function renderScoringRules(config) {

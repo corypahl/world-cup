@@ -40,41 +40,6 @@
             </div>
         </section>
 
-        <section class="section-band" aria-labelledby="teamScoresTitle">
-            <div class="section-heading section-heading--with-control">
-                <div>
-                    <p class="eyebrow">Scoring Audit</p>
-                    <h2 id="teamScoresTitle">Team Scores</h2>
-                </div>
-                <label class="search-control">
-                    <span>Search teams</span>
-                    <input id="teamSearch" type="search" placeholder="France, BRA, goals..." autocomplete="off">
-                </label>
-            </div>
-
-            <div class="table-shell team-shell">
-                <table class="team-table">
-                    <thead>
-                        <tr>
-                            <th>Team</th>
-                            <th>Cost</th>
-                            <th>Wins</th>
-                            <th>Draws</th>
-                            <th>Goals</th>
-                            <th>Round Reached</th>
-                            <th>Points</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody id="teamScoresBody">
-                        <tr>
-                            <td colspan="8" class="empty-cell">Loading team scores...</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
         <section class="section-band rules-section" aria-labelledby="rulesTitle">
             <details open>
                 <summary>
@@ -104,6 +69,36 @@
                 </div>
             </details>
         </section>
+
+        <section class="section-band" aria-labelledby="teamScoresTitle">
+            <div class="section-heading section-heading--with-control">
+                <div>
+                    <p class="eyebrow">Scoring Audit</p>
+                    <h2 id="teamScoresTitle">Team Scores</h2>
+                </div>
+                <label class="search-control">
+                    <span>Search teams</span>
+                    <input id="teamSearch" type="search" placeholder="France, BRA, goals..." autocomplete="off">
+                </label>
+            </div>
+
+            <div class="table-shell team-shell">
+                <table class="team-table">
+                    <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>Points</th>
+                            <th>Picked By</th>
+                        </tr>
+                    </thead>
+                    <tbody id="teamScoresBody">
+                        <tr>
+                            <td colspan="3" class="empty-cell">Loading team scores...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
     </main>
 
     <footer class="site-footer">
@@ -111,8 +106,8 @@
         <span>Manual JSON updates, static GitHub Pages deployment</span>
     </footer>
 
-    <script src="data-loader.js?v=20260610-mobile-table"></script>
-    <script src="scoring.js?v=20260610-mobile-table"></script>
-    <script src="leaderboard.js?v=20260610-mobile-table"></script>
+    <script src="data-loader.js?v=20260610-team-details"></script>
+    <script src="scoring.js?v=20260610-team-details"></script>
+    <script src="leaderboard.js?v=20260610-team-details"></script>
 </body>
 </html>
