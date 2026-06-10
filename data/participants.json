@@ -39,7 +39,7 @@
     "teamName": "Team koyn",
     "owners": ["Jon Koyn"],
     "previousRank": 6,
-    "picks": []
+    "picks": ["ARG", "NED", "USA", "KOR", "BEL"]
   },
   {
     "id": "eric-broadworth",
@@ -53,7 +53,7 @@
     "teamName": "Team Jordan",
     "owners": ["Jordan Koyn"],
     "previousRank": 8,
-    "picks": []
+    "picks": ["ARG", "USA", "JPN", "CRO", "NOR"]
   },
   {
     "id": "cory-pahl",
