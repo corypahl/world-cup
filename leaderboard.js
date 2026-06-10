@@ -4,6 +4,7 @@
         entries: [],
         teamScores: [],
         ownership: new Map(),
+        expandedParticipantId: null,
         teamSearch: ""
     };
 
@@ -13,7 +14,33 @@
     });
 
     function bindControls() {
+        const leaderboardBody = document.getElementById("leaderboardBody");
         const teamSearch = document.getElementById("teamSearch");
+
+        if (leaderboardBody) {
+            leaderboardBody.addEventListener("click", (event) => {
+                const row = event.target.closest(".leaderboard-row");
+                if (!row) {
+                    return;
+                }
+
+                toggleLeaderboardRow(row.dataset.participantId);
+            });
+
+            leaderboardBody.addEventListener("keydown", (event) => {
+                if (event.key !== "Enter" && event.key !== " ") {
+                    return;
+                }
+
+                const row = event.target.closest(".leaderboard-row");
+                if (!row) {
+                    return;
+                }
+
+                event.preventDefault();
+                toggleLeaderboardRow(row.dataset.participantId);
+            });
+        }
 
         if (teamSearch) {
             teamSearch.addEventListener("input", (event) => {
@@ -21,6 +48,11 @@
                 renderTeamScores(state.teamScores);
             });
         }
+    }
+
+    function toggleLeaderboardRow(participantId) {
+        state.expandedParticipantId = state.expandedParticipantId === participantId ? null : participantId;
+        renderLeaderboard(state.entries);
     }
 
     async function refreshData() {
@@ -115,16 +147,13 @@
         }
 
         if (!entries.length) {
-            tbody.innerHTML = `<tr><td colspan="7" class="empty-cell">No participants found.</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="3" class="empty-cell">No participants found.</td></tr>`;
             return;
         }
 
         tbody.innerHTML = entries.map((entry) => {
             const participant = entry.participant;
-            const statusBadge = renderStatusBadge(entry.validation);
-            const picks = entry.pickDetails.length
-                ? entry.pickDetails.map(renderCompactPick).join("")
-                : `<span class="muted">Awaiting picks</span>`;
+            const isExpanded = state.expandedParticipantId === participant.id;
             const rowClasses = ["leaderboard-row"];
 
             if (participant.id === "cory-pahl") {
@@ -135,22 +164,52 @@
                 rowClasses.push("leaderboard-row--invalid");
             }
 
+            if (isExpanded) {
+                rowClasses.push("leaderboard-row--expanded");
+            }
+
             return `
-                <tr class="${rowClasses.join(" ")}">
+                <tr class="${rowClasses.join(" ")}" data-participant-id="${escapeHtml(participant.id)}" tabindex="0" role="button" aria-expanded="${isExpanded}" aria-controls="details-${escapeHtml(participant.id)}">
                     <td data-label="Rank"><span class="rank-badge">${entry.rank}</span></td>
-                    <td data-label="Fantasy Team">
+                    <td data-label="Names">
                         <strong>${escapeHtml(participant.teamName)}</strong>
                         <span class="budget-note">${escapeHtml((participant.owners || []).join(", "))}</span>
-                        ${statusBadge}
                     </td>
-                    <td data-label="Current Points" class="numeric strong">${entry.totalPoints}</td>
-                    <td data-label="Tiebreaker" class="numeric">${entry.tiebreaker}</td>
-                    <td data-label="Max Points" class="numeric strong">${entry.maxPossiblePoints}</td>
-                    <td data-label="Budget Used">${formatBudget(entry.budgetUsed, entry.remainingBudget)}</td>
-                    <td data-label="Picks"><div class="pick-strip">${picks}</div></td>
+                    <td data-label="Score" class="numeric strong leaderboard-score">
+                        ${entry.totalPoints}
+                        <span class="row-cue" aria-hidden="true">${isExpanded ? "Close" : "View"}</span>
+                    </td>
                 </tr>
+                ${isExpanded ? renderLeaderboardDetails(entry) : ""}
             `;
         }).join("");
+    }
+
+    function renderLeaderboardDetails(entry) {
+        const picks = entry.pickDetails.length
+            ? entry.pickDetails.map(renderDetailedPick).join("")
+            : `<span class="muted">Awaiting picks</span>`;
+
+        return `
+            <tr class="leaderboard-detail-row" id="details-${escapeHtml(entry.participant.id)}">
+                <td colspan="3" class="leaderboard-detail-cell">
+                    <div class="leaderboard-details">
+                        <div class="detail-group detail-group--picks">
+                            <span class="detail-label">Teams</span>
+                            <div class="pick-strip">${picks}</div>
+                        </div>
+                        <div class="detail-stat">
+                            <span class="detail-label">Tiebreaker</span>
+                            <strong>${entry.tiebreaker}</strong>
+                        </div>
+                        <div class="detail-stat">
+                            <span class="detail-label">Max Score</span>
+                            <strong>${entry.maxPossiblePoints}</strong>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        `;
     }
 
     function renderTeamScores(teamScores) {
@@ -190,7 +249,7 @@
                 <tr>
                     <td data-label="Team">
                         <strong>${escapeHtml(teamScore.team.name)}</strong>
-                        <span class="team-code">${escapeHtml(teamScore.team.id)}</span>
+                        <span class="team-code ${result.eliminated ? "team-code--eliminated" : "team-code--active"}">${escapeHtml(teamScore.team.id)}</span>
                         ${pickedByLabel}
                     </td>
                     <td data-label="Cost" class="numeric">$${Number(teamScore.team.cost)}</td>
@@ -231,29 +290,17 @@
         `).join("");
     }
 
-    function renderCompactPick(pick) {
+    function renderDetailedPick(pick) {
         if (!pick.team) {
             return `<span class="pick-chip pick-chip--invalid">${escapeHtml(pick.teamId)}</span>`;
         }
 
         return `
             <span class="pick-chip ${pick.eliminated ? "pick-chip--eliminated" : ""}">
-                ${escapeHtml(pick.team.id)}
+                ${escapeHtml(pick.team.name)}
                 <strong>${pick.score}</strong>
             </span>
         `;
-    }
-
-    function renderStatusBadge(validation) {
-        if (validation.status === "pending") {
-            return `<span class="status-badge status-badge--pending">Awaiting Picks</span>`;
-        }
-
-        if (validation.status === "invalid") {
-            return `<span class="status-badge status-badge--invalid">Invalid</span>`;
-        }
-
-        return `<span class="status-badge status-badge--valid">Valid</span>`;
     }
 
     function renderTeamStatus(result) {
@@ -274,11 +321,6 @@
         `;
 
         document.querySelector("main").innerHTML = message;
-    }
-
-    function formatBudget(used, remaining) {
-        const remainingLabel = remaining >= 0 ? `$${remaining} left` : `$${Math.abs(remaining)} over`;
-        return `<strong>$${used}</strong><span class="budget-note">${remainingLabel}</span>`;
     }
 
     function escapeHtml(value) {
