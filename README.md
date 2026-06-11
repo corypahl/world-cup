@@ -13,6 +13,8 @@ world-cup-budget-picks/
 |-- data-loader.js
 |-- scoring.js
 |-- leaderboard.js
+|-- scripts/
+|   `-- update-results.mjs
 |-- data/
 |   |-- participants.json
 |   |-- teams.json
@@ -20,7 +22,8 @@ world-cup-budget-picks/
 |   `-- scoring-config.json
 `-- .github/
     `-- workflows/
-        `-- deploy.yml
+        |-- deploy.yml
+        `-- update-results.yml
 ```
 
 ## Run Locally
@@ -61,7 +64,26 @@ Lineups are validated for:
 - team IDs that exist in `data/teams.json`
 - no duplicate teams inside the same lineup
 
-## Update Team Results
+## Automatic Team Results
+
+The scheduled updater lives in `scripts/update-results.mjs` and writes `data/team-results.json`.
+
+The GitHub Action at `.github/workflows/update-results.yml` runs:
+
+- every 2 hours
+- manually through `workflow_dispatch`
+
+It fetches FIFA World Cup match data from football-data.org and commits `data/team-results.json` after each successful fetch so the visible `lastUpdated` timestamp reflects the latest check. That commit triggers the Pages deploy workflow.
+
+Required repository secret:
+
+```txt
+FOOTBALL_DATA_API_TOKEN
+```
+
+If the secret is not set, the updater exits successfully without changing files.
+
+## Manual Team Results
 
 Edit `data/team-results.json`.
 
@@ -131,4 +153,4 @@ For a standalone repository:
 4. Set the source to `GitHub Actions`.
 5. Run the deploy workflow or push a change.
 
-The site has no backend, build step, database, login, or paid API dependency.
+The site has no backend, build step, database, or login. Automated score updates depend on the scheduled GitHub Action and the `FOOTBALL_DATA_API_TOKEN` repository secret.

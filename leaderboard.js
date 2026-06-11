@@ -167,9 +167,21 @@
     }
 
     function renderAll() {
+        renderDataStatus();
         renderLeaderboard(state.entries);
         renderTeamScores(state.teamScores);
         renderScoringRules(state.data.scoringConfig);
+    }
+
+    function renderDataStatus() {
+        const lastUpdated = document.getElementById("lastUpdated");
+        if (!lastUpdated) {
+            return;
+        }
+
+        const rawTimestamp = state.data.teamResultsMeta.lastUpdated;
+        const formatted = rawTimestamp ? formatDate(rawTimestamp) : "Not updated yet";
+        lastUpdated.textContent = `Last updated at: ${formatted}`;
     }
 
     function renderLeaderboard(entries) {
@@ -396,6 +408,19 @@
         `;
 
         document.querySelector("main").innerHTML = message;
+    }
+
+    function formatDate(value) {
+        const date = new Date(value);
+
+        if (Number.isNaN(date.getTime())) {
+            return value;
+        }
+
+        return new Intl.DateTimeFormat(undefined, {
+            dateStyle: "medium",
+            timeStyle: "short"
+        }).format(date);
     }
 
     function escapeHtml(value) {

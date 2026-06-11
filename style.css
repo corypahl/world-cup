@@ -98,6 +98,13 @@ h2 {
     line-height: 0.95;
 }
 
+.last-updated {
+    margin: 0.45rem 0 0;
+    color: var(--muted);
+    font-size: 0.88rem;
+    font-weight: 800;
+}
+
 h3 {
     margin: 0 0 0.65rem;
     font-size: 1rem;
