@@ -38,7 +38,7 @@
         const [participants, teams, teamResultsFile, scoringConfig] = await Promise.all([
             fetchJson(DATA_FILES.participants, cacheBust),
             fetchJson(DATA_FILES.teams, cacheBust),
-            fetchJson(DATA_FILES.teamResults, cacheBust),
+            fetchJson(DATA_FILES.teamResults, true),
             fetchJson(DATA_FILES.scoringConfig, cacheBust)
         ]);
 

@@ -1,52 +1,66 @@
 import { readFile, writeFile } from "node:fs/promises";
 
-const competitionCode = process.env.FOOTBALL_DATA_COMPETITION || "WC";
-const season = process.env.FOOTBALL_DATA_SEASON || "2026";
-const token = process.env.FOOTBALL_DATA_API_TOKEN;
+const dateRange = process.env.ESPN_DATE_RANGE || "20260611-20260719";
+const scoreboardUrl = "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard";
 
 const teamsPath = new URL("../data/teams.json", import.meta.url);
 const resultsPath = new URL("../data/team-results.json", import.meta.url);
 
-const finishedStatuses = new Set(["FINISHED", "AWARDED"]);
+const completedStates = new Set(["post"]);
+const completedStatusNames = new Set(["STATUS_FULL_TIME", "STATUS_FINAL", "STATUS_FINAL_PEN"]);
+
+const stageMap = new Map(Object.entries({
+    "group-stage": null,
+    "round-of-32": "reachedRoundOf32",
+    "rd-of-16": "reachedRoundOf16",
+    "round-of-16": "reachedRoundOf16",
+    "quarterfinals": "reachedQuarterfinal",
+    "semifinals": "reachedSemifinal",
+    "3rd-place-match": null,
+    "final": "reachedFinal"
+}));
+
 const stageOrder = [
-    ["LAST_32", "reachedRoundOf32"],
-    ["LAST_16", "reachedRoundOf16"],
-    ["QUARTER_FINALS", "reachedQuarterfinal"],
-    ["SEMI_FINALS", "reachedSemifinal"],
-    ["FINAL", "reachedFinal"]
+    "reachedRoundOf32",
+    "reachedRoundOf16",
+    "reachedQuarterfinal",
+    "reachedSemifinal",
+    "reachedFinal"
 ];
 
 const teamAliases = new Map(Object.entries({
+    "bosnia-herzegovina": "BIH",
     "bosnia & herzegovina": "BIH",
     "bosnia and herzegovina": "BIH",
-    "cabo verde": "CPV",
-    "cape verde": "CPV",
     "congo dr": "COD",
     "curacao": "CUW",
     "curaçao": "CUW",
-    "czech republic": "CZE",
-    "czechia": "CZE",
-    "côte d'ivoire": "CIV",
-    "côte d’ivoire": "CIV",
     "dr congo": "COD",
     "iran": "IRN",
     "ivory coast": "CIV",
     "korea republic": "KOR",
-    "saudi arabia": "KSA",
+    "round of 16 1 winner": null,
+    "round of 16 2 winner": null,
+    "round of 16 3 winner": null,
+    "round of 16 4 winner": null,
+    "round of 16 5 winner": null,
+    "round of 16 6 winner": null,
+    "round of 16 7 winner": null,
+    "round of 16 8 winner": null,
+    "quarterfinal 1 winner": null,
+    "quarterfinal 2 winner": null,
+    "quarterfinal 3 winner": null,
+    "quarterfinal 4 winner": null,
+    "semifinal 1 loser": null,
+    "semifinal 1 winner": null,
+    "semifinal 2 loser": null,
+    "semifinal 2 winner": null,
     "south africa": "RSA",
     "south korea": "KOR",
+    "turkiye": "TUR",
     "turkey": "TUR",
     "türkiye": "TUR",
-    "turkiye": "TUR",
-    "united states": "USA",
-    "usa": "USA"
-}));
-
-const tlaAliases = new Map(Object.entries({
-    CUR: "CUW",
-    KSA: "KSA",
-    SAU: "KSA",
-    ZAF: "RSA"
+    "united states": "USA"
 }));
 
 function emptyResult(teamId, notes = "") {
@@ -80,23 +94,27 @@ function numeric(value) {
     return Number.isFinite(parsed) ? parsed : 0;
 }
 
-function isFinished(match) {
-    return finishedStatuses.has(match.status);
+function isCompleted(competition) {
+    const status = competition.status?.type || {};
+    return Boolean(status.completed)
+        || completedStates.has(status.state)
+        || completedStatusNames.has(status.name);
 }
 
-function getFullTimeScore(match) {
-    const fullTime = match.score?.fullTime || {};
-    const home = fullTime.home;
-    const away = fullTime.away;
+function getCompetitors(competition) {
+    const competitors = competition.competitors || [];
+    const home = competitors.find((competitor) => competitor.homeAway === "home") || competitors[0];
+    const away = competitors.find((competitor) => competitor.homeAway === "away") || competitors[1];
 
-    if (home === null || away === null || home === undefined || away === undefined) {
+    if (!home || !away) {
         return null;
     }
 
-    return {
-        home: numeric(home),
-        away: numeric(away)
-    };
+    return { home, away };
+}
+
+function getScore(competitor) {
+    return numeric(competitor.score);
 }
 
 function buildTeamResolver(teams) {
@@ -107,143 +125,66 @@ function buildTeamResolver(teams) {
         names.set(normalize(team.name), team.id);
     });
 
-    return function resolveTeam(providerTeam) {
-        if (!providerTeam || providerTeam.name === "TBD") {
+    return function resolveTeam(competitor) {
+        const providerTeam = competitor?.team;
+
+        if (!providerTeam) {
             return null;
         }
 
-        const tla = String(providerTeam.tla || "").toUpperCase();
-        if (ids.has(tla)) {
-            return tla;
+        const abbreviation = String(providerTeam.abbreviation || "").toUpperCase();
+        if (ids.has(abbreviation)) {
+            return abbreviation;
         }
 
-        const aliasedTla = tlaAliases.get(tla);
-        if (aliasedTla && ids.has(aliasedTla)) {
-            return aliasedTla;
+        if (providerTeam.isActive === false) {
+            return null;
         }
 
         const candidates = [
+            providerTeam.displayName,
+            providerTeam.shortDisplayName,
             providerTeam.name,
-            providerTeam.shortName
+            providerTeam.location
         ].map(normalize).filter(Boolean);
 
         for (const candidate of candidates) {
-            const aliasedName = teamAliases.get(candidate);
-            if (aliasedName && ids.has(aliasedName)) {
-                return aliasedName;
+            if (teamAliases.has(candidate)) {
+                return teamAliases.get(candidate);
             }
 
-            const directName = names.get(candidate);
-            if (directName) {
-                return directName;
+            if (names.has(candidate)) {
+                return names.get(candidate);
             }
         }
 
-        throw new Error(`No team mapping found for provider team: ${JSON.stringify(providerTeam)}`);
+        throw new Error(`No team mapping found for ESPN team: ${JSON.stringify(providerTeam)}`);
     };
 }
 
-function ensureGroupTable(tables, group, teamIds) {
-    if (!group) {
-        return null;
-    }
-
-    if (!tables.has(group)) {
-        tables.set(group, new Map());
-    }
-
-    const table = tables.get(group);
-    teamIds.forEach((teamId) => {
-        if (!teamId) {
-            return;
-        }
-
-        if (!table.has(teamId)) {
-            table.set(teamId, {
-                teamId,
-                played: 0,
-                points: 0,
-                wins: 0,
-                draws: 0,
-                goalsFor: 0,
-                goalsAgainst: 0
-            });
-        }
-    });
-
-    return table;
-}
-
-function updateGroupTable(table, homeId, awayId, score) {
-    const home = table.get(homeId);
-    const away = table.get(awayId);
-    home.played += 1;
-    away.played += 1;
-    home.goalsFor += score.home;
-    home.goalsAgainst += score.away;
-    away.goalsFor += score.away;
-    away.goalsAgainst += score.home;
-
-    if (score.home > score.away) {
-        home.wins += 1;
-        home.points += 3;
-    } else if (score.away > score.home) {
-        away.wins += 1;
-        away.points += 3;
-    } else {
-        home.draws += 1;
-        away.draws += 1;
-        home.points += 1;
-        away.points += 1;
-    }
-}
-
-function sortGroupRows(rows) {
-    return [...rows].sort((a, b) => {
-        const goalDifferenceA = a.goalsFor - a.goalsAgainst;
-        const goalDifferenceB = b.goalsFor - b.goalsAgainst;
-
-        if (b.points !== a.points) {
-            return b.points - a.points;
-        }
-
-        if (goalDifferenceB !== goalDifferenceA) {
-            return goalDifferenceB - goalDifferenceA;
-        }
-
-        if (b.goalsFor !== a.goalsFor) {
-            return b.goalsFor - a.goalsFor;
-        }
-
-        return a.teamId.localeCompare(b.teamId);
-    });
-}
-
-function markReached(result, stage) {
-    const stageIndex = stageOrder.findIndex(([stageName]) => stageName === stage);
+function markReached(result, stageKey) {
+    const stageIndex = stageOrder.indexOf(stageKey);
 
     if (stageIndex === -1) {
         return;
     }
 
     for (let index = 0; index <= stageIndex; index += 1) {
-        result[stageOrder[index][1]] = true;
+        result[stageOrder[index]] = true;
     }
 }
 
-function getWinner(match, homeId, awayId, score) {
-    const winner = match.score?.winner;
+function getStageKey(event) {
+    return stageMap.get(event.season?.slug || "") || null;
+}
 
-    if (winner === "HOME_TEAM") {
+function getWinnerId(homeId, awayId, home, away, score) {
+    if (home.winner) {
         return homeId;
     }
 
-    if (winner === "AWAY_TEAM") {
+    if (away.winner) {
         return awayId;
-    }
-
-    if (!score) {
-        return null;
     }
 
     if (score.home > score.away) {
@@ -257,146 +198,129 @@ function getWinner(match, homeId, awayId, score) {
     return null;
 }
 
-function applyGroupAdvancement(results, groupTables, groupMatchCounts) {
-    const groups = [...groupTables.entries()];
-    const allGroupsComplete = groups.length === 12 && groups.every(([group, table]) => (
-        table.size === 4 && groupMatchCounts.get(group) === 6 && [...table.values()].every((row) => row.played === 3)
-    ));
+function applyGroupRecord(result, scored, conceded) {
+    result.goalsFor += scored;
 
-    if (!allGroupsComplete) {
-        return;
+    if (scored > conceded) {
+        result.groupWins += 1;
+    } else if (scored === conceded) {
+        result.groupDraws += 1;
     }
-
-    const advanced = new Set();
-    const thirdPlaceRows = [];
-
-    groups.forEach(([, table]) => {
-        const rows = sortGroupRows(table.values());
-        rows.slice(0, 2).forEach((row) => advanced.add(row.teamId));
-
-        if (rows[2]) {
-            thirdPlaceRows.push(rows[2]);
-        }
-    });
-
-    sortGroupRows(thirdPlaceRows).slice(0, 8).forEach((row) => advanced.add(row.teamId));
-
-    results.forEach((result) => {
-        if (advanced.has(result.teamId)) {
-            result.reachedRoundOf32 = true;
-        } else {
-            result.eliminated = true;
-        }
-    });
 }
 
-async function loadMatches() {
-    if (!token) {
-        console.log("FOOTBALL_DATA_API_TOKEN is not set. Skipping result update.");
-        return null;
+function applyKnockoutElimination(resultMap, winnerId, homeId, awayId) {
+    const loserId = winnerId === homeId ? awayId : winnerId === awayId ? homeId : null;
+
+    if (loserId) {
+        resultMap.get(loserId).eliminated = true;
     }
+}
 
-    const url = new URL(`https://api.football-data.org/v4/competitions/${competitionCode}/matches`);
-    url.searchParams.set("season", season);
+function stringifyResultsFile(file) {
+    const rows = file.results.map((result) => `    ${stringifyResult(result)}`);
+    return `{\n  "lastUpdated": ${JSON.stringify(file.lastUpdated)},\n  "results": [\n${rows.join(",\n")}\n  ]\n}\n`;
+}
 
-    const response = await fetch(url, {
-        headers: {
-            "X-Auth-Token": token
-        }
-    });
+function stringifyResult(result) {
+    return `{ "teamId": ${JSON.stringify(result.teamId)}, "groupWins": ${result.groupWins}, "groupDraws": ${result.groupDraws}, "goalsFor": ${result.goalsFor}, "reachedRoundOf32": ${result.reachedRoundOf32}, "reachedRoundOf16": ${result.reachedRoundOf16}, "reachedQuarterfinal": ${result.reachedQuarterfinal}, "reachedSemifinal": ${result.reachedSemifinal}, "reachedFinal": ${result.reachedFinal}, "wonWorldCup": ${result.wonWorldCup}, "eliminated": ${result.eliminated}, "notes": ${JSON.stringify(result.notes)} }`;
+}
+
+async function loadScoreboard() {
+    const url = new URL(scoreboardUrl);
+    url.searchParams.set("dates", dateRange);
+    url.searchParams.set("limit", "200");
+
+    const response = await fetch(url);
 
     if (!response.ok) {
         const body = await response.text();
-        throw new Error(`football-data request failed: ${response.status} ${response.statusText}\n${body}`);
+        throw new Error(`ESPN scoreboard request failed: ${response.status} ${response.statusText}\n${body}`);
     }
 
     return response.json();
 }
 
 async function main() {
-    const [teams, currentResultsFile, matchData] = await Promise.all([
+    const [teams, currentResultsFile, scoreboard] = await Promise.all([
         readFile(teamsPath, "utf8").then(JSON.parse),
         readFile(resultsPath, "utf8").then(JSON.parse),
-        loadMatches()
+        loadScoreboard()
     ]);
-
-    if (!matchData) {
-        return;
-    }
 
     const currentNotes = new Map((currentResultsFile.results || []).map((result) => [result.teamId, result.notes || ""]));
     const results = teams.map((team) => emptyResult(team.id, currentNotes.get(team.id) || ""));
     const resultMap = new Map(results.map((result) => [result.teamId, result]));
     const resolveTeam = buildTeamResolver(teams);
-    const groupTables = new Map();
-    const groupMatchCounts = new Map();
+    let completedMatches = 0;
+    let completedGroupMatches = 0;
 
-    (matchData.matches || []).forEach((match) => {
-        const homeId = resolveTeam(match.homeTeam);
-        const awayId = resolveTeam(match.awayTeam);
+    (scoreboard.events || []).forEach((event) => {
+        const competition = event.competitions?.[0];
+        const competitors = competition ? getCompetitors(competition) : null;
+
+        if (!competition || !competitors) {
+            return;
+        }
+
+        const homeId = resolveTeam(competitors.home);
+        const awayId = resolveTeam(competitors.away);
 
         if (!homeId || !awayId) {
             return;
         }
 
+        const stageKey = getStageKey(event);
         const homeResult = resultMap.get(homeId);
         const awayResult = resultMap.get(awayId);
 
-        markReached(homeResult, match.stage);
-        markReached(awayResult, match.stage);
+        markReached(homeResult, stageKey);
+        markReached(awayResult, stageKey);
 
-        if (!isFinished(match)) {
+        if (!isCompleted(competition)) {
             return;
         }
 
-        const score = getFullTimeScore(match);
-        if (!score) {
+        completedMatches += 1;
+
+        const score = {
+            home: getScore(competitors.home),
+            away: getScore(competitors.away)
+        };
+
+        if (event.season?.slug === "group-stage") {
+            completedGroupMatches += 1;
+            applyGroupRecord(homeResult, score.home, score.away);
+            applyGroupRecord(awayResult, score.away, score.home);
             return;
         }
 
         homeResult.goalsFor += score.home;
         awayResult.goalsFor += score.away;
 
-        if (match.stage === "GROUP_STAGE") {
-            const table = ensureGroupTable(groupTables, match.group, [homeId, awayId]);
-            if (table) {
-                groupMatchCounts.set(match.group, (groupMatchCounts.get(match.group) || 0) + 1);
-                updateGroupTable(table, homeId, awayId, score);
+        const winnerId = getWinnerId(homeId, awayId, competitors.home, competitors.away, score);
+        applyKnockoutElimination(resultMap, winnerId, homeId, awayId);
 
-                if (score.home > score.away) {
-                    homeResult.groupWins += 1;
-                } else if (score.away > score.home) {
-                    awayResult.groupWins += 1;
-                } else {
-                    homeResult.groupDraws += 1;
-                    awayResult.groupDraws += 1;
-                }
-            }
-        }
-
-        if (match.stage !== "GROUP_STAGE") {
-            const winner = getWinner(match, homeId, awayId, score);
-            const loser = winner === homeId ? awayId : winner === awayId ? homeId : null;
-
-            if (loser) {
-                resultMap.get(loser).eliminated = true;
-            }
-
-            if (match.stage === "FINAL" && winner) {
-                resultMap.get(winner).wonWorldCup = true;
-            }
+        if (event.season?.slug === "final" && winnerId) {
+            resultMap.get(winnerId).wonWorldCup = true;
         }
     });
 
-    applyGroupAdvancement(results, groupTables, groupMatchCounts);
+    const roundOf32Teams = results.filter((result) => result.reachedRoundOf32).length;
+    if (completedGroupMatches >= 72 && roundOf32Teams >= 32) {
+        results.forEach((result) => {
+            if (!result.reachedRoundOf32) {
+                result.eliminated = true;
+            }
+        });
+    }
 
     const output = {
         lastUpdated: new Date().toISOString(),
         results
     };
 
-    await writeFile(resultsPath, `${JSON.stringify(output, null, 2)}\n`);
-    console.log(`Updated ${resultsPath.pathname} from ${matchData.matches?.length || 0} matches.`);
+    await writeFile(resultsPath, stringifyResultsFile(output));
+    console.log(`Updated ${resultsPath.pathname} from ${completedMatches} completed ESPN matches.`);
 }
 
 main().catch((error) => {

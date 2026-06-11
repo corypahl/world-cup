@@ -3,7 +3,10 @@ name: Update World Cup Results
 on:
   workflow_dispatch:
   schedule:
-    - cron: "17 */2 * * *"
+    # 12:00 PM-1:00 AM ET during the June/July tournament window.
+    - cron: "*/15 16-23 * * *"
+    - cron: "*/15 0-4 * * *"
+    - cron: "0 5 * * *"
 
 permissions:
   contents: write
@@ -25,10 +28,6 @@ jobs:
           node-version: "22"
 
       - name: Update team results
-        env:
-          FOOTBALL_DATA_API_TOKEN: ${{ secrets.FOOTBALL_DATA_API_TOKEN }}
-          FOOTBALL_DATA_COMPETITION: WC
-          FOOTBALL_DATA_SEASON: "2026"
         run: node scripts/update-results.mjs
 
       - name: Validate data files
