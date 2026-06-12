@@ -28,6 +28,7 @@
         return {
             teamId,
             groupWins: 0,
+            groupLosses: 0,
             groupDraws: 0,
             goalsFor: 0,
             reachedRoundOf32: false,

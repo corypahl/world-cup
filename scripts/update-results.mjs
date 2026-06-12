@@ -67,6 +67,7 @@ function emptyResult(teamId, notes = "") {
     return {
         teamId,
         groupWins: 0,
+        groupLosses: 0,
         groupDraws: 0,
         goalsFor: 0,
         reachedRoundOf32: false,
@@ -205,6 +206,8 @@ function applyGroupRecord(result, scored, conceded) {
         result.groupWins += 1;
     } else if (scored === conceded) {
         result.groupDraws += 1;
+    } else {
+        result.groupLosses += 1;
     }
 }
 
@@ -222,7 +225,7 @@ function stringifyResultsFile(file) {
 }
 
 function stringifyResult(result) {
-    return `{ "teamId": ${JSON.stringify(result.teamId)}, "groupWins": ${result.groupWins}, "groupDraws": ${result.groupDraws}, "goalsFor": ${result.goalsFor}, "reachedRoundOf32": ${result.reachedRoundOf32}, "reachedRoundOf16": ${result.reachedRoundOf16}, "reachedQuarterfinal": ${result.reachedQuarterfinal}, "reachedSemifinal": ${result.reachedSemifinal}, "reachedFinal": ${result.reachedFinal}, "wonWorldCup": ${result.wonWorldCup}, "eliminated": ${result.eliminated}, "notes": ${JSON.stringify(result.notes)} }`;
+    return `{ "teamId": ${JSON.stringify(result.teamId)}, "groupWins": ${result.groupWins}, "groupLosses": ${result.groupLosses}, "groupDraws": ${result.groupDraws}, "goalsFor": ${result.goalsFor}, "reachedRoundOf32": ${result.reachedRoundOf32}, "reachedRoundOf16": ${result.reachedRoundOf16}, "reachedQuarterfinal": ${result.reachedQuarterfinal}, "reachedSemifinal": ${result.reachedSemifinal}, "reachedFinal": ${result.reachedFinal}, "wonWorldCup": ${result.wonWorldCup}, "eliminated": ${result.eliminated}, "notes": ${JSON.stringify(result.notes)} }`;
 }
 
 async function loadScoreboard() {

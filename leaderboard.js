@@ -134,8 +134,8 @@
                 return b.points - a.points;
             }
 
-            if (Number(a.team.cost) !== Number(b.team.cost)) {
-                return Number(b.team.cost) - Number(a.team.cost);
+            if (b.pickedBy.length !== a.pickedBy.length) {
+                return b.pickedBy.length - a.pickedBy.length;
             }
 
             return a.team.name.localeCompare(b.team.name);
@@ -322,7 +322,7 @@
                         </div>
                         <div class="detail-stat">
                             <span class="detail-label">Record</span>
-                            <strong>${Number(result.groupWins) || 0}-${Number(result.groupDraws) || 0}</strong>
+                            <strong>${formatRecord(result)}</strong>
                         </div>
                         <div class="detail-stat">
                             <span class="detail-label">Goals</span>
@@ -345,6 +345,14 @@
     function renderPickedBy(pick) {
         const owners = pick.owners && pick.owners.length ? ` (${pick.owners.join(", ")})` : "";
         return `<span class="pick-chip">${escapeHtml(pick.teamName)}${escapeHtml(owners)}</span>`;
+    }
+
+    function formatRecord(result) {
+        return [
+            Number(result.groupWins) || 0,
+            Number(result.groupLosses) || 0,
+            Number(result.groupDraws) || 0
+        ].join("-");
     }
 
     function renderScoringRules(config) {
