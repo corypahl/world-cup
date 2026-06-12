@@ -200,10 +200,6 @@
             const isExpanded = state.expandedParticipantId === participant.id;
             const rowClasses = ["leaderboard-row"];
 
-            if (participant.id === "cory-pahl") {
-                rowClasses.push("leaderboard-row--current");
-            }
-
             if (entry.validation.status === "invalid") {
                 rowClasses.push("leaderboard-row--invalid");
             }

@@ -201,10 +201,6 @@ tbody tr:hover {
     background: #f8f1ce;
 }
 
-.leaderboard-row--current {
-    box-shadow: inset 6px 0 0 var(--blue);
-}
-
 .leaderboard-row--invalid {
     background: var(--red-soft);
 }
@@ -604,10 +600,6 @@ details[open] summary::after {
     .leaderboard-table .rank-badge {
         width: 1.8rem;
         height: 1.8rem;
-    }
-
-    .leaderboard-row--current {
-        box-shadow: inset 5px 0 0 var(--blue);
     }
 
     .detail-cell {
