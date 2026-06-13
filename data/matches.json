@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-13T21:17:51.388Z",
+  "lastUpdated": "2026-06-13T22:35:17.210Z",
   "matches": [
     {
       "id": "760415",
@@ -86,15 +86,15 @@
       "date": "2026-06-13T22:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "30'",
       "completed": false,
       "homeTeamId": "BRA",
       "homeTeamName": "Brazil",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "MAR",
       "awayTeamName": "Morocco",
-      "awayScore": null,
+      "awayScore": 1,
       "venue": "MetLife Stadium"
     },
     {
