@@ -32,7 +32,7 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Update team results
+      - name: Update team results and schedule
         run: node scripts/update-results.mjs
 
       - name: Validate data files
@@ -43,17 +43,17 @@ jobs:
           node --check scripts/update-results.mjs
           node -e "const fs=require('fs'); for (const file of fs.readdirSync('data').filter((name)=>name.endsWith('.json'))) JSON.parse(fs.readFileSync('data/'+file,'utf8'));"
 
-      - name: Commit result changes
+      - name: Commit data changes
         run: |
-          if git diff --quiet -- data/team-results.json; then
-            echo "No result changes to commit."
+          if git diff --quiet -- data/team-results.json data/matches.json; then
+            echo "No data changes to commit."
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/team-results.json
-          git commit -m "Update World Cup results"
+          git add data/team-results.json data/matches.json
+          git commit -m "Update World Cup data"
           git push
 
       - name: Configure GitHub Pages

@@ -355,6 +355,12 @@ tbody tr:hover {
     background: var(--red-soft);
 }
 
+.pick-chip--today {
+    border-color: var(--blue);
+    color: #07306f;
+    background: #dcebff;
+}
+
 .pick-chip--invalid {
     border-color: var(--red);
     color: #8b160d;
@@ -400,9 +406,99 @@ tbody tr:hover {
     background: #efffbc;
 }
 
+.team-code--today {
+    color: #07306f;
+    background: #dcebff;
+}
+
 .team-code--eliminated {
     color: #8b160d;
     background: var(--red-soft);
+}
+
+.match-list {
+    display: grid;
+    gap: 0.6rem;
+}
+
+.match-row {
+    display: grid;
+    grid-template-columns: minmax(5rem, auto) minmax(0, 1fr);
+    gap: 0.25rem 0.8rem;
+    align-items: center;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 0.7rem;
+    background: #fffdf4;
+}
+
+.match-row--today {
+    border-color: #9bbcff;
+    background: #f1f6ff;
+}
+
+.match-time {
+    grid-row: span 2;
+    color: var(--blue-dark);
+    font-weight: 900;
+    white-space: nowrap;
+}
+
+.match-main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    align-items: center;
+    min-width: 0;
+}
+
+.match-at {
+    color: var(--muted);
+    font-size: 0.82rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.match-meta {
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.detail-group--schedule {
+    grid-column: 1 / -1;
+}
+
+.team-schedule-list {
+    display: grid;
+    gap: 0.35rem;
+}
+
+.team-schedule-item {
+    display: grid;
+    grid-template-columns: 4.5rem minmax(0, 1fr) auto;
+    gap: 0.5rem;
+    align-items: center;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 0.45rem 0.55rem;
+    background: #fffdf4;
+}
+
+.team-schedule-item--today {
+    border-color: #9bbcff;
+    background: #f1f6ff;
+}
+
+.schedule-date {
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.schedule-opponent {
+    min-width: 0;
 }
 
 .ownership-note {
@@ -647,6 +743,22 @@ details[open] summary::after {
 
     .pick-chip {
         min-height: 1.8rem;
+    }
+
+    .match-row {
+        grid-template-columns: 1fr;
+    }
+
+    .match-time {
+        grid-row: auto;
+    }
+
+    .team-schedule-item {
+        grid-template-columns: 1fr auto;
+    }
+
+    .schedule-date {
+        grid-column: 1 / -1;
     }
 
     .search-control {

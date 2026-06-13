@@ -19,6 +19,7 @@ world-cup-budget-picks/
 |   |-- participants.json
 |   |-- teams.json
 |   |-- team-results.json
+|   |-- matches.json
 |   `-- scoring-config.json
 `-- .github/
     `-- workflows/
@@ -64,16 +65,19 @@ Lineups are validated for:
 - team IDs that exist in `data/teams.json`
 - no duplicate teams inside the same lineup
 
-## Automatic Team Results
+## Automatic World Cup Data
 
-The scheduled updater lives in `scripts/update-results.mjs` and writes `data/team-results.json`.
+The scheduled updater lives in `scripts/update-results.mjs` and writes:
+
+- `data/team-results.json` for scoring totals
+- `data/matches.json` for today's games, previous results, and upcoming schedules
 
 The GitHub Action at `.github/workflows/update-results.yml` runs:
 
 - every 15 minutes from 12:00 PM ET through 1:00 AM ET during the tournament
 - manually through `workflow_dispatch`
 
-It fetches FIFA World Cup match data from ESPN's public soccer scoreboard endpoint and commits `data/team-results.json` after each successful fetch so the visible `lastUpdated` timestamp reflects the latest check. That commit triggers the Pages deploy workflow. No API token is required.
+It fetches FIFA World Cup match data from ESPN's public soccer scoreboard endpoint and commits the generated data files after each successful fetch so the visible `lastUpdated` timestamp reflects the latest check. The same workflow deploys the updated static site to Pages. No API token is required.
 
 ## Manual Team Results
 
@@ -85,6 +89,7 @@ This is the main manual update file during the tournament.
 {
   "teamId": "BRA",
   "groupWins": 1,
+  "groupLosses": 0,
   "groupDraws": 0,
   "goalsFor": 3,
   "reachedRoundOf32": true,
@@ -124,14 +129,9 @@ The leaderboard sorts by:
 
 1. Current points, descending
 2. Tiebreaker, descending
-3. Max points, descending
-4. Original participant order if still tied
+3. Original participant order if still tied
 
-Rows with equal current points, tiebreaker, and max points display the same rank.
-
-## Max Points
-
-The leaderboard's Max Points column uses current points plus remaining advancement bonuses for teams that are not marked `eliminated`. Future goals are not guessed; they are added only after `goalsFor` is updated in `data/team-results.json`.
+Rows with equal current points and tiebreaker display the same rank. The Remaining column is informational and shows how many of the participant's five teams have not been eliminated.
 
 ## Deploy to GitHub Pages
 

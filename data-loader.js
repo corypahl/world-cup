@@ -1,10 +1,11 @@
 (function () {
-    const DATA_VERSION = "20260611-live";
+    const DATA_VERSION = "20260613-schedule";
 
     const DATA_FILES = {
         participants: "data/participants.json",
         teams: "data/teams.json",
         teamResults: "data/team-results.json",
+        matches: "data/matches.json",
         scoringConfig: "data/scoring-config.json"
     };
 
@@ -33,16 +34,32 @@
         };
     }
 
+    function normalizeMatches(matchesFile) {
+        if (Array.isArray(matchesFile)) {
+            return {
+                lastUpdated: "",
+                matches: matchesFile
+            };
+        }
+
+        return {
+            lastUpdated: matchesFile.lastUpdated || "",
+            matches: Array.isArray(matchesFile.matches) ? matchesFile.matches : []
+        };
+    }
+
     async function loadContestData(options) {
         const cacheBust = Boolean(options && options.cacheBust);
-        const [participants, teams, teamResultsFile, scoringConfig] = await Promise.all([
+        const [participants, teams, teamResultsFile, matchesFile, scoringConfig] = await Promise.all([
             fetchJson(DATA_FILES.participants, cacheBust),
             fetchJson(DATA_FILES.teams, cacheBust),
             fetchJson(DATA_FILES.teamResults, true),
+            fetchJson(DATA_FILES.matches, true),
             fetchJson(DATA_FILES.scoringConfig, cacheBust)
         ]);
 
         const teamResults = normalizeTeamResults(teamResultsFile);
+        const matches = normalizeMatches(matchesFile);
 
         return {
             participants,
@@ -50,6 +67,10 @@
             teamResults: teamResults.results,
             teamResultsMeta: {
                 lastUpdated: teamResults.lastUpdated
+            },
+            matches: matches.matches,
+            matchesMeta: {
+                lastUpdated: matches.lastUpdated
             },
             scoringConfig
         };

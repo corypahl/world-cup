@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2026 World Cup Picks</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=20260613-schedule">
 </head>
 <body>
     <header class="site-header">
@@ -39,6 +39,19 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </section>
+
+        <section class="section-band" aria-labelledby="todayGamesTitle">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Matchday Watchlist</p>
+                    <h2 id="todayGamesTitle">Today's Games</h2>
+                </div>
+            </div>
+
+            <div id="todayGames" class="match-list">
+                <p class="placeholder">Loading today's games...</p>
             </div>
         </section>
 
@@ -105,11 +118,11 @@
 
     <footer class="site-footer">
         <span>2026 World Cup Picks</span>
-        <span>Manual JSON updates, static GitHub Pages deployment</span>
+        <span>Automated ESPN updates, static GitHub Pages deployment</span>
     </footer>
 
-    <script src="data-loader.js?v=20260611-live"></script>
-    <script src="scoring.js?v=20260611-live"></script>
-    <script src="leaderboard.js?v=20260611-live"></script>
+    <script src="data-loader.js?v=20260613-schedule"></script>
+    <script src="scoring.js?v=20260613-schedule"></script>
+    <script src="leaderboard.js?v=20260613-schedule"></script>
 </body>
 </html>

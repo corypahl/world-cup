@@ -1,9 +1,13 @@
 (function () {
+    const EASTERN_TIME_ZONE = "America/New_York";
+
     const state = {
         data: null,
         entries: [],
         teamScores: [],
         ownership: new Map(),
+        todayMatches: [],
+        todayTeamIds: new Set(),
         expandedParticipantId: null,
         expandedTeamId: null,
         teamSearch: ""
@@ -101,6 +105,8 @@
     function buildContestState(data) {
         const teamMap = window.WorldCupScoring.buildLookup(data.teams, "id");
         const resultMap = window.WorldCupScoring.buildLookup(data.teamResults, "teamId");
+        const matches = [...(data.matches || [])].sort((a, b) => new Date(a.date) - new Date(b.date));
+        const todayKey = getEasternDateKey(new Date());
 
         const entries = data.participants.map((participant, originalIndex) => (
             window.WorldCupScoring.calculateParticipantScore(
@@ -119,14 +125,19 @@
         });
 
         state.ownership = calculateOwnership(data.participants, teamMap);
+        state.todayMatches = matches.filter((match) => getEasternDateKey(match.date) === todayKey);
+        state.todayTeamIds = new Set(state.todayMatches.flatMap((match) => [match.homeTeamId, match.awayTeamId]));
         state.teamScores = data.teams.map((team) => {
             const result = resultMap.get(team.id) || window.WorldCupScoring.emptyTeamResult(team.id);
+            const teamMatches = matches.filter((match) => match.homeTeamId === team.id || match.awayTeamId === team.id);
 
             return {
                 team,
                 result,
                 points: window.WorldCupScoring.calculateTeamScore(result, data.scoringConfig),
                 roundReached: window.WorldCupScoring.getRoundReached(result),
+                playsToday: state.todayTeamIds.has(team.id),
+                matches: teamMatches,
                 pickedBy: state.ownership.get(team.id) || []
             };
         }).sort((a, b) => {
@@ -169,6 +180,7 @@
     function renderAll() {
         renderDataStatus();
         renderLeaderboard(state.entries);
+        renderTodayGames();
         renderTeamScores(state.teamScores);
         renderScoringRules(state.data.scoringConfig);
     }
@@ -182,6 +194,32 @@
         const rawTimestamp = state.data.teamResultsMeta.lastUpdated;
         const formatted = rawTimestamp ? formatDate(rawTimestamp) : "Not updated yet";
         lastUpdated.textContent = `Last updated at: ${formatted}`;
+    }
+
+    function renderTodayGames() {
+        const container = document.getElementById("todayGames");
+        if (!container) {
+            return;
+        }
+
+        if (!state.todayMatches.length) {
+            container.innerHTML = `<p class="placeholder">No World Cup games today.</p>`;
+            return;
+        }
+
+        container.innerHTML = state.todayMatches.map((match) => `
+            <div class="match-row match-row--today">
+                <div class="match-time">${formatMatchTime(match.date)}</div>
+                <div class="match-main">
+                    <span class="team-code team-code--today">${escapeHtml(match.awayTeamId)}</span>
+                    <strong>${escapeHtml(match.awayTeamName)}</strong>
+                    <span class="match-at">at</span>
+                    <span class="team-code team-code--today">${escapeHtml(match.homeTeamId)}</span>
+                    <strong>${escapeHtml(match.homeTeamName)}</strong>
+                </div>
+                <div class="match-meta">${escapeHtml(match.stageLabel)}${match.venue ? ` - ${escapeHtml(match.venue)}` : ""}</div>
+            </div>
+        `).join("");
     }
 
     function renderLeaderboard(entries) {
@@ -265,6 +303,7 @@
                 teamScore.team.name,
                 teamScore.roundReached,
                 teamScore.result.notes,
+                teamScore.matches.map((match) => getOpponentName(match, teamScore.team.id)).join(" "),
                 teamScore.pickedBy.map((pick) => `${pick.teamName} ${(pick.owners || []).join(" ")}`).join(" ")
             ].join(" ").toLowerCase();
 
@@ -288,7 +327,7 @@
             return `
                 <tr class="${rowClasses.join(" ")}" data-team-id="${escapeHtml(teamScore.team.id)}" tabindex="0" role="button" aria-expanded="${isExpanded}" aria-controls="team-details-${escapeHtml(teamScore.team.id)}">
                     <td data-label="Team">
-                        <span class="team-code ${result.eliminated ? "team-code--eliminated" : "team-code--active"}">${escapeHtml(teamScore.team.id)}</span>
+                        <span class="${getTeamCodeClasses(result, teamScore.playsToday)}">${escapeHtml(teamScore.team.id)}</span>
                     </td>
                     <td data-label="Points" class="numeric strong">${teamScore.points}</td>
                     <td data-label="Picked By" class="numeric strong">${teamScore.pickedBy.length}</td>
@@ -333,9 +372,54 @@
                             <span class="detail-label">Picked By</span>
                             <div class="pick-strip">${pickedBy}</div>
                         </div>
+                        ${renderTeamSchedule(teamScore)}
                     </div>
                 </td>
             </tr>
+        `;
+    }
+
+    function renderTeamSchedule(teamScore) {
+        const previousMatches = teamScore.matches.filter((match) => match.completed);
+        const upcomingMatches = teamScore.matches.filter((match) => !match.completed);
+
+        return `
+            <div class="detail-group detail-group--schedule">
+                <span class="detail-label">Previous Results</span>
+                ${renderMatchGroup(previousMatches, teamScore.team.id, "No completed games yet.")}
+            </div>
+            <div class="detail-group detail-group--schedule">
+                <span class="detail-label">Upcoming Schedule</span>
+                ${renderMatchGroup(upcomingMatches, teamScore.team.id, "No upcoming games listed.")}
+            </div>
+        `;
+    }
+
+    function renderMatchGroup(matches, teamId, emptyText) {
+        if (!matches.length) {
+            return `<p class="placeholder">${escapeHtml(emptyText)}</p>`;
+        }
+
+        return `
+            <div class="team-schedule-list">
+                ${matches.map((match) => renderTeamMatch(match, teamId)).join("")}
+            </div>
+        `;
+    }
+
+    function renderTeamMatch(match, teamId) {
+        const opponentId = getOpponentId(match, teamId);
+        const opponentName = getOpponentName(match, teamId);
+        const isHome = match.homeTeamId === teamId;
+        const score = formatMatchScore(match);
+        const result = match.completed ? getTeamMatchResult(match, teamId) : formatMatchTime(match.date);
+
+        return `
+            <div class="team-schedule-item ${getEasternDateKey(match.date) === getEasternDateKey(new Date()) ? "team-schedule-item--today" : ""}">
+                <span class="schedule-date">${formatShortDate(match.date)}</span>
+                <span class="schedule-opponent">${isHome ? "vs" : "at"} <span class="${getTeamCodeClasses({ eliminated: false }, state.todayTeamIds.has(opponentId))}">${escapeHtml(opponentId)}</span> ${escapeHtml(opponentName)}</span>
+                <strong>${escapeHtml(match.completed ? result : score || result)}</strong>
+            </div>
         `;
     }
 
@@ -383,8 +467,15 @@
             return `<span class="pick-chip pick-chip--invalid">${escapeHtml(pick.teamId)}</span>`;
         }
 
+        const classes = ["pick-chip"];
+        if (state.todayTeamIds.has(pick.team.id)) {
+            classes.push("pick-chip--today");
+        } else if (pick.eliminated) {
+            classes.push("pick-chip--eliminated");
+        }
+
         return `
-            <span class="pick-chip ${pick.eliminated ? "pick-chip--eliminated" : ""}">
+            <span class="${classes.join(" ")}">
                 ${escapeHtml(pick.team.name)}
                 <strong>${pick.score}</strong>
             </span>
@@ -399,6 +490,51 @@
         return `<span class="status-badge status-badge--alive">Alive</span>`;
     }
 
+    function getTeamCodeClasses(result, playsToday) {
+        const classes = ["team-code"];
+
+        if (playsToday) {
+            classes.push("team-code--today");
+        } else if (result.eliminated) {
+            classes.push("team-code--eliminated");
+        } else {
+            classes.push("team-code--active");
+        }
+
+        return classes.join(" ");
+    }
+
+    function getOpponentId(match, teamId) {
+        return match.homeTeamId === teamId ? match.awayTeamId : match.homeTeamId;
+    }
+
+    function getOpponentName(match, teamId) {
+        return match.homeTeamId === teamId ? match.awayTeamName : match.homeTeamName;
+    }
+
+    function formatMatchScore(match) {
+        if (match.homeScore === null || match.awayScore === null || match.homeScore === undefined || match.awayScore === undefined) {
+            return "";
+        }
+
+        return `${Number(match.awayScore)}-${Number(match.homeScore)}`;
+    }
+
+    function getTeamMatchResult(match, teamId) {
+        const teamScore = match.homeTeamId === teamId ? Number(match.homeScore) : Number(match.awayScore);
+        const opponentScore = match.homeTeamId === teamId ? Number(match.awayScore) : Number(match.homeScore);
+
+        if (teamScore > opponentScore) {
+            return `W ${teamScore}-${opponentScore}`;
+        }
+
+        if (teamScore < opponentScore) {
+            return `L ${teamScore}-${opponentScore}`;
+        }
+
+        return `D ${teamScore}-${opponentScore}`;
+    }
+
     function renderFatalError(error) {
         const message = `
             <div class="fatal-error">
@@ -409,6 +545,54 @@
         `;
 
         document.querySelector("main").innerHTML = message;
+    }
+
+    function getEasternDateKey(value) {
+        const date = value instanceof Date ? value : new Date(value);
+
+        if (Number.isNaN(date.getTime())) {
+            return "";
+        }
+
+        const parts = new Intl.DateTimeFormat("en-US", {
+            timeZone: EASTERN_TIME_ZONE,
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit"
+        }).formatToParts(date).reduce((all, part) => {
+            all[part.type] = part.value;
+            return all;
+        }, {});
+
+        return `${parts.year}-${parts.month}-${parts.day}`;
+    }
+
+    function formatMatchTime(value) {
+        const date = new Date(value);
+
+        if (Number.isNaN(date.getTime())) {
+            return value;
+        }
+
+        return new Intl.DateTimeFormat(undefined, {
+            timeZone: EASTERN_TIME_ZONE,
+            hour: "numeric",
+            minute: "2-digit"
+        }).format(date);
+    }
+
+    function formatShortDate(value) {
+        const date = new Date(value);
+
+        if (Number.isNaN(date.getTime())) {
+            return value;
+        }
+
+        return new Intl.DateTimeFormat(undefined, {
+            timeZone: EASTERN_TIME_ZONE,
+            month: "short",
+            day: "numeric"
+        }).format(date);
     }
 
     function formatDate(value) {
