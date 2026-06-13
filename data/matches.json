@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-13T22:35:17.210Z",
+  "lastUpdated": "2026-06-13T23:45:03.142Z",
   "matches": [
     {
       "id": "760415",
@@ -87,11 +87,11 @@
       "stage": "group-stage",
       "stageLabel": "Group Stage",
       "status": "in",
-      "statusLabel": "30'",
+      "statusLabel": "80'",
       "completed": false,
       "homeTeamId": "BRA",
       "homeTeamName": "Brazil",
-      "homeScore": 0,
+      "homeScore": 1,
       "awayTeamId": "MAR",
       "awayTeamName": "Morocco",
       "awayScore": 1,
