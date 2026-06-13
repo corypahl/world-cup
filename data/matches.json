@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-13T18:23:04.496Z",
+  "lastUpdated": "2026-06-13T19:59:25.379Z",
   "matches": [
     {
       "id": "760415",
@@ -70,15 +70,15 @@
       "date": "2026-06-13T19:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "HT",
       "completed": false,
       "homeTeamId": "QAT",
       "homeTeamName": "Qatar",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "SUI",
       "awayTeamName": "Switzerland",
-      "awayScore": null,
+      "awayScore": 1,
       "venue": "Levi's Stadium"
     },
     {
