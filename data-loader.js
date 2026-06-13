@@ -1,5 +1,5 @@
 (function () {
-    const DATA_VERSION = "20260613-schedule";
+    const DATA_VERSION = "20260613-neutral";
 
     const DATA_FILES = {
         participants: "data/participants.json",

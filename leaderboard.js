@@ -212,10 +212,8 @@
                 <div class="match-time">${formatMatchTime(match.date)}</div>
                 <div class="match-main">
                     <span class="team-code team-code--today">${escapeHtml(match.awayTeamId)}</span>
-                    <strong>${escapeHtml(match.awayTeamName)}</strong>
-                    <span class="match-at">at</span>
+                    <span class="match-at">vs</span>
                     <span class="team-code team-code--today">${escapeHtml(match.homeTeamId)}</span>
-                    <strong>${escapeHtml(match.homeTeamName)}</strong>
                 </div>
                 <div class="match-meta">${escapeHtml(match.stageLabel)}${match.venue ? ` - ${escapeHtml(match.venue)}` : ""}</div>
             </div>
@@ -408,16 +406,14 @@
     }
 
     function renderTeamMatch(match, teamId) {
-        const opponentId = getOpponentId(match, teamId);
         const opponentName = getOpponentName(match, teamId);
-        const isHome = match.homeTeamId === teamId;
         const score = formatMatchScore(match);
         const result = match.completed ? getTeamMatchResult(match, teamId) : formatMatchTime(match.date);
 
         return `
             <div class="team-schedule-item ${getEasternDateKey(match.date) === getEasternDateKey(new Date()) ? "team-schedule-item--today" : ""}">
                 <span class="schedule-date">${formatShortDate(match.date)}</span>
-                <span class="schedule-opponent">${isHome ? "vs" : "at"} <span class="${getTeamCodeClasses({ eliminated: false }, state.todayTeamIds.has(opponentId))}">${escapeHtml(opponentId)}</span> ${escapeHtml(opponentName)}</span>
+                <span class="schedule-opponent">vs ${escapeHtml(opponentName)}</span>
                 <strong>${escapeHtml(match.completed ? result : score || result)}</strong>
             </div>
         `;
@@ -502,10 +498,6 @@
         }
 
         return classes.join(" ");
-    }
-
-    function getOpponentId(match, teamId) {
-        return match.homeTeamId === teamId ? match.awayTeamId : match.homeTeamId;
     }
 
     function getOpponentName(match, teamId) {
