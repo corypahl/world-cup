@@ -573,9 +573,14 @@ details[open] summary::after {
         width: 3.5rem;
     }
 
+    .leaderboard-table th:nth-child(3),
+    .leaderboard-table td:nth-child(3) {
+        width: 5.25rem;
+    }
+
     .leaderboard-table th:last-child,
     .leaderboard-table td:last-child {
-        width: 5.25rem;
+        width: 6.1rem;
     }
 
     .team-table th:first-child,
@@ -694,9 +699,14 @@ details[open] summary::after {
         width: 3rem;
     }
 
+    .leaderboard-table th:nth-child(3),
+    .leaderboard-table td:nth-child(3) {
+        width: 4rem;
+    }
+
     .leaderboard-table th:last-child,
     .leaderboard-table td:last-child {
-        width: 4rem;
+        width: 5.6rem;
     }
 
     .team-table th:first-child,

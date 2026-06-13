@@ -60,24 +60,6 @@
         return total;
     }
 
-    function calculateTeamMaxPossibleScore(teamResult, scoringConfig) {
-        const result = teamResult || {};
-        const config = scoringConfig || {};
-        let total = calculateTeamScore(result, config);
-
-        if (result.eliminated) {
-            return total;
-        }
-
-        ADVANCEMENT_STEPS.forEach((step) => {
-            if (!result[step.resultKey]) {
-                total += toNumber(config[step.configKey]);
-            }
-        });
-
-        return total;
-    }
-
     function getRoundReached(teamResult) {
         const result = teamResult || {};
 
@@ -163,15 +145,12 @@
             const team = teamMap.get(teamId);
             const result = resultMap.get(teamId) || emptyTeamResult(teamId);
             const score = team ? calculateTeamScore(result, scoringConfig) : 0;
-            const maxPossibleScore = team ? calculateTeamMaxPossibleScore(result, scoringConfig) : 0;
 
             return {
                 teamId,
                 team,
                 result,
                 score,
-                maxPossibleScore,
-                upside: Math.max(0, maxPossibleScore - score),
                 goals: toNumber(result.goalsFor),
                 roundReached: getRoundReached(result),
                 eliminated: Boolean(result.eliminated)
@@ -179,8 +158,8 @@
         });
 
         const totalPoints = pickDetails.reduce((total, pick) => total + pick.score, 0);
-        const maxPossiblePoints = pickDetails.reduce((total, pick) => total + pick.maxPossibleScore, 0);
         const tiebreaker = pickDetails.reduce((highest, pick) => Math.max(highest, pick.goals), 0);
+        const remainingTeams = pickDetails.filter((pick) => pick.team && !pick.eliminated).length;
 
         return {
             participant,
@@ -188,9 +167,8 @@
             validation,
             pickDetails,
             totalPoints,
-            maxPossiblePoints,
-            upside: Math.max(0, maxPossiblePoints - totalPoints),
             tiebreaker,
+            remainingTeams,
             budgetUsed: validation.budgetUsed,
             remainingBudget: validation.remainingBudget
         };
@@ -206,10 +184,6 @@
                 return b.tiebreaker - a.tiebreaker;
             }
 
-            if (b.maxPossiblePoints !== a.maxPossiblePoints) {
-                return b.maxPossiblePoints - a.maxPossiblePoints;
-            }
-
             return a.originalIndex - b.originalIndex;
         });
     }
@@ -218,18 +192,15 @@
         let currentRank = 0;
         let previousScore = null;
         let previousTiebreaker = null;
-        let previousMaxPossible = null;
 
         return entries.map((entry, index) => {
             const scoreChanged = entry.totalPoints !== previousScore;
             const tiebreakerChanged = entry.tiebreaker !== previousTiebreaker;
-            const maxPossibleChanged = entry.maxPossiblePoints !== previousMaxPossible;
 
-            if (scoreChanged || tiebreakerChanged || maxPossibleChanged) {
+            if (scoreChanged || tiebreakerChanged) {
                 currentRank = index + 1;
                 previousScore = entry.totalPoints;
                 previousTiebreaker = entry.tiebreaker;
-                previousMaxPossible = entry.maxPossiblePoints;
             }
 
             return currentRank;
@@ -241,7 +212,6 @@
         MAX_BUDGET,
         REQUIRED_PICKS,
         buildLookup,
-        calculateTeamMaxPossibleScore,
         calculateTeamScore,
         calculateParticipantScore,
         calculateRanks,

@@ -191,7 +191,7 @@
         }
 
         if (!entries.length) {
-            tbody.innerHTML = `<tr><td colspan="3" class="empty-cell">No participants found.</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="4" class="empty-cell">No participants found.</td></tr>`;
             return;
         }
 
@@ -219,6 +219,7 @@
                         ${entry.totalPoints}
                         <span class="row-cue" aria-hidden="true">${isExpanded ? "Close" : "View"}</span>
                     </td>
+                    <td data-label="Remaining" class="numeric strong">${entry.remainingTeams}/5</td>
                 </tr>
                 ${isExpanded ? renderLeaderboardDetails(entry) : ""}
             `;
@@ -232,7 +233,7 @@
 
         return `
             <tr class="detail-row" id="details-${escapeHtml(entry.participant.id)}">
-                <td colspan="3" class="detail-cell">
+                <td colspan="4" class="detail-cell">
                     <div class="expanded-details">
                         <div class="detail-group detail-group--picks">
                             <span class="detail-label">Teams</span>
@@ -241,10 +242,6 @@
                         <div class="detail-stat">
                             <span class="detail-label">Tiebreaker</span>
                             <strong>${entry.tiebreaker}</strong>
-                        </div>
-                        <div class="detail-stat">
-                            <span class="detail-label">Max Score</span>
-                            <strong>${entry.maxPossiblePoints}</strong>
                         </div>
                     </div>
                 </td>
