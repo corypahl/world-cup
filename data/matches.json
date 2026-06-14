@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-14T01:08:04.642Z",
+  "lastUpdated": "2026-06-14T02:01:43.779Z",
   "matches": [
     {
       "id": "760415",
@@ -103,14 +103,14 @@
       "stage": "group-stage",
       "stageLabel": "Group Stage",
       "status": "in",
-      "statusLabel": "5'",
+      "statusLabel": "HT",
       "completed": false,
       "homeTeamId": "HAI",
       "homeTeamName": "Haiti",
       "homeScore": 0,
       "awayTeamId": "SCO",
       "awayTeamName": "Scotland",
-      "awayScore": 0,
+      "awayScore": 1,
       "venue": "Gillette Stadium"
     },
     {
