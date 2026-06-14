@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-14T02:09:45.791Z",
+  "lastUpdated": "2026-06-14T03:14:56.778Z",
   "results": [
     { "teamId": "FRA", "groupWins": 0, "groupLosses": 0, "groupDraws": 0, "goalsFor": 0, "reachedRoundOf32": false, "reachedRoundOf16": false, "reachedQuarterfinal": false, "reachedSemifinal": false, "reachedFinal": false, "wonWorldCup": false, "eliminated": false, "notes": "" },
     { "teamId": "ESP", "groupWins": 0, "groupLosses": 0, "groupDraws": 0, "goalsFor": 0, "reachedRoundOf32": false, "reachedRoundOf16": false, "reachedQuarterfinal": false, "reachedSemifinal": false, "reachedFinal": false, "wonWorldCup": false, "eliminated": false, "notes": "" },
@@ -33,7 +33,7 @@
     { "teamId": "EGY", "groupWins": 0, "groupLosses": 0, "groupDraws": 0, "goalsFor": 0, "reachedRoundOf32": false, "reachedRoundOf16": false, "reachedQuarterfinal": false, "reachedSemifinal": false, "reachedFinal": false, "wonWorldCup": false, "eliminated": false, "notes": "" },
     { "teamId": "GHA", "groupWins": 0, "groupLosses": 0, "groupDraws": 0, "goalsFor": 0, "reachedRoundOf32": false, "reachedRoundOf16": false, "reachedQuarterfinal": false, "reachedSemifinal": false, "reachedFinal": false, "wonWorldCup": false, "eliminated": false, "notes": "" },
     { "teamId": "KOR", "groupWins": 1, "groupLosses": 0, "groupDraws": 0, "goalsFor": 2, "reachedRoundOf32": false, "reachedRoundOf16": false, "reachedQuarterfinal": false, "reachedSemifinal": false, "reachedFinal": false, "wonWorldCup": false, "eliminated": false, "notes": "" },
-    { "teamId": "SCO", "groupWins": 0, "groupLosses": 0, "groupDraws": 0, "goalsFor": 0, "reachedRoundOf32": false, "reachedRoundOf16": false, "reachedQuarterfinal": false, "reachedSemifinal": false, "reachedFinal": false, "wonWorldCup": false, "eliminated": false, "notes": "" },
+    { "teamId": "SCO", "groupWins": 1, "groupLosses": 0, "groupDraws": 0, "goalsFor": 1, "reachedRoundOf32": false, "reachedRoundOf16": false, "reachedQuarterfinal": false, "reachedSemifinal": false, "reachedFinal": false, "wonWorldCup": false, "eliminated": false, "notes": "" },
     { "teamId": "AUS", "groupWins": 0, "groupLosses": 0, "groupDraws": 0, "goalsFor": 0, "reachedRoundOf32": false, "reachedRoundOf16": false, "reachedQuarterfinal": false, "reachedSemifinal": false, "reachedFinal": false, "wonWorldCup": false, "eliminated": false, "notes": "" },
     { "teamId": "IRN", "groupWins": 0, "groupLosses": 0, "groupDraws": 0, "goalsFor": 0, "reachedRoundOf32": false, "reachedRoundOf16": false, "reachedQuarterfinal": false, "reachedSemifinal": false, "reachedFinal": false, "wonWorldCup": false, "eliminated": false, "notes": "" },
     { "teamId": "TUN", "groupWins": 0, "groupLosses": 0, "groupDraws": 0, "goalsFor": 0, "reachedRoundOf32": false, "reachedRoundOf16": false, "reachedQuarterfinal": false, "reachedSemifinal": false, "reachedFinal": false, "wonWorldCup": false, "eliminated": false, "notes": "" },
@@ -48,6 +48,6 @@
     { "teamId": "RSA", "groupWins": 0, "groupLosses": 1, "groupDraws": 0, "goalsFor": 0, "reachedRoundOf32": false, "reachedRoundOf16": false, "reachedQuarterfinal": false, "reachedSemifinal": false, "reachedFinal": false, "wonWorldCup": false, "eliminated": false, "notes": "" },
     { "teamId": "UZB", "groupWins": 0, "groupLosses": 0, "groupDraws": 0, "goalsFor": 0, "reachedRoundOf32": false, "reachedRoundOf16": false, "reachedQuarterfinal": false, "reachedSemifinal": false, "reachedFinal": false, "wonWorldCup": false, "eliminated": false, "notes": "" },
     { "teamId": "CUW", "groupWins": 0, "groupLosses": 0, "groupDraws": 0, "goalsFor": 0, "reachedRoundOf32": false, "reachedRoundOf16": false, "reachedQuarterfinal": false, "reachedSemifinal": false, "reachedFinal": false, "wonWorldCup": false, "eliminated": false, "notes": "" },
-    { "teamId": "HAI", "groupWins": 0, "groupLosses": 0, "groupDraws": 0, "goalsFor": 0, "reachedRoundOf32": false, "reachedRoundOf16": false, "reachedQuarterfinal": false, "reachedSemifinal": false, "reachedFinal": false, "wonWorldCup": false, "eliminated": false, "notes": "" }
+    { "teamId": "HAI", "groupWins": 0, "groupLosses": 1, "groupDraws": 0, "goalsFor": 0, "reachedRoundOf32": false, "reachedRoundOf16": false, "reachedQuarterfinal": false, "reachedSemifinal": false, "reachedFinal": false, "wonWorldCup": false, "eliminated": false, "notes": "" }
   ]
 }
