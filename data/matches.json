@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-14T18:22:45.239Z",
+  "lastUpdated": "2026-06-14T20:03:29.754Z",
   "matches": [
     {
       "id": "760415",
@@ -134,12 +134,12 @@
       "date": "2026-06-14T17:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "in",
-      "statusLabel": "59'",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "FT",
+      "completed": true,
       "homeTeamId": "GER",
       "homeTeamName": "Germany",
-      "homeScore": 4,
+      "homeScore": 7,
       "awayTeamId": "CUW",
       "awayTeamName": "Curaçao",
       "awayScore": 1,
@@ -150,15 +150,15 @@
       "date": "2026-06-14T20:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "3'",
       "completed": false,
       "homeTeamId": "NED",
       "homeTeamName": "Netherlands",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "JPN",
       "awayTeamName": "Japan",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "AT&T Stadium"
     },
     {
