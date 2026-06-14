@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-14T20:03:29.754Z",
+  "lastUpdated": "2026-06-14T21:37:00.073Z",
   "matches": [
     {
       "id": "760415",
@@ -151,14 +151,14 @@
       "stage": "group-stage",
       "stageLabel": "Group Stage",
       "status": "in",
-      "statusLabel": "3'",
+      "statusLabel": "78'",
       "completed": false,
       "homeTeamId": "NED",
       "homeTeamName": "Netherlands",
-      "homeScore": 0,
+      "homeScore": 2,
       "awayTeamId": "JPN",
       "awayTeamName": "Japan",
-      "awayScore": 0,
+      "awayScore": 1,
       "venue": "AT&T Stadium"
     },
     {
