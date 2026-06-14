@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-14T08:43:09.954Z",
+  "lastUpdated": "2026-06-14T17:08:08.992Z",
   "matches": [
     {
       "id": "760415",
@@ -134,15 +134,15 @@
       "date": "2026-06-14T17:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "6'",
       "completed": false,
       "homeTeamId": "GER",
       "homeTeamName": "Germany",
-      "homeScore": null,
+      "homeScore": 1,
       "awayTeamId": "CUW",
       "awayTeamName": "Curaçao",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "NRG Stadium"
     },
     {
