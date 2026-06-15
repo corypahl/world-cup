@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-14T22:49:33.129Z",
+  "lastUpdated": "2026-06-15T00:01:05.343Z",
   "matches": [
     {
       "id": "760415",
@@ -166,15 +166,15 @@
       "date": "2026-06-14T23:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "HT",
       "completed": false,
       "homeTeamId": "CIV",
       "homeTeamName": "Ivory Coast",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "ECU",
       "awayTeamName": "Ecuador",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "Lincoln Financial Field"
     },
     {
