@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-16T21:59:40.679Z",
+  "lastUpdated": "2026-06-16T23:25:15.726Z",
   "matches": [
     {
       "id": "760415",
@@ -278,15 +278,15 @@
       "date": "2026-06-16T22:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "62'",
       "completed": false,
       "homeTeamId": "IRQ",
       "homeTeamName": "Iraq",
-      "homeScore": null,
+      "homeScore": 1,
       "awayTeamId": "NOR",
       "awayTeamName": "Norway",
-      "awayScore": null,
+      "awayScore": 2,
       "venue": "Gillette Stadium"
     },
     {
