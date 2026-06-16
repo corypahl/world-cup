@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-15T22:03:46.473Z",
+  "lastUpdated": "2026-06-16T00:00:24.188Z",
   "matches": [
     {
       "id": "760415",
@@ -230,15 +230,15 @@
       "date": "2026-06-15T22:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "90'+4'",
       "completed": false,
       "homeTeamId": "KSA",
       "homeTeamName": "Saudi Arabia",
-      "homeScore": null,
+      "homeScore": 1,
       "awayTeamId": "URU",
       "awayTeamName": "Uruguay",
-      "awayScore": null,
+      "awayScore": 1,
       "venue": "Hard Rock Stadium"
     },
     {
