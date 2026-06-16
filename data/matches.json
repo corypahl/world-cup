@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-16T02:28:50.678Z",
+  "lastUpdated": "2026-06-16T08:25:48.548Z",
   "matches": [
     {
       "id": "760415",
@@ -246,12 +246,12 @@
       "date": "2026-06-16T01:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "in",
-      "statusLabel": "61'",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "FT",
+      "completed": true,
       "homeTeamId": "IRN",
       "homeTeamName": "Iran",
-      "homeScore": 1,
+      "homeScore": 2,
       "awayTeamId": "NZL",
       "awayTeamName": "New Zealand",
       "awayScore": 2,
