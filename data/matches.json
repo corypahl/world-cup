@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-16T19:27:34.724Z",
+  "lastUpdated": "2026-06-16T21:59:40.679Z",
   "matches": [
     {
       "id": "760415",
@@ -262,15 +262,15 @@
       "date": "2026-06-16T19:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "in",
-      "statusLabel": "24'",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "FT",
+      "completed": true,
       "homeTeamId": "FRA",
       "homeTeamName": "France",
-      "homeScore": 0,
+      "homeScore": 3,
       "awayTeamId": "SEN",
       "awayTeamName": "Senegal",
-      "awayScore": 0,
+      "awayScore": 1,
       "venue": "MetLife Stadium"
     },
     {
