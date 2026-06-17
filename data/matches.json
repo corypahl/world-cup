@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-17T22:25:03.561Z",
+  "lastUpdated": "2026-06-17T23:54:43.484Z",
   "matches": [
     {
       "id": "760415",
@@ -358,15 +358,15 @@
       "date": "2026-06-17T23:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "HT",
       "completed": false,
       "homeTeamId": "GHA",
       "homeTeamName": "Ghana",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "PAN",
       "awayTeamName": "Panama",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "BMO Field"
     },
     {
