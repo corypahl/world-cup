@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-16T23:25:15.726Z",
+  "lastUpdated": "2026-06-17T01:58:59.400Z",
   "matches": [
     {
       "id": "760415",
@@ -278,15 +278,15 @@
       "date": "2026-06-16T22:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "in",
-      "statusLabel": "62'",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "FT",
+      "completed": true,
       "homeTeamId": "IRQ",
       "homeTeamName": "Iraq",
       "homeScore": 1,
       "awayTeamId": "NOR",
       "awayTeamName": "Norway",
-      "awayScore": 2,
+      "awayScore": 4,
       "venue": "Gillette Stadium"
     },
     {
@@ -294,15 +294,15 @@
       "date": "2026-06-17T01:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "HT",
       "completed": false,
       "homeTeamId": "ARG",
       "homeTeamName": "Argentina",
-      "homeScore": null,
+      "homeScore": 1,
       "awayTeamId": "ALG",
       "awayTeamName": "Algeria",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "GEHA Field at Arrowhead Stadium"
     },
     {
