@@ -5,6 +5,9 @@
     --line: #d9d2b7;
     --green: #d7ff3f;
     --green-dark: #a7cc14;
+    --yellow: #ffd84d;
+    --yellow-dark: #b77b00;
+    --yellow-soft: #fff1ad;
     --blue: #1769ff;
     --blue-dark: #0c3f9d;
     --red: #e24132;
@@ -365,12 +368,24 @@ tbody tr:hover {
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
-    border: 2px solid var(--green-dark);
+    border: 2px solid var(--yellow-dark);
     border-radius: 999px;
     padding: 0.18rem 0.5rem;
+    color: #694500;
+    background: var(--yellow-soft);
+    font-weight: 900;
+}
+
+.pick-chip--clinched {
+    border-color: var(--green-dark);
     color: #3d4f00;
     background: #efffbc;
-    font-weight: 900;
+}
+
+.pick-chip--group-active {
+    border-color: var(--yellow-dark);
+    color: #694500;
+    background: var(--yellow-soft);
 }
 
 .pick-chip--eliminated {
@@ -421,13 +436,18 @@ tbody tr:hover {
 
 .team-code {
     margin-left: 0.35rem;
+    color: #694500;
+    background: var(--yellow-soft);
+}
+
+.team-code--clinched {
     color: #3d4f00;
     background: #efffbc;
 }
 
-.team-code--active {
-    color: #3d4f00;
-    background: #efffbc;
+.team-code--group-active {
+    color: #694500;
+    background: var(--yellow-soft);
 }
 
 .team-code--today {

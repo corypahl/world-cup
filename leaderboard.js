@@ -554,6 +554,10 @@
             classes.push("pick-chip--today");
         } else if (pick.eliminated) {
             classes.push("pick-chip--eliminated");
+        } else if (pick.result.reachedRoundOf32) {
+            classes.push("pick-chip--clinched");
+        } else {
+            classes.push("pick-chip--group-active");
         }
 
         return `
@@ -581,8 +585,10 @@
             classes.push("team-code--today");
         } else if (result.eliminated) {
             classes.push("team-code--eliminated");
+        } else if (result.reachedRoundOf32) {
+            classes.push("team-code--clinched");
         } else {
-            classes.push("team-code--active");
+            classes.push("team-code--group-active");
         }
 
         return classes.join(" ");
