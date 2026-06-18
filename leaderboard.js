@@ -266,18 +266,107 @@
             <div class="daily-summary__section daily-summary__impact">
                 <h3>Yesterday's Contest Impact</h3>
                 <p class="daily-summary__date">Recapping ${formatSummaryDate(summary.recapDate)}</p>
-                <p>${escapeHtml(summary.previousDayImpact || "No selected teams created a meaningful contest swing yesterday.")}</p>
+                ${renderSummaryBullets(summary.previousDayImpact, "No selected teams created a meaningful contest swing yesterday.")}
             </div>
             <div class="daily-summary__section daily-summary__standings">
                 <h3>Leaderboard Movement</h3>
-                <p>${escapeHtml(summary.leaderboardSummary)}</p>
+                ${renderSummaryBullets(summary.leaderboardSummary, "No meaningful leaderboard movement was available.")}
             </div>
             <div class="daily-summary__section daily-summary__ahead">
                 <h3>Today's Leverage Watch</h3>
-                <p>${escapeHtml(summary.leverageWatch || "Today's strongest opportunities for separation will appear after the next recap is generated.")}</p>
+                ${renderSummaryBullets(summary.leverageWatch, "Today's strongest opportunities for separation will appear after the next recap is generated.")}
             </div>
             <p class="daily-summary__generated">Generated ${formatDate(summary.generatedAt)}</p>
         `;
+    }
+
+    function renderSummaryBullets(items, fallback) {
+        const bullets = Array.isArray(items) && items.length ? items : [fallback];
+        return `
+            <ul class="daily-summary__bullets">
+                ${bullets.map((item) => `<li>${renderSummaryEntities(item)}</li>`).join("")}
+            </ul>
+        `;
+    }
+
+    function renderSummaryEntities(value) {
+        const text = String(value || "");
+        const entities = [
+            ...state.data.participants.map((participant) => ({
+                label: participant.teamName,
+                type: "participant"
+            })),
+            ...state.data.teams.map((team) => ({
+                label: team.name,
+                type: "team",
+                teamId: team.id
+            }))
+        ].filter((entity) => entity.label)
+            .sort((a, b) => b.label.length - a.label.length || (a.type === "participant" ? -1 : 1));
+        const matches = [];
+
+        entities.forEach((entity) => {
+            let startIndex = 0;
+
+            while (startIndex < text.length) {
+                const index = text.indexOf(entity.label, startIndex);
+                if (index === -1) {
+                    break;
+                }
+
+                const before = index > 0 ? text[index - 1] : "";
+                const after = text[index + entity.label.length] || "";
+                const hasValidBoundary = !/[A-Za-z0-9]/.test(before) && !/[A-Za-z0-9]/.test(after);
+
+                if (hasValidBoundary) {
+                    matches.push({ ...entity, index, end: index + entity.label.length });
+                }
+
+                startIndex = index + entity.label.length;
+            }
+        });
+
+        const selected = matches.sort((a, b) => (
+            a.index - b.index
+            || b.label.length - a.label.length
+            || (a.type === "participant" ? -1 : 1)
+        )).filter((match, index, all) => (
+            !all.slice(0, index).some((prior) => match.index < prior.end && match.end > prior.index)
+        ));
+        let cursor = 0;
+        let output = "";
+
+        selected.forEach((match) => {
+            output += escapeHtml(text.slice(cursor, match.index));
+
+            if (match.type === "participant") {
+                output += `<strong class="summary-participant">${escapeHtml(match.label)}</strong>`;
+            } else {
+                const result = state.resultMap.get(match.teamId) || window.WorldCupScoring.emptyTeamResult(match.teamId);
+                const classes = getSummaryTeamClasses(result, state.todayTeamIds.has(match.teamId));
+                output += `<span class="${classes}">${escapeHtml(match.label)}</span>`;
+            }
+
+            cursor = match.end;
+        });
+
+        return output + escapeHtml(text.slice(cursor));
+    }
+
+    function getSummaryTeamClasses(result, playsToday) {
+        const classes = ["pick-chip", "summary-team-pill"];
+
+        if (playsToday) {
+            classes.push("pick-chip--today");
+        } else if (result.eliminated) {
+            classes.push("pick-chip--eliminated");
+        } else if (result.reachedRoundOf32) {
+            classes.push("pick-chip--clinched");
+        } else {
+            classes.push("pick-chip--group-active");
+        }
+
+        return classes.join(" ");
     }
 
     function renderLeaderboard(entries) {

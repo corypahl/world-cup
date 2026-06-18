@@ -10,16 +10,25 @@ const responseSchema = {
     type: "object",
     properties: {
         previousDayImpact: {
-            type: "string",
-            description: "Two or three sentences explaining the previous day's most meaningful fantasy-contest leverage, not a score recap."
+            type: "array",
+            description: "Two or three concise bullet points explaining the previous day's most meaningful fantasy-contest leverage, not a score recap.",
+            items: { type: "string" },
+            minItems: 1,
+            maxItems: 3
         },
         leaderboardSummary: {
-            type: "string",
-            description: "Two or three sentences explaining the most meaningful standings movement using supplied point and rank changes."
+            type: "array",
+            description: "Two or three concise bullet points explaining the most meaningful standings movement using supplied point and rank changes.",
+            items: { type: "string" },
+            minItems: 1,
+            maxItems: 3
         },
         leverageWatch: {
-            type: "string",
-            description: "Two or three sentences identifying today's best opportunities for entries to gain separation through unique, opposing, or concentrated picks."
+            type: "array",
+            description: "Two or three concise bullet points identifying today's best opportunities for entries to gain separation through unique, opposing, or concentrated picks.",
+            items: { type: "string" },
+            minItems: 1,
+            maxItems: 3
         }
     },
     required: ["previousDayImpact", "leaderboardSummary", "leverageWatch"]
@@ -32,6 +41,7 @@ const systemInstruction = [
     "Use standingsChanges and leaderChange for all claims about movement.",
     "Keep the tone lively but factual, like a short sports desk update for friends.",
     "Refer to contest entries by teamName. Mention owners only when it improves clarity.",
+    "Use the exact supplied national-team names and contest-entry teamName values so the interface can identify and style them.",
     "The previous-day impact section covers recapDate.",
     "A positive rankChange means the participant climbed that many places; a negative value means they fell.",
     "pointsGained is the exact score change since previousStandingsDate.",
@@ -46,17 +56,18 @@ function buildPrompt(input) {
         "Write today's contest recap from the JSON below.",
         "",
         "Requirements:",
-        "- Previous-day impact: 2-3 sentences identifying the results that created the most separation between entries.",
+        "- Previous-day impact: return 1-3 concise bullet strings identifying the results that created the most separation between entries.",
         "- Use each team's pickedBy list and pointsGained values to explain why a result mattered.",
         "- Contrast unique or lightly owned scoring teams with heavily shared picks that benefited several entries equally.",
         "- Ignore unpicked matches unless noting briefly that much of the slate had no contest impact.",
         "- Do not provide a match-by-match score recap; mention a score only when it explains an unusual point swing.",
         "- If no selected team played, say the slate had no direct contest impact.",
-        "- Leaderboard summary: 2-3 sentences focused on the biggest point gain, largest rank climb, a lead change, or teams lost.",
+        "- Leaderboard summary: return 1-3 concise bullet strings focused on the biggest point gain, largest rank climb, a lead change, or teams lost.",
         "- When standingsChanges is empty, say that movement cannot be calculated yet and briefly state the current leader.",
         "- Do not merely list the top three unless their positions changed.",
         "- Attribute point gains to scoringPicks when those details are supplied.",
-        "- Leverage watch: 2-3 sentences identifying unique picks, opposing entry interests within one match, or consensus picks that offer limited separation.",
+        "- Leverage watch: return 1-3 concise bullet strings identifying unique picks, opposing entry interests within one match, or consensus picks that offer limited separation.",
+        "- Each bullet must express one main insight and should usually be one sentence.",
         "- Do not restate the full schedule; select only the strongest one or two contest angles.",
         "- If none of today's teams were selected, say the slate has no direct contest implications.",
         "- Do not predict match winners or invent odds.",

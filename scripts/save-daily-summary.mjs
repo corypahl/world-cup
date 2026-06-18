@@ -17,14 +17,15 @@ function parseResponse(raw) {
 }
 
 function validateSummary(summary) {
-    const requiredStrings = ["previousDayImpact", "leaderboardSummary", "leverageWatch"];
+    const requiredLists = ["previousDayImpact", "leaderboardSummary", "leverageWatch"];
 
-    requiredStrings.forEach((key) => {
-        if (typeof summary[key] !== "string" || !summary[key].trim()) {
-            throw new Error(`AI response is missing a non-empty ${key}.`);
+    requiredLists.forEach((key) => {
+        if (!Array.isArray(summary[key])
+            || !summary[key].length
+            || summary[key].some((item) => typeof item !== "string" || !item.trim())) {
+            throw new Error(`AI response is missing a non-empty ${key} bullet list.`);
         }
     });
-
 }
 
 async function main() {
@@ -44,9 +45,9 @@ async function main() {
         generatedAt: new Date().toISOString(),
         summaryDate: input.summaryDate,
         recapDate: input.recapDate,
-        previousDayImpact: summary.previousDayImpact.trim(),
-        leaderboardSummary: summary.leaderboardSummary.trim(),
-        leverageWatch: summary.leverageWatch.trim()
+        previousDayImpact: summary.previousDayImpact.map((item) => item.trim()),
+        leaderboardSummary: summary.leaderboardSummary.map((item) => item.trim()),
+        leverageWatch: summary.leverageWatch.map((item) => item.trim())
     };
 
     await writeFile(outputPath, `${JSON.stringify(output, null, 2)}\n`);

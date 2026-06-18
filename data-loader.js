@@ -55,10 +55,20 @@
             generatedAt: summaryFile.generatedAt || "",
             summaryDate: summaryFile.summaryDate || "",
             recapDate: summaryFile.recapDate || "",
-            previousDayImpact: summaryFile.previousDayImpact || buildLegacyRecap(summaryFile.matchRecap),
-            leaderboardSummary: summaryFile.leaderboardSummary || "",
-            leverageWatch: summaryFile.leverageWatch || summaryFile.lookingAhead || ""
+            previousDayImpact: normalizeSummaryBullets(
+                summaryFile.previousDayImpact || buildLegacyRecap(summaryFile.matchRecap)
+            ),
+            leaderboardSummary: normalizeSummaryBullets(summaryFile.leaderboardSummary),
+            leverageWatch: normalizeSummaryBullets(summaryFile.leverageWatch || summaryFile.lookingAhead)
         };
+    }
+
+    function normalizeSummaryBullets(value) {
+        if (Array.isArray(value)) {
+            return value.filter((item) => typeof item === "string" && item.trim());
+        }
+
+        return typeof value === "string" && value.trim() ? [value.trim()] : [];
     }
 
     function buildLegacyRecap(matchRecap) {

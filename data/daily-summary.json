@@ -2,7 +2,19 @@
   "generatedAt": "2026-06-18T11:51:55.663Z",
   "summaryDate": "2026-06-18",
   "recapDate": "2026-06-17",
-  "previousDayImpact": "Austria created the day's cleanest leverage: it was exclusive to Hubba Hubba CD's Nutz and delivered 6 points. England produced a five-point head-to-head swing, giving Team Choo Choo 7 points while Team Jordan collected only 2 from Croatia; Colombia's 6-point return was less differentiating because both Bijan Mustard and Team Mack owned it.",
-  "leaderboardSummary": "Hubba Hubba CD's Nutz surged to first place, climbing five spots with 8 points gained from Austria and Portugal. Team Choo Choo also made a significant jump, moving up four places to second after England's win. Team koyn, the previous leader, fell to fifth place.",
-  "leverageWatch": "South Korea-Mexico carries the strongest leaderboard leverage: first-place Hubba Hubba CD's Nutz and co-second Team Choo Choo have Mexico, while fifth-place Team koyn and Metcalf Hurts have South Korea. Qatar-Canada creates another direct split between Team Camouflage Cndm and Team Godfather, while Switzerland is an exclusive opportunity for Team Pahl."
+  "previousDayImpact": [
+    "Austria created the day's cleanest leverage: it was exclusive to Hubba Hubba CD's Nutz and delivered 6 points.",
+    "England produced a five-point head-to-head swing, giving Team Choo Choo 7 points while Team Jordan collected only 2 from Croatia.",
+    "Colombia's 6-point return was less differentiating because both Bijan Mustard and Team Mack owned it."
+  ],
+  "leaderboardSummary": [
+    "Hubba Hubba CD's Nutz surged to first place, climbing five spots with 8 points gained from Austria and Portugal.",
+    "Team Choo Choo jumped four places to second after England's win.",
+    "Team koyn, the previous leader, fell to fifth place."
+  ],
+  "leverageWatch": [
+    "South Korea-Mexico carries the strongest leaderboard leverage: Hubba Hubba CD's Nutz and Team Choo Choo have Mexico, while Team koyn and Metcalf Hurts have South Korea.",
+    "Qatar-Canada creates a direct split between Team Camouflage Cndm and Team Godfather.",
+    "Switzerland is an exclusive opportunity for Team Pahl."
+  ]
 }
