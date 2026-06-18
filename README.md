@@ -20,9 +20,12 @@ world-cup-budget-picks/
 |   |-- teams.json
 |   |-- team-results.json
 |   |-- matches.json
+|   |-- daily-summary.json
+|   |-- standings-history.json
 |   `-- scoring-config.json
 `-- .github/
     `-- workflows/
+        |-- daily-summary.yml
         |-- deploy.yml
         `-- update-results.yml
 ```
@@ -85,9 +88,11 @@ The workflow at `.github/workflows/daily-summary.yml` runs at 9:00 AM ET and can
 
 1. Calculates the current contest leaderboard from the checked-in data.
 2. Selects completed matches from the previous Eastern Time calendar day.
-3. Sends those grounded facts to `gemini-2.5-flash-lite`.
-4. Writes `data/daily-summary.json`.
-5. Commits the summary and deploys GitHub Pages.
+3. Compares the current leaderboard against `data/standings-history.json`.
+4. Calculates point gains, rank movement, remaining-team changes, and which picks produced points.
+5. Sends those grounded facts to `gemini-2.5-flash-lite`.
+6. Writes `data/daily-summary.json` and saves the current standings snapshot.
+7. Commits the generated files and deploys GitHub Pages.
 
 Create a free Gemini API key in [Google AI Studio](https://aistudio.google.com/app/apikey), then add it to the repository:
 
@@ -97,6 +102,8 @@ Create a free Gemini API key in [Google AI Studio](https://aistudio.google.com/a
 4. Paste the key and save it.
 
 The API key is only available to the GitHub Action and is never sent to the browser. Restrict the key to the Gemini API in Google AI Studio.
+
+The first stored standings snapshot is a baseline. Movement commentary begins once a later daily run can compare against that snapshot. Re-running the workflow on the same date preserves the original snapshot for that date.
 
 ## Manual Team Results
 

@@ -41,6 +41,9 @@ jobs:
       - name: Save summary
         run: node scripts/save-daily-summary.mjs .tmp/gemini-summary-response.json .tmp/daily-summary-input.json
 
+      - name: Save standings snapshot
+        run: node scripts/save-standings-snapshot.mjs .tmp/daily-summary-input.json
+
       - name: Validate site data
         run: |
           node --check data-loader.js
@@ -49,13 +52,14 @@ jobs:
           node --check scripts/build-daily-summary-input.mjs
           node --check scripts/generate-daily-summary.mjs
           node --check scripts/save-daily-summary.mjs
+          node --check scripts/save-standings-snapshot.mjs
           node -e "const fs=require('fs'); for (const file of fs.readdirSync('data').filter((name)=>name.endsWith('.json'))) JSON.parse(fs.readFileSync('data/'+file,'utf8'));"
 
       - name: Commit summary
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/daily-summary.json
+          git add data/daily-summary.json data/standings-history.json
 
           if git diff --cached --quiet; then
             echo "No summary changes to commit."

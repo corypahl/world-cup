@@ -249,7 +249,7 @@
             <p class="daily-summary__overview">${escapeHtml(summary.overview)}</p>
             ${recapItems}
             <div class="daily-summary__standings">
-                <span class="detail-label">Leaderboard Check</span>
+                <span class="detail-label">Standings Movement</span>
                 <p>${escapeHtml(summary.leaderboardSummary)}</p>
             </div>
         `;

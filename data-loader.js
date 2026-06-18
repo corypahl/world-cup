@@ -1,5 +1,5 @@
 (function () {
-    const DATA_VERSION = "20260617-daily-summary";
+    const DATA_VERSION = "20260617-standings-history";
 
     const DATA_FILES = {
         participants: "data/participants.json",

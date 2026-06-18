@@ -9,6 +9,9 @@ const teamsPath = new URL("../data/teams.json", import.meta.url);
 const resultsPath = new URL("../data/team-results.json", import.meta.url);
 const matchesPath = new URL("../data/matches.json", import.meta.url);
 const scoringPath = new URL("../data/scoring-config.json", import.meta.url);
+const historyPath = process.env.STANDINGS_HISTORY_PATH
+    ? resolve(process.env.STANDINGS_HISTORY_PATH)
+    : new URL("../data/standings-history.json", import.meta.url);
 
 const advancementKeys = [
     ["reachedRoundOf32", "roundOf32"],
@@ -73,6 +76,7 @@ function calculateLeaderboard(participants, teams, results, config) {
         });
 
         return {
+            participantId: participant.id,
             originalIndex,
             teamName: participant.teamName,
             owners: participant.owners || [],
@@ -99,6 +103,7 @@ function calculateLeaderboard(participants, teams, results, config) {
         }
 
         return {
+            participantId: entry.participantId,
             rank,
             teamName: entry.teamName,
             owners: entry.owners,
@@ -110,13 +115,95 @@ function calculateLeaderboard(participants, teams, results, config) {
     });
 }
 
+function buildStandingsChanges(leaderboard, history, summaryDate) {
+    const previousSnapshot = [...(history.snapshots || [])]
+        .filter((snapshot) => snapshot.date < summaryDate)
+        .sort((a, b) => b.date.localeCompare(a.date))[0];
+
+    if (!previousSnapshot) {
+        return {
+            previousStandingsDate: "",
+            standingsChanges: [],
+            leaderChange: null
+        };
+    }
+
+    const previousById = new Map(previousSnapshot.standings.map((entry) => [entry.participantId, entry]));
+    const standingsChanges = leaderboard.map((entry) => {
+        const previous = previousById.get(entry.participantId);
+
+        if (!previous) {
+            return {
+                participantId: entry.participantId,
+                teamName: entry.teamName,
+                previousRank: null,
+                currentRank: entry.rank,
+                rankChange: 0,
+                previousScore: null,
+                currentScore: entry.score,
+                pointsGained: 0,
+                previousRemainingTeams: null,
+                currentRemainingTeams: entry.remainingTeams,
+                scoringPicks: []
+            };
+        }
+
+        const previousPicks = new Map((previous.picks || []).map((pick) => [pick.teamId, pick]));
+        const scoringPicks = entry.picks.map((pick) => {
+            const priorPoints = toNumber(previousPicks.get(pick.teamId)?.points);
+            const pointsGained = pick.points - priorPoints;
+
+            return {
+                teamId: pick.teamId,
+                teamName: pick.teamName,
+                pointsGained
+            };
+        }).filter((pick) => pick.pointsGained > 0)
+            .sort((a, b) => b.pointsGained - a.pointsGained || a.teamName.localeCompare(b.teamName));
+
+        return {
+            participantId: entry.participantId,
+            teamName: entry.teamName,
+            previousRank: previous.rank,
+            currentRank: entry.rank,
+            rankChange: previous.rank - entry.rank,
+            previousScore: previous.score,
+            currentScore: entry.score,
+            pointsGained: entry.score - previous.score,
+            previousRemainingTeams: previous.remainingTeams,
+            currentRemainingTeams: entry.remainingTeams,
+            scoringPicks
+        };
+    }).sort((a, b) => (
+        b.pointsGained - a.pointsGained
+        || b.rankChange - a.rankChange
+        || a.currentRank - b.currentRank
+    ));
+
+    const currentLeader = leaderboard.find((entry) => entry.rank === 1);
+    const previousLeader = previousSnapshot.standings.find((entry) => entry.rank === 1);
+    const leaderChange = currentLeader && previousLeader && currentLeader.participantId !== previousLeader.participantId
+        ? {
+            previousLeader: previousLeader.teamName,
+            currentLeader: currentLeader.teamName
+        }
+        : null;
+
+    return {
+        previousStandingsDate: previousSnapshot.date,
+        standingsChanges,
+        leaderChange
+    };
+}
+
 async function main() {
-    const [participants, teams, resultsFile, matchesFile, scoringConfig] = await Promise.all([
+    const [participants, teams, resultsFile, matchesFile, scoringConfig, history] = await Promise.all([
         readFile(participantsPath, "utf8").then(JSON.parse),
         readFile(teamsPath, "utf8").then(JSON.parse),
         readFile(resultsPath, "utf8").then(JSON.parse),
         readFile(matchesPath, "utf8").then(JSON.parse),
-        readFile(scoringPath, "utf8").then(JSON.parse)
+        readFile(scoringPath, "utf8").then(JSON.parse),
+        readFile(historyPath, "utf8").then(JSON.parse)
     ]);
 
     const now = process.env.SUMMARY_NOW ? new Date(process.env.SUMMARY_NOW) : new Date();
@@ -149,13 +236,17 @@ async function main() {
             pickedByTeamOne: pickedBy.get(match.awayTeamId) || [],
             pickedByTeamTwo: pickedBy.get(match.homeTeamId) || []
         }));
+    const movement = buildStandingsChanges(leaderboard, history, summaryDate);
 
     const output = {
         summaryDate,
         recapDate,
+        previousStandingsDate: movement.previousStandingsDate,
         dataLastUpdated: resultsFile.lastUpdated || "",
         scoringRules: scoringConfig,
         previousDayMatches,
+        leaderChange: movement.leaderChange,
+        standingsChanges: movement.standingsChanges,
         leaderboard
     };
 

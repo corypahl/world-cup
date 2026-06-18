@@ -27,7 +27,7 @@ const responseSchema = {
         },
         leaderboardSummary: {
             type: "string",
-            description: "One or two sentences naming the current leader and closest challengers using supplied ranks and scores."
+            description: "Two or three sentences explaining the most meaningful standings movement using supplied point and rank changes."
         }
     },
     required: ["headline", "overview", "matchRecap", "leaderboardSummary"]
@@ -37,10 +37,13 @@ const systemInstruction = [
     "You write concise daily recaps for a private fantasy football draft-order contest based on the 2026 World Cup.",
     "Use only facts in the supplied contest data.",
     "Never invent scores, standings, movement, injuries, odds, or match details.",
-    "Do not claim a participant moved up or down because historical rankings are not provided.",
+    "Use standingsChanges and leaderChange for all claims about movement.",
     "Keep the tone lively but factual, like a short sports desk update for friends.",
     "Refer to contest entries by teamName. Mention owners only when it improves clarity.",
-    "The match recap covers recapDate. The leaderboard summary describes the current leaderboard."
+    "The match recap covers recapDate.",
+    "A positive rankChange means the participant climbed that many places; a negative value means they fell.",
+    "pointsGained is the exact score change since previousStandingsDate.",
+    "The leaderboard summary should explain what changed since previousStandingsDate, not merely repeat the visible top three."
 ].join(" ");
 
 function buildPrompt(input) {
@@ -51,7 +54,10 @@ function buildPrompt(input) {
         "- Headline: no more than 10 words.",
         "- Overview: 1-2 sentences connecting yesterday's matches to the contest.",
         "- Match recap: zero to four concise strings. If no matches were played, return one string saying there were no completed matches.",
-        "- Leaderboard summary: 1-2 sentences naming the leader and closest challengers using the supplied ranks and scores.",
+        "- Leaderboard summary: 2-3 sentences focused on the biggest point gain, largest rank climb, a lead change, or teams lost.",
+        "- When standingsChanges is empty, say that movement cannot be calculated yet and briefly state the current leader.",
+        "- Do not merely list the top three unless their positions changed.",
+        "- Attribute point gains to scoringPicks when those details are supplied.",
         "- Return only JSON matching the response schema.",
         "",
         JSON.stringify(input)
