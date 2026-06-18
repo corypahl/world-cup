@@ -49,6 +49,7 @@ jobs:
           node --check data-loader.js
           node --check scoring.js
           node --check leaderboard.js
+          node --check scripts/reconstruct-standings-baseline.mjs
           node --check scripts/build-daily-summary-input.mjs
           node --check scripts/generate-daily-summary.mjs
           node --check scripts/save-daily-summary.mjs
