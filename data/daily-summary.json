@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-06-18T02:46:50.618Z",
+  "generatedAt": "2026-06-18T02:51:49.997Z",
   "summaryDate": "2026-06-17",
   "recapDate": "2026-06-16",
   "matchRecap": [
     {
-      "summary": "France defeated Senegal 3-1. France was picked by Team Godfather and Bijan Mustard.",
+      "summary": "France defeated Senegal 3-1 in Group Stage play.",
       "picks": [
         {
           "teamName": "France",
@@ -16,7 +16,7 @@
       ]
     },
     {
-      "summary": "Norway routed Iraq 4-1. Norway was picked by Team Jordan and Team Megatronless.",
+      "summary": "Norway secured a decisive 4-1 victory over Iraq in Group Stage action.",
       "picks": [
         {
           "teamName": "Norway",
@@ -28,7 +28,7 @@
       ]
     },
     {
-      "summary": "Argentina shut out Algeria 3-0. Argentina was picked by Hubba Hubba CD's Nutz, Team Jordan, Team koyn, and Team Camouflage Cndm.",
+      "summary": "Argentina shut out Algeria with a 3-0 win in Group Stage play.",
       "picks": [
         {
           "teamName": "Argentina",
@@ -42,6 +42,6 @@
       ]
     }
   ],
-  "leaderboardSummary": "With no standings changes, Hubba Hubba CD's Nutz remains in first place. Argentina's win contributed points to several teams, but no significant movement occurred yesterday.",
-  "lookingAhead": "Today features Panama against Ghana, with neither team picked by any contest entries. Later, Colombia faces Uzbekistan; Colombia is a pick for Bijan Mustard and Team Mack."
+  "leaderboardSummary": "With no standings changes reported, Hubba Hubba CD's Nutz remains in first place. Standings movement cannot be calculated yet.",
+  "lookingAhead": "Today features Colombia versus Uzbekistan. Bijan Mustard has Colombia, while Team Godfather and Team Mack also have teams playing today."
 }
