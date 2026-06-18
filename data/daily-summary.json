@@ -1,36 +1,47 @@
 {
-  "generatedAt": "2026-06-18T02:11:49.126Z",
+  "generatedAt": "2026-06-18T02:46:50.618Z",
   "summaryDate": "2026-06-17",
   "recapDate": "2026-06-16",
   "matchRecap": [
     {
-      "summary": "France defeated Senegal 3-1.",
+      "summary": "France defeated Senegal 3-1. France was picked by Team Godfather and Bijan Mustard.",
       "picks": [
         {
           "teamName": "France",
-          "participants": ["Team Godfather", "Bijan Mustard"]
+          "participants": [
+            "Team Godfather",
+            "Bijan Mustard"
+          ]
         }
       ]
     },
     {
-      "summary": "Norway bested Iraq 4-1.",
+      "summary": "Norway routed Iraq 4-1. Norway was picked by Team Jordan and Team Megatronless.",
       "picks": [
         {
           "teamName": "Norway",
-          "participants": ["Team Jordan", "Team Megatronless"]
+          "participants": [
+            "Team Jordan",
+            "Team Megatronless"
+          ]
         }
       ]
     },
     {
-      "summary": "Argentina shut out Algeria 3-0.",
+      "summary": "Argentina shut out Algeria 3-0. Argentina was picked by Hubba Hubba CD's Nutz, Team Jordan, Team koyn, and Team Camouflage Cndm.",
       "picks": [
         {
           "teamName": "Argentina",
-          "participants": ["Hubba Hubba CD's Nutz", "Team Jordan", "Team koyn", "Team Camouflage Cndm"]
+          "participants": [
+            "Hubba Hubba CD's Nutz",
+            "Team Jordan",
+            "Team koyn",
+            "Team Camouflage Cndm"
+          ]
         }
       ]
     }
   ],
-  "leaderboardSummary": "With no movement recorded, the leaderboard remains unchanged. Hubba Hubba CD's Nutz holds the top spot.",
-  "lookingAhead": "Today's matches include Panama versus Ghana, and Colombia against Uzbekistan. Colombia is picked by Bijan Mustard and Team Mack."
+  "leaderboardSummary": "With no standings changes, Hubba Hubba CD's Nutz remains in first place. Argentina's win contributed points to several teams, but no significant movement occurred yesterday.",
+  "lookingAhead": "Today features Panama against Ghana, with neither team picked by any contest entries. Later, Colombia faces Uzbekistan; Colombia is a pick for Bijan Mustard and Team Mack."
 }
