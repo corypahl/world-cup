@@ -209,16 +209,37 @@
         }
 
         container.innerHTML = state.todayMatches.map((match) => `
-            <div class="match-row match-row--today">
-                <div class="match-time">${formatMatchTime(match.date)}</div>
-                <div class="match-main">
-                    <span class="team-code team-code--today">${escapeHtml(match.awayTeamId)}</span>
-                    <span class="match-at">vs</span>
-                    <span class="team-code team-code--today">${escapeHtml(match.homeTeamId)}</span>
+            <article class="match-row match-row--today">
+                <div class="match-heading">
+                    <time class="match-time" datetime="${escapeHtml(match.date)}">${formatMatchTime(match.date)}</time>
+                    <span class="match-stage">${escapeHtml(match.stageLabel)}</span>
                 </div>
-                <div class="match-meta">${escapeHtml(match.stageLabel)}${match.venue ? ` - ${escapeHtml(match.venue)}` : ""}</div>
-            </div>
+                ${renderTodayMatchTeam(match.awayTeamId)}
+                ${renderTodayMatchTeam(match.homeTeamId)}
+                ${match.venue ? `<div class="match-meta">${escapeHtml(match.venue)}</div>` : ""}
+            </article>
         `).join("");
+    }
+
+    function renderTodayMatchTeam(teamId) {
+        const pickedBy = state.ownership.get(teamId) || [];
+        const participants = pickedBy.length
+            ? pickedBy.map(renderMatchParticipant).join("")
+            : `<span class="match-picks-empty">Not picked</span>`;
+
+        return `
+            <div class="match-team">
+                <span class="team-code team-code--today">${escapeHtml(teamId)}</span>
+                <div class="match-picks" aria-label="${escapeHtml(teamId)} picked by">${participants}</div>
+            </div>
+        `;
+    }
+
+    function renderMatchParticipant(pick) {
+        const owners = pick.owners && pick.owners.length
+            ? ` title="${escapeHtml(pick.owners.join(", "))}"`
+            : "";
+        return `<span class="participant-chip"${owners}>${escapeHtml(pick.teamName)}</span>`;
     }
 
     function renderDailySummary() {
@@ -313,16 +334,25 @@
 
     function renderLeaderboardDetails(entry) {
         const picks = entry.pickDetails.length
-            ? entry.pickDetails.map(renderDetailedPick).join("")
-            : `<span class="muted">Awaiting picks</span>`;
+            ? entry.pickDetails.map(renderDetailedPickRow).join("")
+            : `<tr><td colspan="4" class="empty-cell">Awaiting picks</td></tr>`;
 
         return `
             <tr class="detail-row" id="details-${escapeHtml(entry.participant.id)}">
                 <td colspan="4" class="detail-cell">
                     <div class="expanded-details">
                         <div class="detail-group detail-group--picks">
-                            <span class="detail-label">Teams</span>
-                            <div class="pick-strip">${picks}</div>
+                            <table class="participant-team-table">
+                                <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>Points</th>
+                                        <th>Record</th>
+                                        <th>Goals</th>
+                                    </tr>
+                                </thead>
+                                <tbody>${picks}</tbody>
+                            </table>
                         </div>
                         <div class="detail-stat">
                             <span class="detail-label">Tiebreaker</span>
@@ -507,9 +537,16 @@
         `).join("");
     }
 
-    function renderDetailedPick(pick) {
+    function renderDetailedPickRow(pick) {
         if (!pick.team) {
-            return `<span class="pick-chip pick-chip--invalid">${escapeHtml(pick.teamId)}</span>`;
+            return `
+                <tr>
+                    <td><span class="pick-chip pick-chip--invalid">${escapeHtml(pick.teamId)}</span></td>
+                    <td class="numeric">0</td>
+                    <td class="numeric">0-0-0</td>
+                    <td class="numeric">0</td>
+                </tr>
+            `;
         }
 
         const classes = ["pick-chip"];
@@ -520,10 +557,12 @@
         }
 
         return `
-            <span class="${classes.join(" ")}">
-                ${escapeHtml(pick.team.name)}
-                <strong>${pick.score}</strong>
-            </span>
+            <tr>
+                <td><span class="${classes.join(" ")}">${escapeHtml(pick.team.name)}</span></td>
+                <td class="numeric strong">${pick.score}</td>
+                <td class="numeric">${formatRecord(pick.result)}</td>
+                <td class="numeric">${pick.goals}</td>
+            </tr>
         `;
     }
 

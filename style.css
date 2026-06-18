@@ -315,6 +315,30 @@ tbody tr:hover {
     min-width: 0;
 }
 
+.participant-team-table {
+    min-width: 0;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+    background: #fffdf4;
+    font-size: 0.86rem;
+}
+
+.participant-team-table th,
+.participant-team-table td {
+    padding: 0.48rem 0.6rem;
+}
+
+.participant-team-table th:not(:first-child),
+.participant-team-table td:not(:first-child) {
+    width: 5.5rem;
+    text-align: right;
+}
+
+.participant-team-table .pick-chip {
+    margin: 0;
+}
+
 .team-details {
     grid-template-columns: minmax(0, 1.3fr) repeat(4, minmax(5.5rem, auto));
 }
@@ -423,12 +447,10 @@ tbody tr:hover {
 
 .match-row {
     display: grid;
-    grid-template-columns: minmax(5rem, auto) minmax(0, 1fr);
-    gap: 0.25rem 0.8rem;
-    align-items: center;
+    gap: 0.55rem;
     border: 1px solid var(--line);
     border-radius: 6px;
-    padding: 0.7rem;
+    padding: 0.8rem;
     background: #fffdf4;
 }
 
@@ -438,28 +460,69 @@ tbody tr:hover {
 }
 
 .match-time {
-    grid-row: span 2;
     color: var(--blue-dark);
     font-weight: 900;
     white-space: nowrap;
 }
 
-.match-main {
+.match-heading {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.3rem;
+    gap: 0.45rem;
     align-items: center;
-    min-width: 0;
 }
 
-.match-at {
+.match-stage {
     color: var(--muted);
     font-size: 0.82rem;
     font-weight: 800;
-    text-transform: uppercase;
+}
+
+.match-heading .match-stage::before {
+    content: "·";
+    margin-right: 0.45rem;
+}
+
+.match-team {
+    display: grid;
+    grid-template-columns: 4rem minmax(0, 1fr);
+    gap: 0.65rem;
+    align-items: center;
+}
+
+.match-team .team-code {
+    justify-content: center;
+    margin: 0;
+}
+
+.match-picks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    min-width: 0;
+}
+
+.participant-chip {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #9bbcff;
+    border-radius: 999px;
+    padding: 0.14rem 0.45rem;
+    color: #07306f;
+    background: #fff;
+    font-size: 0.72rem;
+    font-weight: 800;
+}
+
+.match-picks-empty {
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-style: italic;
 }
 
 .match-meta {
+    border-top: 1px solid #c9d9ff;
+    padding-top: 0.5rem;
     color: var(--muted);
     font-size: 0.78rem;
     font-weight: 700;
@@ -800,6 +863,16 @@ details[open] summary::after {
         grid-column: 1 / -1;
     }
 
+    .participant-team-table th,
+    .participant-team-table td {
+        padding: 0.45rem 0.4rem;
+    }
+
+    .participant-team-table th:not(:first-child),
+    .participant-team-table td:not(:first-child) {
+        width: 4.2rem;
+    }
+
     .detail-stat {
         border-left: 0;
         padding-left: 0;
@@ -827,12 +900,8 @@ details[open] summary::after {
         min-height: 1.8rem;
     }
 
-    .match-row {
-        grid-template-columns: 1fr;
-    }
-
-    .match-time {
-        grid-row: auto;
+    .match-team {
+        grid-template-columns: 3.6rem minmax(0, 1fr);
     }
 
     .daily-summary__generated {
