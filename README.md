@@ -79,6 +79,25 @@ The GitHub Action at `.github/workflows/update-results.yml` runs:
 
 It fetches FIFA World Cup match data from ESPN's public soccer scoreboard endpoint and commits the generated data files after each successful fetch so the visible `lastUpdated` timestamp reflects the latest check. The same workflow deploys the updated static site to Pages. No API token is required.
 
+## Daily AI Summary
+
+The workflow at `.github/workflows/daily-summary.yml` runs at 9:00 AM ET and can also be started manually. It:
+
+1. Calculates the current contest leaderboard from the checked-in data.
+2. Selects completed matches from the previous Eastern Time calendar day.
+3. Sends those grounded facts to `gemini-2.5-flash-lite`.
+4. Writes `data/daily-summary.json`.
+5. Commits the summary and deploys GitHub Pages.
+
+Create a free Gemini API key in [Google AI Studio](https://aistudio.google.com/app/apikey), then add it to the repository:
+
+1. Open `Settings` -> `Secrets and variables` -> `Actions`.
+2. Select `New repository secret`.
+3. Name it `GEMINI_API_KEY`.
+4. Paste the key and save it.
+
+The API key is only available to the GitHub Action and is never sent to the browser. Restrict the key to the Gemini API in Google AI Studio.
+
 ## Manual Team Results
 
 Edit `data/team-results.json`.
@@ -145,4 +164,4 @@ For a standalone repository:
 4. Set the source to `GitHub Actions`.
 5. Run the deploy workflow or push a change.
 
-The site has no backend, build step, database, login, or API token requirement. Automated score updates depend on the scheduled GitHub Action.
+The site has no backend, build step, database, or login. Automated score updates depend on the scheduled ESPN workflow. The daily AI recap additionally requires the `GEMINI_API_KEY` repository secret.

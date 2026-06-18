@@ -1,11 +1,12 @@
 (function () {
-    const DATA_VERSION = "20260613-neutral";
+    const DATA_VERSION = "20260617-daily-summary";
 
     const DATA_FILES = {
         participants: "data/participants.json",
         teams: "data/teams.json",
         teamResults: "data/team-results.json",
         matches: "data/matches.json",
+        dailySummary: "data/daily-summary.json",
         scoringConfig: "data/scoring-config.json"
     };
 
@@ -48,18 +49,32 @@
         };
     }
 
+    function normalizeDailySummary(summaryFile) {
+        return {
+            generatedAt: summaryFile.generatedAt || "",
+            summaryDate: summaryFile.summaryDate || "",
+            recapDate: summaryFile.recapDate || "",
+            headline: summaryFile.headline || "",
+            overview: summaryFile.overview || "",
+            matchRecap: Array.isArray(summaryFile.matchRecap) ? summaryFile.matchRecap : [],
+            leaderboardSummary: summaryFile.leaderboardSummary || ""
+        };
+    }
+
     async function loadContestData(options) {
         const cacheBust = Boolean(options && options.cacheBust);
-        const [participants, teams, teamResultsFile, matchesFile, scoringConfig] = await Promise.all([
+        const [participants, teams, teamResultsFile, matchesFile, dailySummaryFile, scoringConfig] = await Promise.all([
             fetchJson(DATA_FILES.participants, cacheBust),
             fetchJson(DATA_FILES.teams, cacheBust),
             fetchJson(DATA_FILES.teamResults, true),
             fetchJson(DATA_FILES.matches, true),
+            fetchJson(DATA_FILES.dailySummary, true),
             fetchJson(DATA_FILES.scoringConfig, cacheBust)
         ]);
 
         const teamResults = normalizeTeamResults(teamResultsFile);
         const matches = normalizeMatches(matchesFile);
+        const dailySummary = normalizeDailySummary(dailySummaryFile);
 
         return {
             participants,
@@ -72,6 +87,7 @@
             matchesMeta: {
                 lastUpdated: matches.lastUpdated
             },
+            dailySummary,
             scoringConfig
         };
     }

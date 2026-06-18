@@ -1,0 +1,80 @@
+name: Generate Daily AI Summary
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 9:00 AM ET during the June/July tournament window.
+    - cron: "0 13 * * *"
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: daily-world-cup-summary
+  cancel-in-progress: true
+
+jobs:
+  generate-summary:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+
+      - name: Build grounded contest facts
+        run: node scripts/build-daily-summary-input.mjs .tmp/daily-summary-input.json
+
+      - name: Generate daily recap with Gemini
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: node scripts/generate-daily-summary.mjs .tmp/daily-summary-input.json .tmp/gemini-summary-response.json
+
+      - name: Save summary
+        run: node scripts/save-daily-summary.mjs .tmp/gemini-summary-response.json .tmp/daily-summary-input.json
+
+      - name: Validate site data
+        run: |
+          node --check data-loader.js
+          node --check scoring.js
+          node --check leaderboard.js
+          node --check scripts/build-daily-summary-input.mjs
+          node --check scripts/generate-daily-summary.mjs
+          node --check scripts/save-daily-summary.mjs
+          node -e "const fs=require('fs'); for (const file of fs.readdirSync('data').filter((name)=>name.endsWith('.json'))) JSON.parse(fs.readFileSync('data/'+file,'utf8'));"
+
+      - name: Commit summary
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/daily-summary.json
+
+          if git diff --cached --quiet; then
+            echo "No summary changes to commit."
+          else
+            git commit -m "Update daily World Cup summary"
+            git pull --rebase
+            git push
+          fi
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v6
+        with:
+          enablement: true
+
+      - name: Upload static site
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

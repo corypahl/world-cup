@@ -465,6 +465,64 @@ tbody tr:hover {
     font-weight: 700;
 }
 
+.daily-summary {
+    border-top: 4px solid var(--blue);
+    padding-top: 0.9rem;
+}
+
+.daily-summary__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.daily-summary__header h3 {
+    margin: 0;
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    line-height: 1.1;
+}
+
+.daily-summary__date,
+.daily-summary__generated {
+    color: var(--muted);
+    font-size: 0.76rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.daily-summary__date {
+    margin: 0 0 0.25rem;
+}
+
+.daily-summary__generated {
+    white-space: nowrap;
+}
+
+.daily-summary__overview {
+    max-width: 76ch;
+    margin: 0.9rem 0;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.daily-summary__matches {
+    display: grid;
+    gap: 0.45rem;
+    margin: 0 0 1rem;
+    padding-left: 1.25rem;
+}
+
+.daily-summary__standings {
+    border-left: 4px solid var(--green-dark);
+    padding: 0.65rem 0 0.65rem 0.8rem;
+    background: #fbf8e9;
+}
+
+.daily-summary__standings p {
+    margin: 0;
+}
+
 .detail-group--schedule {
     grid-column: 1 / -1;
 }
@@ -751,6 +809,15 @@ details[open] summary::after {
 
     .match-time {
         grid-row: auto;
+    }
+
+    .daily-summary__header {
+        flex-direction: column;
+        gap: 0.35rem;
+    }
+
+    .daily-summary__generated {
+        white-space: normal;
     }
 
     .team-schedule-item {

@@ -181,6 +181,7 @@
         renderDataStatus();
         renderLeaderboard(state.entries);
         renderTodayGames();
+        renderDailySummary();
         renderTeamScores(state.teamScores);
         renderScoringRules(state.data.scoringConfig);
     }
@@ -218,6 +219,40 @@
                 <div class="match-meta">${escapeHtml(match.stageLabel)}${match.venue ? ` - ${escapeHtml(match.venue)}` : ""}</div>
             </div>
         `).join("");
+    }
+
+    function renderDailySummary() {
+        const container = document.getElementById("dailySummary");
+        const summary = state.data.dailySummary;
+
+        if (!container) {
+            return;
+        }
+
+        if (!summary?.headline) {
+            container.innerHTML = `<p class="placeholder">The first AI recap will appear after the daily summary workflow runs.</p>`;
+            return;
+        }
+
+        const recapItems = summary.matchRecap.length
+            ? `<ul class="daily-summary__matches">${summary.matchRecap.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`
+            : "";
+
+        container.innerHTML = `
+            <div class="daily-summary__header">
+                <div>
+                    <p class="daily-summary__date">Recapping ${formatSummaryDate(summary.recapDate)}</p>
+                    <h3>${escapeHtml(summary.headline)}</h3>
+                </div>
+                <span class="daily-summary__generated">Generated ${formatDate(summary.generatedAt)}</span>
+            </div>
+            <p class="daily-summary__overview">${escapeHtml(summary.overview)}</p>
+            ${recapItems}
+            <div class="daily-summary__standings">
+                <span class="detail-label">Leaderboard Check</span>
+                <p>${escapeHtml(summary.leaderboardSummary)}</p>
+            </div>
+        `;
     }
 
     function renderLeaderboard(entries) {
@@ -583,6 +618,24 @@
         return new Intl.DateTimeFormat(undefined, {
             timeZone: EASTERN_TIME_ZONE,
             month: "short",
+            day: "numeric"
+        }).format(date);
+    }
+
+    function formatSummaryDate(value) {
+        if (!value) {
+            return "the previous day";
+        }
+
+        const date = new Date(`${value}T12:00:00-04:00`);
+
+        if (Number.isNaN(date.getTime())) {
+            return value;
+        }
+
+        return new Intl.DateTimeFormat(undefined, {
+            timeZone: EASTERN_TIME_ZONE,
+            month: "long",
             day: "numeric"
         }).format(date);
     }
