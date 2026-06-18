@@ -324,8 +324,11 @@
 
     function renderLeaderboardDetails(entry) {
         const picks = entry.pickDetails.length
-            ? entry.pickDetails.map(renderDetailedPickRow).join("")
-            : `<tr><td colspan="4" class="empty-cell">Awaiting picks</td></tr>`;
+            ? [...entry.pickDetails]
+                .sort((a, b) => getQualificationBid(b.teamId) - getQualificationBid(a.teamId))
+                .map(renderDetailedPickRow)
+                .join("")
+            : `<tr><td colspan="5" class="empty-cell">Awaiting picks</td></tr>`;
 
         return `
             <tr class="detail-row" id="details-${escapeHtml(entry.participant.id)}">
@@ -564,11 +567,8 @@
     }
 
     function formatQualificationBid(teamId, result) {
-        const rawYesBid = state.qualificationOdds.get(teamId)?.yesBidPercent;
-        const yesBidPercent = rawYesBid === null || rawYesBid === undefined
-            ? null
-            : Number(rawYesBid);
-        if (Number.isFinite(yesBidPercent)) {
+        const yesBidPercent = getQualificationBid(teamId);
+        if (yesBidPercent >= 0) {
             return `${yesBidPercent}%`;
         }
 
@@ -581,6 +581,18 @@
         }
 
         return "—";
+    }
+
+    function getQualificationBid(teamId) {
+        const rawYesBid = state.qualificationOdds.get(teamId)?.yesBidPercent;
+        const yesBidPercent = rawYesBid === null || rawYesBid === undefined
+            ? null
+            : Number(rawYesBid);
+        if (Number.isFinite(yesBidPercent)) {
+            return yesBidPercent;
+        }
+
+        return -1;
     }
 
     function renderTeamStatus(result) {
