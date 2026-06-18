@@ -35,24 +35,28 @@ jobs:
       - name: Update team results and schedule
         run: node scripts/update-results.mjs
 
+      - name: Update qualification odds
+        run: node scripts/update-qualification-odds.mjs
+
       - name: Validate data files
         run: |
           node --check data-loader.js
           node --check scoring.js
           node --check leaderboard.js
           node --check scripts/update-results.mjs
+          node --check scripts/update-qualification-odds.mjs
           node -e "const fs=require('fs'); for (const file of fs.readdirSync('data').filter((name)=>name.endsWith('.json'))) JSON.parse(fs.readFileSync('data/'+file,'utf8'));"
 
       - name: Commit data changes
         run: |
-          if git diff --quiet -- data/team-results.json data/matches.json; then
+          if git diff --quiet -- data/team-results.json data/matches.json data/qualification-odds.json; then
             echo "No data changes to commit."
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/team-results.json data/matches.json
+          git add data/team-results.json data/matches.json data/qualification-odds.json
           git commit -m "Update World Cup data"
           git pull --rebase
           git push

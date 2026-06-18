@@ -1,10 +1,11 @@
 (function () {
-    const DATA_VERSION = "20260618-contest-impact";
+    const DATA_VERSION = "20260618-kalshi-r32";
 
     const DATA_FILES = {
         participants: "data/participants.json",
         teams: "data/teams.json",
         teamResults: "data/team-results.json",
+        qualificationOdds: "data/qualification-odds.json",
         matches: "data/matches.json",
         dailySummary: "data/daily-summary.json",
         scoringConfig: "data/scoring-config.json"
@@ -72,10 +73,11 @@
 
     async function loadContestData(options) {
         const cacheBust = Boolean(options && options.cacheBust);
-        const [participants, teams, teamResultsFile, matchesFile, dailySummaryFile, scoringConfig] = await Promise.all([
+        const [participants, teams, teamResultsFile, qualificationOddsFile, matchesFile, dailySummaryFile, scoringConfig] = await Promise.all([
             fetchJson(DATA_FILES.participants, cacheBust),
             fetchJson(DATA_FILES.teams, cacheBust),
             fetchJson(DATA_FILES.teamResults, true),
+            fetchJson(DATA_FILES.qualificationOdds, true),
             fetchJson(DATA_FILES.matches, true),
             fetchJson(DATA_FILES.dailySummary, true),
             fetchJson(DATA_FILES.scoringConfig, cacheBust)
@@ -89,6 +91,11 @@
             participants,
             teams,
             teamResults: teamResults.results,
+            qualificationOdds: Array.isArray(qualificationOddsFile.odds) ? qualificationOddsFile.odds : [],
+            qualificationOddsMeta: {
+                lastUpdated: qualificationOddsFile.lastUpdated || "",
+                source: qualificationOddsFile.source || ""
+            },
             teamResultsMeta: {
                 lastUpdated: teamResults.lastUpdated
             },

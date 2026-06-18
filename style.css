@@ -334,7 +334,7 @@ tbody tr:hover {
 
 .participant-team-table th:not(:first-child),
 .participant-team-table td:not(:first-child) {
-    width: 5.5rem;
+    width: 5.75rem;
     text-align: right;
 }
 
@@ -505,14 +505,26 @@ tbody tr:hover {
 
 .match-team {
     display: grid;
-    grid-template-columns: 4rem minmax(0, 1fr);
+    grid-template-columns: 5.2rem minmax(0, 1fr);
     gap: 0.65rem;
     align-items: center;
+}
+
+.match-team__identity {
+    display: grid;
+    justify-items: start;
 }
 
 .match-team .team-code {
     justify-content: center;
     margin: 0;
+}
+
+.qualification-chance {
+    color: var(--muted);
+    font-size: 0.7rem;
+    font-weight: 900;
+    white-space: nowrap;
 }
 
 .match-picks {
@@ -860,6 +872,11 @@ details[open] summary::after {
         width: 5rem;
     }
 
+    .team-table th:nth-child(3),
+    .team-table td:nth-child(3) {
+        width: 7rem;
+    }
+
     .team-table th:last-child,
     .team-table td:last-child {
         width: 5.75rem;
@@ -901,7 +918,7 @@ details[open] summary::after {
 
     .participant-team-table th:not(:first-child),
     .participant-team-table td:not(:first-child) {
-        width: 4.2rem;
+        width: 4.5rem;
     }
 
     .detail-stat {
@@ -932,7 +949,7 @@ details[open] summary::after {
     }
 
     .match-team {
-        grid-template-columns: 3.6rem minmax(0, 1fr);
+        grid-template-columns: 4.7rem minmax(0, 1fr);
     }
 
     .daily-summary__generated {
@@ -1010,6 +1027,11 @@ details[open] summary::after {
     .team-table th:first-child,
     .team-table td:first-child {
         width: 4.35rem;
+    }
+
+    .team-table th:nth-child(3),
+    .team-table td:nth-child(3) {
+        width: 6.2rem;
     }
 
     .team-table th:last-child,

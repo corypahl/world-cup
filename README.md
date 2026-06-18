@@ -19,6 +19,7 @@ world-cup-budget-picks/
 |   |-- participants.json
 |   |-- teams.json
 |   |-- team-results.json
+|   |-- qualification-odds.json
 |   |-- matches.json
 |   |-- daily-summary.json
 |   |-- standings-history.json
@@ -74,13 +75,14 @@ The scheduled updater lives in `scripts/update-results.mjs` and writes:
 
 - `data/team-results.json` for scoring totals
 - `data/matches.json` for today's games, previous results, and upcoming schedules
+- `data/qualification-odds.json` for each team's Kalshi Round-of-32 Yes bid
 
 The GitHub Action at `.github/workflows/update-results.yml` runs:
 
 - every 15 minutes from 12:00 PM ET through 1:00 AM ET during the tournament
 - manually through `workflow_dispatch`
 
-It fetches FIFA World Cup match data from ESPN's public soccer scoreboard endpoint and commits the generated data files after each successful fetch so the visible `lastUpdated` timestamp reflects the latest check. The same workflow deploys the updated static site to Pages. No API token is required.
+It fetches FIFA World Cup match data from ESPN's public soccer scoreboard endpoint and Round-of-32 qualification markets from Kalshi's public API. It commits the generated data files after each successful fetch so the visible data reflects the latest check. The same workflow deploys the updated static site to Pages. No API token is required.
 
 ## Daily AI Summary
 

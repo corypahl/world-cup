@@ -6,6 +6,8 @@
         entries: [],
         teamScores: [],
         ownership: new Map(),
+        resultMap: new Map(),
+        qualificationOdds: new Map(),
         todayMatches: [],
         todayTeamIds: new Set(),
         expandedParticipantId: null,
@@ -117,6 +119,8 @@
             )
         ));
 
+        state.resultMap = resultMap;
+        state.qualificationOdds = window.WorldCupScoring.buildLookup(data.qualificationOdds, "teamId");
         state.entries = window.WorldCupScoring.sortLeaderboard(entries);
         const ranks = window.WorldCupScoring.calculateRanks(state.entries);
         state.entries.forEach((entry, index) => {
@@ -229,7 +233,10 @@
 
         return `
             <div class="match-team">
-                <span class="team-code team-code--today">${escapeHtml(teamId)}</span>
+                <div class="match-team__identity">
+                    <span class="team-code team-code--today">${escapeHtml(teamId)}</span>
+                    <span class="qualification-chance">R32 bid ${formatQualificationBid(teamId, state.resultMap.get(teamId))}</span>
+                </div>
                 <div class="match-picks" aria-label="${escapeHtml(teamId)} picked by">${participants}</div>
             </div>
         `;
@@ -332,6 +339,7 @@
                                         <th>Points</th>
                                         <th>Record</th>
                                         <th>Goals</th>
+                                        <th>R32 Bid</th>
                                     </tr>
                                 </thead>
                                 <tbody>${picks}</tbody>
@@ -371,7 +379,7 @@
         });
 
         if (!filteredScores.length) {
-            tbody.innerHTML = `<tr><td colspan="3" class="empty-cell">No teams match that search.</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="4" class="empty-cell">No teams match that search.</td></tr>`;
             return;
         }
 
@@ -390,6 +398,7 @@
                         <span class="${getTeamCodeClasses(result, teamScore.playsToday)}">${escapeHtml(teamScore.team.id)}</span>
                     </td>
                     <td data-label="Points" class="numeric strong">${teamScore.points}</td>
+                    <td data-label="R32 Bid" class="numeric strong">${formatQualificationBid(teamScore.team.id, result)}</td>
                     <td data-label="Picked By" class="numeric strong">${teamScore.pickedBy.length}</td>
                 </tr>
                 ${isExpanded ? renderTeamDetails(teamScore) : ""}
@@ -405,7 +414,7 @@
 
         return `
             <tr class="detail-row" id="team-details-${escapeHtml(teamScore.team.id)}">
-                <td colspan="3" class="detail-cell">
+                <td colspan="4" class="detail-cell">
                     <div class="expanded-details team-details">
                         <div class="detail-group detail-group--picks">
                             <span class="detail-label">Team</span>
@@ -549,8 +558,29 @@
                 <td class="numeric strong">${pick.score}</td>
                 <td class="numeric">${formatRecord(pick.result)}</td>
                 <td class="numeric">${pick.goals}</td>
+                <td class="numeric strong">${formatQualificationBid(pick.team.id, pick.result)}</td>
             </tr>
         `;
+    }
+
+    function formatQualificationBid(teamId, result) {
+        const rawYesBid = state.qualificationOdds.get(teamId)?.yesBidPercent;
+        const yesBidPercent = rawYesBid === null || rawYesBid === undefined
+            ? null
+            : Number(rawYesBid);
+        if (Number.isFinite(yesBidPercent)) {
+            return `${yesBidPercent}%`;
+        }
+
+        if (result?.reachedRoundOf32) {
+            return "100%";
+        }
+
+        if (result?.eliminated) {
+            return "0%";
+        }
+
+        return "—";
     }
 
     function renderTeamStatus(result) {
