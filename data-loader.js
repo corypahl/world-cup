@@ -1,5 +1,5 @@
 (function () {
-    const DATA_VERSION = "20260618-recap-attribution";
+    const DATA_VERSION = "20260618-contest-impact";
 
     const DATA_FILES = {
         participants: "data/participants.json",
@@ -50,25 +50,24 @@
     }
 
     function normalizeDailySummary(summaryFile) {
-        const matchRecap = Array.isArray(summaryFile.matchRecap)
-            ? summaryFile.matchRecap.map((item) => (
-                typeof item === "string"
-                    ? { summary: item, picks: [] }
-                    : {
-                        summary: item.summary || "",
-                        picks: Array.isArray(item.picks) ? item.picks : []
-                    }
-            ))
-            : [];
-
         return {
             generatedAt: summaryFile.generatedAt || "",
             summaryDate: summaryFile.summaryDate || "",
             recapDate: summaryFile.recapDate || "",
-            matchRecap,
+            previousDayImpact: summaryFile.previousDayImpact || buildLegacyRecap(summaryFile.matchRecap),
             leaderboardSummary: summaryFile.leaderboardSummary || "",
-            lookingAhead: summaryFile.lookingAhead || ""
+            leverageWatch: summaryFile.leverageWatch || summaryFile.lookingAhead || ""
         };
+    }
+
+    function buildLegacyRecap(matchRecap) {
+        if (!Array.isArray(matchRecap)) {
+            return "";
+        }
+
+        return matchRecap.map((item) => (
+            typeof item === "string" ? item : item.summary || ""
+        )).filter(Boolean).join(" ");
     }
 
     async function loadContestData(options) {

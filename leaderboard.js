@@ -255,38 +255,21 @@
             return;
         }
 
-        const recapItems = summary.matchRecap.length
-            ? `<div class="daily-summary__matches">${summary.matchRecap.map(renderDailyMatchRecap).join("")}</div>`
-            : `<p class="placeholder">No completed matches were available for this recap.</p>`;
-
         container.innerHTML = `
-            <div class="daily-summary__section">
-                <h3>Match Recaps</h3>
+            <div class="daily-summary__section daily-summary__impact">
+                <h3>Yesterday's Contest Impact</h3>
                 <p class="daily-summary__date">Recapping ${formatSummaryDate(summary.recapDate)}</p>
-                ${recapItems}
+                <p>${escapeHtml(summary.previousDayImpact || "No selected teams created a meaningful contest swing yesterday.")}</p>
             </div>
             <div class="daily-summary__section daily-summary__standings">
                 <h3>Leaderboard Movement</h3>
                 <p>${escapeHtml(summary.leaderboardSummary)}</p>
             </div>
             <div class="daily-summary__section daily-summary__ahead">
-                <h3>Looking Ahead</h3>
-                <p>${escapeHtml(summary.lookingAhead || "Today's contest implications will appear after the next recap is generated.")}</p>
+                <h3>Today's Leverage Watch</h3>
+                <p>${escapeHtml(summary.leverageWatch || "Today's strongest opportunities for separation will appear after the next recap is generated.")}</p>
             </div>
             <p class="daily-summary__generated">Generated ${formatDate(summary.generatedAt)}</p>
-        `;
-    }
-
-    function renderDailyMatchRecap(item) {
-        const pickLines = (item.picks || []).map((pick) => `
-            <span><strong>${escapeHtml(pick.teamName)}:</strong> ${escapeHtml(pick.participants.join(", "))}</span>
-        `).join("");
-
-        return `
-            <div class="daily-summary__match">
-                <p>${escapeHtml(item.summary)}</p>
-                ${pickLines ? `<div class="daily-summary__picks"><span class="detail-label">Picked By</span>${pickLines}</div>` : ""}
-            </div>
         `;
     }
 

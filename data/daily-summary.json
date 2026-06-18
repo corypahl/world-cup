@@ -2,64 +2,7 @@
   "generatedAt": "2026-06-18T11:51:55.663Z",
   "summaryDate": "2026-06-18",
   "recapDate": "2026-06-17",
-  "matchRecap": [
-    {
-      "summary": "Austria defeated Jordan 3-1 in Group Stage play.",
-      "picks": [
-        {
-          "teamName": "Austria",
-          "participants": [
-            "Hubba Hubba CD's Nutz"
-          ]
-        }
-      ]
-    },
-    {
-      "summary": "DR Congo and Portugal drew 1-1 in Group Stage action.",
-      "picks": [
-        {
-          "teamName": "Portugal",
-          "participants": [
-            "Hubba Hubba CD's Nutz",
-            "Brent's Daddy"
-          ]
-        }
-      ]
-    },
-    {
-      "summary": "England beat Croatia 4-2 in a Group Stage match.",
-      "picks": [
-        {
-          "teamName": "Croatia",
-          "participants": [
-            "Team Jordan"
-          ]
-        },
-        {
-          "teamName": "England",
-          "participants": [
-            "Team Choo Choo"
-          ]
-        }
-      ]
-    },
-    {
-      "summary": "Ghana secured a 1-0 victory over Panama in Group Stage play.",
-      "picks": []
-    },
-    {
-      "summary": "Colombia 3-1 Uzbekistan.",
-      "picks": [
-        {
-          "teamName": "Colombia",
-          "participants": [
-            "Bijan Mustard",
-            "Team Mack"
-          ]
-        }
-      ]
-    }
-  ],
+  "previousDayImpact": "Austria created the day's cleanest leverage: it was exclusive to Hubba Hubba CD's Nutz and delivered 6 points. England produced a five-point head-to-head swing, giving Team Choo Choo 7 points while Team Jordan collected only 2 from Croatia; Colombia's 6-point return was less differentiating because both Bijan Mustard and Team Mack owned it.",
   "leaderboardSummary": "Hubba Hubba CD's Nutz surged to first place, climbing five spots with 8 points gained from Austria and Portugal. Team Choo Choo also made a significant jump, moving up four places to second after England's win. Team koyn, the previous leader, fell to fifth place.",
-  "lookingAhead": "Today's Group Stage matches include Switzerland vs. Bosnia & Herzegovina, with Team Pahl invested in Switzerland. Qatar vs. Canada features teams picked by Team Camouflage Cndm and Team Godfather, respectively. The marquee matchup is South Korea vs. Mexico, with South Korea picked by Team koyn and Metcalf Hurts, and Mexico by Hubba Hubba CD's Nutz and Team Choo Choo."
+  "leverageWatch": "South Korea-Mexico carries the strongest leaderboard leverage: first-place Hubba Hubba CD's Nutz and co-second Team Choo Choo have Mexico, while fifth-place Team koyn and Metcalf Hurts have South Korea. Qatar-Canada creates another direct split between Team Camouflage Cndm and Team Godfather, while Switzerland is an exclusive opportunity for Team Pahl."
 }

@@ -9,35 +9,20 @@ const apiKey = process.env.GEMINI_API_KEY;
 const responseSchema = {
     type: "object",
     properties: {
-        matchRecap: {
-            type: "array",
-            description: "One concise recap object per supplied previousDayMatches item.",
-            items: {
-                type: "object",
-                properties: {
-                    matchIndex: {
-                        type: "integer",
-                        description: "The exact matchIndex from the supplied previousDayMatches item."
-                    },
-                    summary: {
-                        type: "string",
-                        description: "A concise factual recap of that match and its contest impact."
-                    }
-                },
-                required: ["matchIndex", "summary"]
-            },
-            maxItems: 4
+        previousDayImpact: {
+            type: "string",
+            description: "Two or three sentences explaining the previous day's most meaningful fantasy-contest leverage, not a score recap."
         },
         leaderboardSummary: {
             type: "string",
             description: "Two or three sentences explaining the most meaningful standings movement using supplied point and rank changes."
         },
-        lookingAhead: {
+        leverageWatch: {
             type: "string",
-            description: "Two or three sentences identifying the most consequential games today and which contest entries have those teams."
+            description: "Two or three sentences identifying today's best opportunities for entries to gain separation through unique, opposing, or concentrated picks."
         }
     },
-    required: ["matchRecap", "leaderboardSummary", "lookingAhead"]
+    required: ["previousDayImpact", "leaderboardSummary", "leverageWatch"]
 };
 
 const systemInstruction = [
@@ -47,12 +32,13 @@ const systemInstruction = [
     "Use standingsChanges and leaderChange for all claims about movement.",
     "Keep the tone lively but factual, like a short sports desk update for friends.",
     "Refer to contest entries by teamName. Mention owners only when it improves clarity.",
-    "The match recap covers recapDate.",
+    "The previous-day impact section covers recapDate.",
     "A positive rankChange means the participant climbed that many places; a negative value means they fell.",
     "pointsGained is the exact score change since previousStandingsDate.",
     "The leaderboard summary should explain what changed since previousStandingsDate, not merely repeat the visible top three.",
-    "Use todaysGames and each team's pickedBy list for the looking-ahead section.",
-    "Prioritize games involving highly ranked entries, many contest entries, or teams that could create meaningful separation."
+    "Use todaysMatches and each team's pickedBy list for the leverage-watch section.",
+    "Prioritize unique picks, opposing picks in the same match, and results that affect highly ranked entries.",
+    "Shared picks usually create less separation; unpicked matches have no direct contest impact."
 ].join(" ");
 
 function buildPrompt(input) {
@@ -60,16 +46,19 @@ function buildPrompt(input) {
         "Write today's contest recap from the JSON below.",
         "",
         "Requirements:",
-        "- Match recap: return exactly one object for each previousDayMatches item using its exact matchIndex.",
-        "- Participant attribution is rendered separately. Do not mention participant or contest-entry names in match recap summaries.",
-        "- Focus each match recap summary only on the result and broad contest impact.",
-        "- If no matches were played, return an empty matchRecap array.",
+        "- Previous-day impact: 2-3 sentences identifying the results that created the most separation between entries.",
+        "- Use each team's pickedBy list and pointsGained values to explain why a result mattered.",
+        "- Contrast unique or lightly owned scoring teams with heavily shared picks that benefited several entries equally.",
+        "- Ignore unpicked matches unless noting briefly that much of the slate had no contest impact.",
+        "- Do not provide a match-by-match score recap; mention a score only when it explains an unusual point swing.",
+        "- If no selected team played, say the slate had no direct contest impact.",
         "- Leaderboard summary: 2-3 sentences focused on the biggest point gain, largest rank climb, a lead change, or teams lost.",
         "- When standingsChanges is empty, say that movement cannot be calculated yet and briefly state the current leader.",
         "- Do not merely list the top three unless their positions changed.",
         "- Attribute point gains to scoringPicks when those details are supplied.",
-        "- Looking ahead: 2-3 sentences about today's most important games and the contest entries invested in those teams.",
-        "- If none of today's teams were selected, say so plainly instead of inventing contest implications.",
+        "- Leverage watch: 2-3 sentences identifying unique picks, opposing entry interests within one match, or consensus picks that offer limited separation.",
+        "- Do not restate the full schedule; select only the strongest one or two contest angles.",
+        "- If none of today's teams were selected, say the slate has no direct contest implications.",
         "- Do not predict match winners or invent odds.",
         "- Return only JSON matching the response schema.",
         "",

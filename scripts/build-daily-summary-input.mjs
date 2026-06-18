@@ -221,12 +221,29 @@ async function main() {
         entry.picks.forEach((pick) => {
             const owners = pickedBy.get(pick.teamId) || [];
             owners.push({
+                participantId: entry.participantId,
                 teamName: entry.teamName,
                 rank: entry.rank,
                 score: entry.score
             });
             pickedBy.set(pick.teamId, owners);
         });
+    });
+
+    const movement = buildStandingsChanges(leaderboard, history, summaryDate);
+    const movementByParticipant = new Map(
+        movement.standingsChanges.map((entry) => [entry.participantId, entry])
+    );
+    const addDailyPickImpact = (teamId) => (pickedBy.get(teamId) || []).map((entry) => {
+        const participantMovement = movementByParticipant.get(entry.participantId);
+        const scoringPick = participantMovement?.scoringPicks.find((pick) => pick.teamId === teamId);
+
+        return {
+            teamName: entry.teamName,
+            rank: entry.rank,
+            score: entry.score,
+            pointsGained: scoringPick?.pointsGained || 0
+        };
     });
 
     const previousDayMatches = (matchesFile.matches || [])
@@ -238,10 +255,10 @@ async function main() {
             teamOneScore: toNumber(match.awayScore),
             teamTwo: match.homeTeamName,
             teamTwoScore: toNumber(match.homeScore),
-            pickedByTeamOne: (pickedBy.get(match.awayTeamId) || []).map((entry) => entry.teamName),
-            pickedByTeamTwo: (pickedBy.get(match.homeTeamId) || []).map((entry) => entry.teamName)
+            pickedByTeamOne: addDailyPickImpact(match.awayTeamId),
+            pickedByTeamTwo: addDailyPickImpact(match.homeTeamId)
         }));
-    const todaysGames = (matchesFile.matches || [])
+    const todaysMatches = (matchesFile.matches || [])
         .filter((match) => !match.completed && getEasternDateKey(match.date) === summaryDate)
         .map((match) => ({
             stage: match.stageLabel,
@@ -257,7 +274,6 @@ async function main() {
                 pickedBy: pickedBy.get(match.homeTeamId) || []
             }
         }));
-    const movement = buildStandingsChanges(leaderboard, history, summaryDate);
 
     const output = {
         summaryDate,
@@ -266,7 +282,7 @@ async function main() {
         dataLastUpdated: resultsFile.lastUpdated || "",
         scoringRules: scoringConfig,
         previousDayMatches,
-        todaysGames,
+        todaysMatches,
         leaderChange: movement.leaderChange,
         standingsChanges: movement.standingsChanges,
         leaderboard

@@ -619,15 +619,26 @@ tbody tr:hover {
     background: #fbf8e9;
 }
 
+.daily-summary__impact {
+    border-left: 4px solid var(--yellow-dark);
+    padding: 0.65rem 0.8rem;
+    background: #fff9dc;
+}
+
 .daily-summary__ahead {
     border-left: 4px solid var(--blue);
     padding: 0.65rem 0.8rem;
     background: #f1f6ff;
 }
 
+.daily-summary__impact p,
 .daily-summary__standings p,
 .daily-summary__ahead p {
     margin: 0;
+}
+
+.daily-summary__impact .daily-summary__date {
+    margin-bottom: 0.45rem;
 }
 
 .detail-group--schedule {
