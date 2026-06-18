@@ -12,8 +12,8 @@ permissions:
   id-token: write
 
 concurrency:
-  group: daily-world-cup-summary
-  cancel-in-progress: true
+  group: world-cup-data-writes
+  cancel-in-progress: false
 
 jobs:
   generate-summary:

@@ -3,9 +3,33 @@
   "summaryDate": "2026-06-17",
   "recapDate": "2026-06-16",
   "matchRecap": [
-    "France defeated Senegal 3-1.",
-    "Norway bested Iraq 4-1.",
-    "Argentina shut out Algeria 3-0."
+    {
+      "summary": "France defeated Senegal 3-1.",
+      "picks": [
+        {
+          "teamName": "France",
+          "participants": ["Team Godfather", "Bijan Mustard"]
+        }
+      ]
+    },
+    {
+      "summary": "Norway bested Iraq 4-1.",
+      "picks": [
+        {
+          "teamName": "Norway",
+          "participants": ["Team Jordan", "Team Megatronless"]
+        }
+      ]
+    },
+    {
+      "summary": "Argentina shut out Algeria 3-0.",
+      "picks": [
+        {
+          "teamName": "Argentina",
+          "participants": ["Hubba Hubba CD's Nutz", "Team Jordan", "Team koyn", "Team Camouflage Cndm"]
+        }
+      ]
+    }
   ],
   "leaderboardSummary": "With no movement recorded, the leaderboard remains unchanged. Hubba Hubba CD's Nutz holds the top spot.",
   "lookingAhead": "Today's matches include Panama versus Ghana, and Colombia against Uzbekistan. Colombia is picked by Bijan Mustard and Team Mack."

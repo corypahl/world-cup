@@ -235,7 +235,7 @@
         }
 
         const recapItems = summary.matchRecap.length
-            ? `<ul class="daily-summary__matches">${summary.matchRecap.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`
+            ? `<div class="daily-summary__matches">${summary.matchRecap.map(renderDailyMatchRecap).join("")}</div>`
             : `<p class="placeholder">No completed matches were available for this recap.</p>`;
 
         container.innerHTML = `
@@ -253,6 +253,19 @@
                 <p>${escapeHtml(summary.lookingAhead || "Today's contest implications will appear after the next recap is generated.")}</p>
             </div>
             <p class="daily-summary__generated">Generated ${formatDate(summary.generatedAt)}</p>
+        `;
+    }
+
+    function renderDailyMatchRecap(item) {
+        const pickLines = (item.picks || []).map((pick) => `
+            <span><strong>${escapeHtml(pick.teamName)}:</strong> ${escapeHtml(pick.participants.join(", "))}</span>
+        `).join("");
+
+        return `
+            <div class="daily-summary__match">
+                <p>${escapeHtml(item.summary)}</p>
+                ${pickLines ? `<div class="daily-summary__picks"><span class="detail-label">Picked By</span>${pickLines}</div>` : ""}
+            </div>
         `;
     }
 

@@ -11,9 +11,20 @@ const responseSchema = {
     properties: {
         matchRecap: {
             type: "array",
-            description: "Zero to four concise match recap strings.",
+            description: "One concise recap object per supplied previousDayMatches item.",
             items: {
-                type: "string"
+                type: "object",
+                properties: {
+                    matchIndex: {
+                        type: "integer",
+                        description: "The exact matchIndex from the supplied previousDayMatches item."
+                    },
+                    summary: {
+                        type: "string",
+                        description: "A concise factual recap of that match and its contest impact."
+                    }
+                },
+                required: ["matchIndex", "summary"]
             },
             maxItems: 4
         },
@@ -49,7 +60,9 @@ function buildPrompt(input) {
         "Write today's contest recap from the JSON below.",
         "",
         "Requirements:",
-        "- Match recap: zero to four concise strings. If no matches were played, return one string saying there were no completed matches.",
+        "- Match recap: return exactly one object for each previousDayMatches item using its exact matchIndex.",
+        "- Participant attribution is rendered separately, so focus each match recap string on the result and contest impact.",
+        "- If no matches were played, return an empty matchRecap array.",
         "- Leaderboard summary: 2-3 sentences focused on the biggest point gain, largest rank climb, a lead change, or teams lost.",
         "- When standingsChanges is empty, say that movement cannot be calculated yet and briefly state the current leader.",
         "- Do not merely list the top three unless their positions changed.",

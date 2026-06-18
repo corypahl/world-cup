@@ -231,7 +231,8 @@ async function main() {
 
     const previousDayMatches = (matchesFile.matches || [])
         .filter((match) => match.completed && getEasternDateKey(match.date) === recapDate)
-        .map((match) => ({
+        .map((match, matchIndex) => ({
+            matchIndex,
             stage: match.stageLabel,
             teamOne: match.awayTeamName,
             teamOneScore: toNumber(match.awayScore),

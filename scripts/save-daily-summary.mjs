@@ -25,9 +25,45 @@ function validateSummary(summary) {
         }
     });
 
-    if (!Array.isArray(summary.matchRecap) || summary.matchRecap.some((item) => typeof item !== "string")) {
-        throw new Error("AI response matchRecap must be an array of strings.");
+    if (!Array.isArray(summary.matchRecap) || summary.matchRecap.some((item) => (
+        typeof item !== "object"
+        || !Number.isInteger(item.matchIndex)
+        || typeof item.summary !== "string"
+    ))) {
+        throw new Error("AI response matchRecap must contain matchIndex and summary objects.");
     }
+}
+
+function buildMatchRecaps(summary, input) {
+    const matches = input.previousDayMatches || [];
+
+    if (!matches.length) {
+        return summary.matchRecap.map((item) => ({
+            summary: item.summary.trim(),
+            picks: []
+        })).filter((item) => item.summary);
+    }
+
+    const responseByIndex = new Map(summary.matchRecap.map((item) => [item.matchIndex, item.summary]));
+
+    return matches.map((match) => {
+        const fallback = `${match.teamOne} ${match.teamOneScore}-${match.teamTwoScore} ${match.teamTwo}.`;
+        const picks = [
+            {
+                teamName: match.teamOne,
+                participants: match.pickedByTeamOne || []
+            },
+            {
+                teamName: match.teamTwo,
+                participants: match.pickedByTeamTwo || []
+            }
+        ].filter((pick) => pick.participants.length);
+
+        return {
+            summary: responseByIndex.get(match.matchIndex)?.trim() || fallback,
+            picks
+        };
+    });
 }
 
 async function main() {
@@ -47,7 +83,7 @@ async function main() {
         generatedAt: new Date().toISOString(),
         summaryDate: input.summaryDate,
         recapDate: input.recapDate,
-        matchRecap: summary.matchRecap.map((item) => item.trim()).filter(Boolean),
+        matchRecap: buildMatchRecaps(summary, input),
         leaderboardSummary: summary.leaderboardSummary.trim(),
         lookingAhead: summary.lookingAhead.trim()
     };
