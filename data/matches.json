@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-18T18:21:26.917Z",
+  "lastUpdated": "2026-06-18T20:42:23.125Z",
   "matches": [
     {
       "id": "760415",
@@ -406,15 +406,15 @@
       "date": "2026-06-18T19:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "82'",
       "completed": false,
       "homeTeamId": "SUI",
       "homeTeamName": "Switzerland",
-      "homeScore": null,
+      "homeScore": 1,
       "awayTeamId": "BIH",
       "awayTeamName": "Bosnia & Herzegovina",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "SoFi Stadium"
     },
     {
