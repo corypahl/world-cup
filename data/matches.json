@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-18T20:42:23.125Z",
+  "lastUpdated": "2026-06-18T22:33:17.239Z",
   "matches": [
     {
       "id": "760415",
@@ -406,15 +406,15 @@
       "date": "2026-06-18T19:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "in",
-      "statusLabel": "82'",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "FT",
+      "completed": true,
       "homeTeamId": "SUI",
       "homeTeamName": "Switzerland",
-      "homeScore": 1,
+      "homeScore": 4,
       "awayTeamId": "BIH",
       "awayTeamName": "Bosnia & Herzegovina",
-      "awayScore": 0,
+      "awayScore": 1,
       "venue": "SoFi Stadium"
     },
     {
@@ -422,15 +422,15 @@
       "date": "2026-06-18T22:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "32'",
       "completed": false,
       "homeTeamId": "CAN",
       "homeTeamName": "Canada",
-      "homeScore": null,
+      "homeScore": 2,
       "awayTeamId": "QAT",
       "awayTeamName": "Qatar",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "BC Place"
     },
     {
