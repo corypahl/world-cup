@@ -90,9 +90,10 @@ The workflow at `.github/workflows/daily-summary.yml` runs at 9:00 AM ET and can
 2. Selects completed matches from the previous Eastern Time calendar day.
 3. Compares the current leaderboard against `data/standings-history.json`.
 4. Calculates point gains, rank movement, remaining-team changes, and which picks produced points.
-5. Sends those grounded facts to `gemini-2.5-flash-lite`.
-6. Writes `data/daily-summary.json` and saves the current standings snapshot.
-7. Commits the generated files and deploys GitHub Pages.
+5. Adds today's schedule and the contest entries that selected each team.
+6. Sends those grounded facts to `gemini-2.5-flash-lite`.
+7. Writes match recaps, leaderboard movement, and a looking-ahead summary to `data/daily-summary.json`.
+8. Saves the current standings snapshot, commits the generated files, and deploys GitHub Pages.
 
 Create a free Gemini API key in [Google AI Studio](https://aistudio.google.com/app/apikey), then add it to the repository:
 

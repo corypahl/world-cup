@@ -1,5 +1,5 @@
 (function () {
-    const DATA_VERSION = "20260617-standings-history";
+    const DATA_VERSION = "20260618-recap-layout";
 
     const DATA_FILES = {
         participants: "data/participants.json",
@@ -54,10 +54,9 @@
             generatedAt: summaryFile.generatedAt || "",
             summaryDate: summaryFile.summaryDate || "",
             recapDate: summaryFile.recapDate || "",
-            headline: summaryFile.headline || "",
-            overview: summaryFile.overview || "",
             matchRecap: Array.isArray(summaryFile.matchRecap) ? summaryFile.matchRecap : [],
-            leaderboardSummary: summaryFile.leaderboardSummary || ""
+            leaderboardSummary: summaryFile.leaderboardSummary || "",
+            lookingAhead: summaryFile.lookingAhead || ""
         };
     }
 

@@ -220,7 +220,11 @@ async function main() {
     leaderboard.forEach((entry) => {
         entry.picks.forEach((pick) => {
             const owners = pickedBy.get(pick.teamId) || [];
-            owners.push(entry.teamName);
+            owners.push({
+                teamName: entry.teamName,
+                rank: entry.rank,
+                score: entry.score
+            });
             pickedBy.set(pick.teamId, owners);
         });
     });
@@ -233,8 +237,24 @@ async function main() {
             teamOneScore: toNumber(match.awayScore),
             teamTwo: match.homeTeamName,
             teamTwoScore: toNumber(match.homeScore),
-            pickedByTeamOne: pickedBy.get(match.awayTeamId) || [],
-            pickedByTeamTwo: pickedBy.get(match.homeTeamId) || []
+            pickedByTeamOne: (pickedBy.get(match.awayTeamId) || []).map((entry) => entry.teamName),
+            pickedByTeamTwo: (pickedBy.get(match.homeTeamId) || []).map((entry) => entry.teamName)
+        }));
+    const todaysGames = (matchesFile.matches || [])
+        .filter((match) => getEasternDateKey(match.date) === summaryDate)
+        .map((match) => ({
+            stage: match.stageLabel,
+            startTime: match.date,
+            teamOne: {
+                teamId: match.awayTeamId,
+                teamName: match.awayTeamName,
+                pickedBy: pickedBy.get(match.awayTeamId) || []
+            },
+            teamTwo: {
+                teamId: match.homeTeamId,
+                teamName: match.homeTeamName,
+                pickedBy: pickedBy.get(match.homeTeamId) || []
+            }
         }));
     const movement = buildStandingsChanges(leaderboard, history, summaryDate);
 
@@ -245,6 +265,7 @@ async function main() {
         dataLastUpdated: resultsFile.lastUpdated || "",
         scoringRules: scoringConfig,
         previousDayMatches,
+        todaysGames,
         leaderChange: movement.leaderChange,
         standingsChanges: movement.standingsChanges,
         leaderboard

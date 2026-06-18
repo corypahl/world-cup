@@ -3,7 +3,9 @@ import { resolve } from "node:path";
 
 const responsePath = resolve(process.argv[2] || "");
 const inputPath = resolve(process.argv[3] || ".tmp/daily-summary-input.json");
-const outputPath = new URL("../data/daily-summary.json", import.meta.url);
+const outputPath = process.argv[4]
+    ? resolve(process.argv[4])
+    : new URL("../data/daily-summary.json", import.meta.url);
 
 function parseResponse(raw) {
     const trimmed = raw.trim();
@@ -15,7 +17,7 @@ function parseResponse(raw) {
 }
 
 function validateSummary(summary) {
-    const requiredStrings = ["headline", "overview", "leaderboardSummary"];
+    const requiredStrings = ["leaderboardSummary", "lookingAhead"];
 
     requiredStrings.forEach((key) => {
         if (typeof summary[key] !== "string" || !summary[key].trim()) {
@@ -45,14 +47,13 @@ async function main() {
         generatedAt: new Date().toISOString(),
         summaryDate: input.summaryDate,
         recapDate: input.recapDate,
-        headline: summary.headline.trim(),
-        overview: summary.overview.trim(),
         matchRecap: summary.matchRecap.map((item) => item.trim()).filter(Boolean),
-        leaderboardSummary: summary.leaderboardSummary.trim()
+        leaderboardSummary: summary.leaderboardSummary.trim(),
+        lookingAhead: summary.lookingAhead.trim()
     };
 
     await writeFile(outputPath, `${JSON.stringify(output, null, 2)}\n`);
-    console.log(`Wrote daily AI summary to ${outputPath.pathname}`);
+    console.log(`Wrote daily AI summary to ${outputPath.pathname || outputPath}`);
 }
 
 main().catch((error) => {

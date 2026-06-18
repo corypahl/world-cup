@@ -229,29 +229,30 @@
             return;
         }
 
-        if (!summary?.headline) {
+        if (!summary?.generatedAt) {
             container.innerHTML = `<p class="placeholder">The first AI recap will appear after the daily summary workflow runs.</p>`;
             return;
         }
 
         const recapItems = summary.matchRecap.length
             ? `<ul class="daily-summary__matches">${summary.matchRecap.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`
-            : "";
+            : `<p class="placeholder">No completed matches were available for this recap.</p>`;
 
         container.innerHTML = `
-            <div class="daily-summary__header">
-                <div>
-                    <p class="daily-summary__date">Recapping ${formatSummaryDate(summary.recapDate)}</p>
-                    <h3>${escapeHtml(summary.headline)}</h3>
-                </div>
-                <span class="daily-summary__generated">Generated ${formatDate(summary.generatedAt)}</span>
+            <div class="daily-summary__section">
+                <h3>Match Recaps</h3>
+                <p class="daily-summary__date">Recapping ${formatSummaryDate(summary.recapDate)}</p>
+                ${recapItems}
             </div>
-            <p class="daily-summary__overview">${escapeHtml(summary.overview)}</p>
-            ${recapItems}
-            <div class="daily-summary__standings">
-                <span class="detail-label">Standings Movement</span>
+            <div class="daily-summary__section daily-summary__standings">
+                <h3>Leaderboard Movement</h3>
                 <p>${escapeHtml(summary.leaderboardSummary)}</p>
             </div>
+            <div class="daily-summary__section daily-summary__ahead">
+                <h3>Looking Ahead</h3>
+                <p>${escapeHtml(summary.lookingAhead || "Today's contest implications will appear after the next recap is generated.")}</p>
+            </div>
+            <p class="daily-summary__generated">Generated ${formatDate(summary.generatedAt)}</p>
         `;
     }
 

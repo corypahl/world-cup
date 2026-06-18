@@ -9,14 +9,6 @@ const apiKey = process.env.GEMINI_API_KEY;
 const responseSchema = {
     type: "object",
     properties: {
-        headline: {
-            type: "string",
-            description: "A factual sports-style headline with no more than 10 words."
-        },
-        overview: {
-            type: "string",
-            description: "One or two sentences connecting the previous day's matches to the contest."
-        },
         matchRecap: {
             type: "array",
             description: "Zero to four concise match recap strings.",
@@ -28,9 +20,13 @@ const responseSchema = {
         leaderboardSummary: {
             type: "string",
             description: "Two or three sentences explaining the most meaningful standings movement using supplied point and rank changes."
+        },
+        lookingAhead: {
+            type: "string",
+            description: "Two or three sentences identifying the most consequential games today and which contest entries have those teams."
         }
     },
-    required: ["headline", "overview", "matchRecap", "leaderboardSummary"]
+    required: ["matchRecap", "leaderboardSummary", "lookingAhead"]
 };
 
 const systemInstruction = [
@@ -43,7 +39,9 @@ const systemInstruction = [
     "The match recap covers recapDate.",
     "A positive rankChange means the participant climbed that many places; a negative value means they fell.",
     "pointsGained is the exact score change since previousStandingsDate.",
-    "The leaderboard summary should explain what changed since previousStandingsDate, not merely repeat the visible top three."
+    "The leaderboard summary should explain what changed since previousStandingsDate, not merely repeat the visible top three.",
+    "Use todaysGames and each team's pickedBy list for the looking-ahead section.",
+    "Prioritize games involving highly ranked entries, many contest entries, or teams that could create meaningful separation."
 ].join(" ");
 
 function buildPrompt(input) {
@@ -51,13 +49,14 @@ function buildPrompt(input) {
         "Write today's contest recap from the JSON below.",
         "",
         "Requirements:",
-        "- Headline: no more than 10 words.",
-        "- Overview: 1-2 sentences connecting yesterday's matches to the contest.",
         "- Match recap: zero to four concise strings. If no matches were played, return one string saying there were no completed matches.",
         "- Leaderboard summary: 2-3 sentences focused on the biggest point gain, largest rank climb, a lead change, or teams lost.",
         "- When standingsChanges is empty, say that movement cannot be calculated yet and briefly state the current leader.",
         "- Do not merely list the top three unless their positions changed.",
         "- Attribute point gains to scoringPicks when those details are supplied.",
+        "- Looking ahead: 2-3 sentences about today's most important games and the contest entries invested in those teams.",
+        "- If none of today's teams were selected, say so plainly instead of inventing contest implications.",
+        "- Do not predict match winners or invent odds.",
         "- Return only JSON matching the response schema.",
         "",
         JSON.stringify(input)
