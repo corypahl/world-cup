@@ -563,20 +563,25 @@ tbody tr:hover {
 .daily-summary {
     display: grid;
     gap: 1rem;
-    border-top: 4px solid var(--blue);
-    padding-top: 0.9rem;
 }
 
 .daily-summary__section {
     border-bottom: 1px solid var(--line);
-    border-left: 4px solid var(--yellow-dark);
-    padding: 0.65rem 0.8rem;
-    background: #fff9dc;
+    padding: 0 0 1rem;
 }
 
 .daily-summary__section h3 {
     margin: 0 0 0.5rem;
-    font-size: 1.15rem;
+    color: var(--muted);
+    font-size: 0.82rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.daily-summary__section:last-of-type {
+    border-bottom: 0;
+    padding-bottom: 0;
 }
 
 .daily-summary__date,
