@@ -241,7 +241,7 @@ async function main() {
             pickedByTeamTwo: (pickedBy.get(match.homeTeamId) || []).map((entry) => entry.teamName)
         }));
     const todaysGames = (matchesFile.matches || [])
-        .filter((match) => getEasternDateKey(match.date) === summaryDate)
+        .filter((match) => !match.completed && getEasternDateKey(match.date) === summaryDate)
         .map((match) => ({
             stage: match.stageLabel,
             startTime: match.date,
