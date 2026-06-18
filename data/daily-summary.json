@@ -1,47 +1,65 @@
 {
-  "generatedAt": "2026-06-18T02:51:49.997Z",
-  "summaryDate": "2026-06-17",
-  "recapDate": "2026-06-16",
+  "generatedAt": "2026-06-18T11:51:55.663Z",
+  "summaryDate": "2026-06-18",
+  "recapDate": "2026-06-17",
   "matchRecap": [
     {
-      "summary": "France defeated Senegal 3-1 in Group Stage play.",
+      "summary": "Austria defeated Jordan 3-1 in Group Stage play.",
       "picks": [
         {
-          "teamName": "France",
+          "teamName": "Austria",
           "participants": [
-            "Team Godfather",
-            "Bijan Mustard"
+            "Hubba Hubba CD's Nutz"
           ]
         }
       ]
     },
     {
-      "summary": "Norway secured a decisive 4-1 victory over Iraq in Group Stage action.",
+      "summary": "DR Congo and Portugal drew 1-1 in Group Stage action.",
       "picks": [
         {
-          "teamName": "Norway",
-          "participants": [
-            "Team Jordan",
-            "Team Megatronless"
-          ]
-        }
-      ]
-    },
-    {
-      "summary": "Argentina shut out Algeria with a 3-0 win in Group Stage play.",
-      "picks": [
-        {
-          "teamName": "Argentina",
+          "teamName": "Portugal",
           "participants": [
             "Hubba Hubba CD's Nutz",
-            "Team Jordan",
-            "Team koyn",
-            "Team Camouflage Cndm"
+            "Brent's Daddy"
+          ]
+        }
+      ]
+    },
+    {
+      "summary": "England beat Croatia 4-2 in a Group Stage match.",
+      "picks": [
+        {
+          "teamName": "Croatia",
+          "participants": [
+            "Team Jordan"
+          ]
+        },
+        {
+          "teamName": "England",
+          "participants": [
+            "Team Choo Choo"
+          ]
+        }
+      ]
+    },
+    {
+      "summary": "Ghana secured a 1-0 victory over Panama in Group Stage play.",
+      "picks": []
+    },
+    {
+      "summary": "Colombia 3-1 Uzbekistan.",
+      "picks": [
+        {
+          "teamName": "Colombia",
+          "participants": [
+            "Bijan Mustard",
+            "Team Mack"
           ]
         }
       ]
     }
   ],
-  "leaderboardSummary": "With no standings changes reported, Hubba Hubba CD's Nutz remains in first place. Standings movement cannot be calculated yet.",
-  "lookingAhead": "Today features Colombia versus Uzbekistan. Bijan Mustard has Colombia, while Team Godfather and Team Mack also have teams playing today."
+  "leaderboardSummary": "Hubba Hubba CD's Nutz surged to first place, climbing five spots with 8 points gained from Austria and Portugal. Team Choo Choo also made a significant jump, moving up four places to second after England's win. Team koyn, the previous leader, fell to fifth place.",
+  "lookingAhead": "Today's Group Stage matches include Switzerland vs. Bosnia & Herzegovina, with Team Pahl invested in Switzerland. Qatar vs. Canada features teams picked by Team Camouflage Cndm and Team Godfather, respectively. The marquee matchup is South Korea vs. Mexico, with South Korea picked by Team koyn and Metcalf Hurts, and Mexico by Hubba Hubba CD's Nutz and Team Choo Choo."
 }
