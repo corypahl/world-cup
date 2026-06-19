@@ -1,5 +1,19 @@
 (function () {
     const EASTERN_TIME_ZONE = "America/New_York";
+    const CHART_COLORS = [
+        "#1769ff",
+        "#e24132",
+        "#15803d",
+        "#9a5b00",
+        "#7c3aed",
+        "#0891b2",
+        "#db2777",
+        "#4d7c0f",
+        "#c2410c",
+        "#475569",
+        "#0f766e",
+        "#9333ea"
+    ];
 
     const state = {
         data: null,
@@ -184,10 +198,116 @@
     function renderAll() {
         renderDataStatus();
         renderLeaderboard(state.entries);
+        renderRankHistory();
         renderTodayGames();
         renderDailySummary();
         renderTeamScores(state.teamScores);
         renderScoringRules(state.data.scoringConfig);
+    }
+
+    function renderRankHistory() {
+        const container = document.getElementById("rankHistoryChart");
+        const snapshots = [...(state.data.standingsHistory || [])]
+            .filter((snapshot) => snapshot.date && Array.isArray(snapshot.standings))
+            .sort((a, b) => a.date.localeCompare(b.date));
+
+        if (!container) {
+            return;
+        }
+
+        if (snapshots.length < 2) {
+            container.innerHTML = `<p class="placeholder">Rank history will appear after multiple daily snapshots are available.</p>`;
+            return;
+        }
+
+        const participants = state.data.participants.map((participant, index) => ({
+            ...participant,
+            color: CHART_COLORS[index % CHART_COLORS.length]
+        }));
+        const participantCount = participants.length;
+        const chartWidth = Math.max(760, 120 + snapshots.length * 92);
+        const chartHeight = Math.max(430, 100 + participantCount * 28);
+        const margins = { top: 24, right: 24, bottom: 52, left: 48 };
+        const plotWidth = chartWidth - margins.left - margins.right;
+        const plotHeight = chartHeight - margins.top - margins.bottom;
+        const xForIndex = (index) => (
+            margins.left + (snapshots.length === 1 ? 0 : index * plotWidth / (snapshots.length - 1))
+        );
+        const yForRank = (rank) => (
+            margins.top + (Number(rank) - 1) * plotHeight / Math.max(1, participantCount - 1)
+        );
+        const standingsByDate = snapshots.map((snapshot) => (
+            new Map(snapshot.standings.map((entry) => [entry.participantId, entry]))
+        ));
+        const rankLines = Array.from({ length: participantCount }, (_, index) => {
+            const rank = index + 1;
+            const y = yForRank(rank);
+            return `
+                <line class="rank-history__grid-line" x1="${margins.left}" y1="${y}" x2="${chartWidth - margins.right}" y2="${y}"></line>
+                <text class="rank-history__rank-label" x="${margins.left - 13}" y="${y + 4}" text-anchor="end">${rank}</text>
+            `;
+        }).join("");
+        const dateLabels = snapshots.map((snapshot, index) => {
+            const x = xForIndex(index);
+            return `
+                <line class="rank-history__date-tick" x1="${x}" y1="${chartHeight - margins.bottom}" x2="${x}" y2="${chartHeight - margins.bottom + 5}"></line>
+                <text class="rank-history__date-label" x="${x}" y="${chartHeight - 20}" text-anchor="middle">${formatChartDate(snapshot.date)}</text>
+            `;
+        }).join("");
+        const series = participants.map((participant) => {
+            const points = snapshots.map((snapshot, index) => {
+                const entry = standingsByDate[index].get(participant.id);
+                return entry ? {
+                    x: xForIndex(index),
+                    y: yForRank(entry.rank),
+                    date: snapshot.date,
+                    rank: entry.rank,
+                    score: entry.score
+                } : null;
+            }).filter(Boolean);
+            const path = points.map((point, index) => (
+                `${index === 0 ? "M" : "L"} ${point.x.toFixed(2)} ${point.y.toFixed(2)}`
+            )).join(" ");
+            const pointMarkup = points.map((point) => `
+                <circle cx="${point.x}" cy="${point.y}" r="4">
+                    <title>${escapeHtml(participant.teamName)} — ${formatChartDate(point.date)}: rank ${point.rank}, ${point.score} points</title>
+                </circle>
+            `).join("");
+
+            return `
+                <g class="rank-history__series" style="--series-color: ${participant.color}" tabindex="0" aria-label="${escapeHtml(participant.teamName)} rank history">
+                    <path d="${path}"></path>
+                    ${pointMarkup}
+                </g>
+            `;
+        }).join("");
+        const legend = participants.map((participant) => `
+            <span class="rank-history__legend-item">
+                <span class="rank-history__swatch" style="background: ${participant.color}"></span>
+                ${escapeHtml(participant.teamName)}
+            </span>
+        `).join("");
+
+        container.innerHTML = `
+            <div class="rank-history__scroll">
+                <svg class="rank-history__svg" viewBox="0 0 ${chartWidth} ${chartHeight}" role="img" aria-label="Participant leaderboard rank by day">
+                    ${rankLines}
+                    ${dateLabels}
+                    ${series}
+                </svg>
+            </div>
+            <div class="rank-history__legend">${legend}</div>
+        `;
+    }
+
+    function formatChartDate(value) {
+        const date = new Date(`${value}T12:00:00Z`);
+
+        return new Intl.DateTimeFormat(undefined, {
+            month: "short",
+            day: "numeric",
+            timeZone: "UTC"
+        }).format(date);
     }
 
     function renderDataStatus() {

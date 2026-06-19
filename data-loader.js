@@ -8,6 +8,7 @@
         qualificationOdds: "data/qualification-odds.json",
         matches: "data/matches.json",
         dailySummary: "data/daily-summary.json",
+        standingsHistory: "data/standings-history.json",
         scoringConfig: "data/scoring-config.json"
     };
 
@@ -83,13 +84,14 @@
 
     async function loadContestData(options) {
         const cacheBust = Boolean(options && options.cacheBust);
-        const [participants, teams, teamResultsFile, qualificationOddsFile, matchesFile, dailySummaryFile, scoringConfig] = await Promise.all([
+        const [participants, teams, teamResultsFile, qualificationOddsFile, matchesFile, dailySummaryFile, standingsHistoryFile, scoringConfig] = await Promise.all([
             fetchJson(DATA_FILES.participants, cacheBust),
             fetchJson(DATA_FILES.teams, cacheBust),
             fetchJson(DATA_FILES.teamResults, true),
             fetchJson(DATA_FILES.qualificationOdds, true),
             fetchJson(DATA_FILES.matches, true),
             fetchJson(DATA_FILES.dailySummary, true),
+            fetchJson(DATA_FILES.standingsHistory, true),
             fetchJson(DATA_FILES.scoringConfig, cacheBust)
         ]);
 
@@ -114,6 +116,9 @@
                 lastUpdated: matches.lastUpdated
             },
             dailySummary,
+            standingsHistory: Array.isArray(standingsHistoryFile.snapshots)
+                ? standingsHistoryFile.snapshots
+                : [],
             scoringConfig
         };
     }
