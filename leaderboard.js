@@ -524,7 +524,7 @@
                         ${entry.totalPoints}
                         <span class="row-cue" aria-hidden="true">${isExpanded ? "Close" : "View"}</span>
                     </td>
-                    <td data-label="Remaining" class="numeric strong">${entry.remainingTeams}</td>
+                    <td data-label="Matches Played" class="numeric strong">${entry.matchesPlayed}/15</td>
                 </tr>
                 ${isExpanded ? renderLeaderboardDetails(entry) : ""}
             `;

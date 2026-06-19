@@ -160,6 +160,12 @@
         const totalPoints = pickDetails.reduce((total, pick) => total + pick.score, 0);
         const tiebreaker = pickDetails.reduce((highest, pick) => Math.max(highest, pick.goals), 0);
         const remainingTeams = pickDetails.filter((pick) => pick.team && !pick.eliminated).length;
+        const matchesPlayed = pickDetails.reduce((total, pick) => (
+            total
+            + toNumber(pick.result.groupWins)
+            + toNumber(pick.result.groupLosses)
+            + toNumber(pick.result.groupDraws)
+        ), 0);
 
         return {
             participant,
@@ -169,6 +175,7 @@
             totalPoints,
             tiebreaker,
             remainingTeams,
+            matchesPlayed,
             budgetUsed: validation.budgetUsed,
             remainingBudget: validation.remainingBudget
         };
