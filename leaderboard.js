@@ -14,6 +14,15 @@
         "#0f766e",
         "#9333ea"
     ];
+    const RANK_HISTORY_MATCH_DAYS = [
+        "2026-06-18",
+        "2026-06-24",
+        "2026-06-28",
+        "2026-07-04",
+        "2026-07-08",
+        "2026-07-16",
+        "2026-07-20"
+    ];
 
     const state = {
         data: null,
@@ -207,9 +216,20 @@
 
     function renderRankHistory() {
         const container = document.getElementById("rankHistoryChart");
-        const snapshots = [...(state.data.standingsHistory || [])]
+        const allSnapshots = [...(state.data.standingsHistory || [])]
             .filter((snapshot) => snapshot.date && Array.isArray(snapshot.standings))
             .sort((a, b) => a.date.localeCompare(b.date));
+        const todayKey = getEasternDateKey(new Date());
+        const chartDates = [
+            ...RANK_HISTORY_MATCH_DAYS.filter((date) => date < todayKey),
+            todayKey
+        ].filter((date, index, dates) => dates.indexOf(date) === index);
+        const snapshots = chartDates.map((date) => {
+            const eligible = allSnapshots.filter((snapshot) => snapshot.date <= date);
+            return eligible.at(-1);
+        }).filter((snapshot, index, selected) => (
+            snapshot && selected.findIndex((item) => item.date === snapshot.date) === index
+        ));
 
         if (!container) {
             return;
