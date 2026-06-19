@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-19T21:57:47.693Z",
+  "lastUpdated": "2026-06-19T22:54:02.656Z",
   "matches": [
     {
       "id": "760415",
@@ -470,15 +470,15 @@
       "date": "2026-06-19T22:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "HT",
       "completed": false,
       "homeTeamId": "SCO",
       "homeTeamName": "Scotland",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "MAR",
       "awayTeamName": "Morocco",
-      "awayScore": null,
+      "awayScore": 1,
       "venue": "Gillette Stadium"
     },
     {
