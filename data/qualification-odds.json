@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-19T08:18:33.712Z",
+  "lastUpdated": "2026-06-19T09:46:28.666Z",
   "source": "Kalshi Yes bid",
   "odds": [
     {
@@ -114,7 +114,7 @@
     },
     {
       "teamId": "HAI",
-      "yesBidPercent": 4,
+      "yesBidPercent": 3,
       "ticker": "KXWCGROUPQUAL-26C-HTI"
     },
     {
@@ -189,7 +189,7 @@
     },
     {
       "teamId": "QAT",
-      "yesBidPercent": 11,
+      "yesBidPercent": 10,
       "ticker": "KXWCGROUPQUAL-26B-QAT"
     },
     {
@@ -229,7 +229,7 @@
     },
     {
       "teamId": "URU",
-      "yesBidPercent": 77,
+      "yesBidPercent": 78,
       "ticker": "KXWCGROUPQUAL-26H-URU"
     },
     {
