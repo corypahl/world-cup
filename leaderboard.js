@@ -245,9 +245,9 @@
             color: CHART_COLORS[index % CHART_COLORS.length]
         }));
         const participantCount = participants.length;
-        const chartWidth = Math.max(1080, 420 + snapshots.length * 100);
+        const chartWidth = Math.max(820, 350 + snapshots.length * 72);
         const chartHeight = 340;
-        const margins = { top: 22, right: 170, bottom: 48, left: 170 };
+        const margins = { top: 22, right: 145, bottom: 48, left: 145 };
         const plotWidth = chartWidth - margins.left - margins.right;
         const plotHeight = chartHeight - margins.top - margins.bottom;
         const xForIndex = (index) => (
