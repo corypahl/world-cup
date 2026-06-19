@@ -603,13 +603,33 @@ tbody tr:hover {
 
 .daily-summary__bullets {
     display: grid;
-    gap: 0.55rem;
     margin: 0;
-    padding-left: 1.25rem;
+    border: 2px solid var(--ink);
+    border-radius: 6px;
+    padding: 0;
+    overflow: hidden;
+    background: #fffdf4;
+    list-style: none;
 }
 
 .daily-summary__bullets li {
-    padding-left: 0.15rem;
+    position: relative;
+    border-bottom: 1px solid var(--line);
+    padding: 0.65rem 0.75rem 0.65rem 1.65rem;
+    background: #fffdf4;
+}
+
+.daily-summary__bullets li::before {
+    content: "•";
+    position: absolute;
+    top: 0.65rem;
+    left: 0.7rem;
+    color: var(--yellow-dark);
+    font-weight: 900;
+}
+
+.daily-summary__bullets li:last-child {
+    border-bottom: 0;
 }
 
 .summary-team-pill {
