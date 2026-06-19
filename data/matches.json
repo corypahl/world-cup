@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-19T00:14:11.897Z",
+  "lastUpdated": "2026-06-19T02:39:04.971Z",
   "matches": [
     {
       "id": "760415",
@@ -438,15 +438,15 @@
       "date": "2026-06-19T01:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "78'",
       "completed": false,
       "homeTeamId": "MEX",
       "homeTeamName": "Mexico",
-      "homeScore": null,
+      "homeScore": 1,
       "awayTeamId": "KOR",
       "awayTeamName": "South Korea",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "Estadio Akron"
     },
     {
