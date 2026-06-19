@@ -245,9 +245,9 @@
             color: CHART_COLORS[index % CHART_COLORS.length]
         }));
         const participantCount = participants.length;
-        const chartWidth = Math.max(760, 120 + snapshots.length * 92);
-        const chartHeight = Math.max(430, 100 + participantCount * 28);
-        const margins = { top: 24, right: 24, bottom: 52, left: 48 };
+        const chartWidth = Math.max(1080, 420 + snapshots.length * 100);
+        const chartHeight = 340;
+        const margins = { top: 22, right: 170, bottom: 48, left: 170 };
         const plotWidth = chartWidth - margins.left - margins.right;
         const plotHeight = chartHeight - margins.top - margins.bottom;
         const xForIndex = (index) => (
@@ -259,6 +259,37 @@
         const standingsByDate = snapshots.map((snapshot) => (
             new Map(snapshot.standings.map((entry) => [entry.participantId, entry]))
         ));
+        const seriesData = participants.map((participant) => ({
+            participant,
+            points: snapshots.map((snapshot, index) => {
+                const entry = standingsByDate[index].get(participant.id);
+                return entry ? {
+                    x: xForIndex(index),
+                    y: yForRank(entry.rank),
+                    date: snapshot.date,
+                    rank: entry.rank,
+                    score: entry.score
+                } : null;
+            }).filter(Boolean)
+        }));
+        const leftLabelPositions = distributeChartLabels(
+            seriesData.map((item) => ({
+                id: item.participant.id,
+                targetY: item.points[0]?.y || margins.top
+            })),
+            margins.top,
+            chartHeight - margins.bottom,
+            17
+        );
+        const rightLabelPositions = distributeChartLabels(
+            seriesData.map((item) => ({
+                id: item.participant.id,
+                targetY: item.points.at(-1)?.y || margins.top
+            })),
+            margins.top,
+            chartHeight - margins.bottom,
+            17
+        );
         const rankLines = Array.from({ length: participantCount }, (_, index) => {
             const rank = index + 1;
             const y = yForRank(rank);
@@ -274,20 +305,14 @@
                 <text class="rank-history__date-label" x="${x}" y="${chartHeight - 20}" text-anchor="middle">${formatChartDate(snapshot.date)}</text>
             `;
         }).join("");
-        const series = participants.map((participant) => {
-            const points = snapshots.map((snapshot, index) => {
-                const entry = standingsByDate[index].get(participant.id);
-                return entry ? {
-                    x: xForIndex(index),
-                    y: yForRank(entry.rank),
-                    date: snapshot.date,
-                    rank: entry.rank,
-                    score: entry.score
-                } : null;
-            }).filter(Boolean);
+        const series = seriesData.map(({ participant, points }) => {
             const path = points.map((point, index) => (
                 `${index === 0 ? "M" : "L"} ${point.x.toFixed(2)} ${point.y.toFixed(2)}`
             )).join(" ");
+            const firstPoint = points[0];
+            const lastPoint = points.at(-1);
+            const leftY = leftLabelPositions.get(participant.id);
+            const rightY = rightLabelPositions.get(participant.id);
             const pointMarkup = points.map((point) => `
                 <circle cx="${point.x}" cy="${point.y}" r="4">
                     <title>${escapeHtml(participant.teamName)} — ${formatChartDate(point.date)}: rank ${point.rank}, ${point.score} points</title>
@@ -298,15 +323,13 @@
                 <g class="rank-history__series" style="--series-color: ${participant.color}" tabindex="0" aria-label="${escapeHtml(participant.teamName)} rank history">
                     <path d="${path}"></path>
                     ${pointMarkup}
+                    <line class="rank-history__label-line" x1="${firstPoint.x}" y1="${firstPoint.y}" x2="${margins.left - 20}" y2="${leftY}"></line>
+                    <text class="rank-history__endpoint-label" x="8" y="${leftY + 4}" text-anchor="start">${escapeHtml(participant.teamName)}</text>
+                    <line class="rank-history__label-line" x1="${lastPoint.x}" y1="${lastPoint.y}" x2="${chartWidth - margins.right + 20}" y2="${rightY}"></line>
+                    <text class="rank-history__endpoint-label" x="${chartWidth - 8}" y="${rightY + 4}" text-anchor="end">${escapeHtml(participant.teamName)}</text>
                 </g>
             `;
         }).join("");
-        const legend = participants.map((participant) => `
-            <span class="rank-history__legend-item">
-                <span class="rank-history__swatch" style="background: ${participant.color}"></span>
-                ${escapeHtml(participant.teamName)}
-            </span>
-        `).join("");
 
         container.innerHTML = `
             <div class="rank-history__scroll">
@@ -316,8 +339,37 @@
                     ${series}
                 </svg>
             </div>
-            <div class="rank-history__legend">${legend}</div>
         `;
+    }
+
+    function distributeChartLabels(items, minY, maxY, gap) {
+        const sorted = [...items].sort((a, b) => a.targetY - b.targetY);
+
+        sorted.forEach((item, index) => {
+            item.labelY = index === 0
+                ? Math.max(minY, item.targetY)
+                : Math.max(item.targetY, sorted[index - 1].labelY + gap);
+        });
+
+        if (sorted.at(-1)?.labelY > maxY) {
+            sorted.at(-1).labelY = maxY;
+
+            for (let index = sorted.length - 2; index >= 0; index -= 1) {
+                sorted[index].labelY = Math.min(
+                    sorted[index].labelY,
+                    sorted[index + 1].labelY - gap
+                );
+            }
+        }
+
+        if (sorted[0]?.labelY < minY) {
+            const shift = minY - sorted[0].labelY;
+            sorted.forEach((item) => {
+                item.labelY += shift;
+            });
+        }
+
+        return new Map(sorted.map((item) => [item.id, item.labelY]));
     }
 
     function formatChartDate(value) {
