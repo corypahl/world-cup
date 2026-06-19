@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-19T19:24:35.846Z",
+  "lastUpdated": "2026-06-19T20:50:41.344Z",
   "source": "Kalshi Yes bid",
   "odds": [
     {
@@ -24,12 +24,12 @@
     },
     {
       "teamId": "BEL",
-      "yesBidPercent": 93,
+      "yesBidPercent": 94,
       "ticker": "KXWCGROUPQUAL-26G-BEL"
     },
     {
       "teamId": "BIH",
-      "yesBidPercent": 66,
+      "yesBidPercent": 67,
       "ticker": "KXWCGROUPQUAL-26B-BIH"
     },
     {
@@ -39,7 +39,7 @@
     },
     {
       "teamId": "CAN",
-      "yesBidPercent": 99,
+      "yesBidPercent": 98,
       "ticker": "KXWCGROUPQUAL-26B-CAN"
     },
     {
@@ -114,7 +114,7 @@
     },
     {
       "teamId": "HAI",
-      "yesBidPercent": 3,
+      "yesBidPercent": 4,
       "ticker": "KXWCGROUPQUAL-26C-HTI"
     },
     {
@@ -179,7 +179,7 @@
     },
     {
       "teamId": "PAR",
-      "yesBidPercent": 37,
+      "yesBidPercent": 39,
       "ticker": "KXWCGROUPQUAL-26D-PAR"
     },
     {
@@ -199,7 +199,7 @@
     },
     {
       "teamId": "SCO",
-      "yesBidPercent": 81,
+      "yesBidPercent": 79,
       "ticker": "KXWCGROUPQUAL-26C-SCO"
     },
     {
@@ -234,7 +234,7 @@
     },
     {
       "teamId": "USA",
-      "yesBidPercent": 98,
+      "yesBidPercent": 99,
       "ticker": "KXWCGROUPQUAL-26D-USA"
     },
     {

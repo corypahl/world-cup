@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-19T19:24:35.532Z",
+  "lastUpdated": "2026-06-19T20:50:40.789Z",
   "matches": [
     {
       "id": "760415",
@@ -455,11 +455,11 @@
       "stage": "group-stage",
       "stageLabel": "Group Stage",
       "status": "in",
-      "statusLabel": "23'",
+      "statusLabel": "84'",
       "completed": false,
       "homeTeamId": "USA",
       "homeTeamName": "USA",
-      "homeScore": 1,
+      "homeScore": 2,
       "awayTeamId": "AUS",
       "awayTeamName": "Australia",
       "awayScore": 0,
