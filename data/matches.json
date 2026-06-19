@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-19T17:47:04.536Z",
+  "lastUpdated": "2026-06-19T19:24:35.532Z",
   "matches": [
     {
       "id": "760415",
@@ -454,15 +454,15 @@
       "date": "2026-06-19T19:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "23'",
       "completed": false,
       "homeTeamId": "USA",
       "homeTeamName": "USA",
-      "homeScore": null,
+      "homeScore": 1,
       "awayTeamId": "AUS",
       "awayTeamName": "Australia",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "Lumen Field"
     },
     {
