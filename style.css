@@ -289,7 +289,7 @@ tbody tr:hover {
 }
 
 .rank-history__chart {
-    width: min(100%, 820px);
+    width: min(100%, 500px);
     border: 2px solid var(--ink);
     border-radius: 6px;
     overflow: hidden;
@@ -302,7 +302,7 @@ tbody tr:hover {
 
 .rank-history__svg {
     display: block;
-    width: 820px;
+    width: 500px;
     height: auto;
 }
 
