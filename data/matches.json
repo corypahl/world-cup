@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-20T21:38:59.591Z",
+  "lastUpdated": "2026-06-20T22:47:45.611Z",
   "matches": [
     {
       "id": "760415",
@@ -534,12 +534,12 @@
       "date": "2026-06-20T20:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "in",
-      "statusLabel": "75'",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "FT",
+      "completed": true,
       "homeTeamId": "GER",
       "homeTeamName": "Germany",
-      "homeScore": 1,
+      "homeScore": 2,
       "awayTeamId": "CIV",
       "awayTeamName": "Ivory Coast",
       "awayScore": 1,
