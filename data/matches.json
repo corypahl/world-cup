@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-20T02:00:36.532Z",
+  "lastUpdated": "2026-06-20T03:42:38.191Z",
   "matches": [
     {
       "id": "760415",
@@ -486,9 +486,9 @@
       "date": "2026-06-20T00:30Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "in",
-      "statusLabel": "65'",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "FT",
+      "completed": true,
       "homeTeamId": "BRA",
       "homeTeamName": "Brazil",
       "homeScore": 3,
@@ -502,15 +502,15 @@
       "date": "2026-06-20T03:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "42'",
       "completed": false,
       "homeTeamId": "TUR",
       "homeTeamName": "Türkiye",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "PAR",
       "awayTeamName": "Paraguay",
-      "awayScore": null,
+      "awayScore": 1,
       "venue": "Levi's Stadium"
     },
     {

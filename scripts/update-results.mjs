@@ -2,6 +2,7 @@ import { readFile, writeFile } from "node:fs/promises";
 
 const dateRange = process.env.ESPN_DATE_RANGE || "20260611-20260719";
 const scoreboardUrl = "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard";
+const standingsUrl = "https://site.api.espn.com/apis/v2/sports/soccer/fifa.world/standings?season=2026";
 
 const teamsPath = new URL("../data/teams.json", import.meta.url);
 const resultsPath = new URL("../data/team-results.json", import.meta.url);
@@ -297,11 +298,23 @@ async function loadScoreboard() {
     return response.json();
 }
 
+async function loadStandings() {
+    const response = await fetch(standingsUrl);
+
+    if (!response.ok) {
+        const body = await response.text();
+        throw new Error(`ESPN standings request failed: ${response.status} ${response.statusText}\n${body}`);
+    }
+
+    return response.json();
+}
+
 async function main() {
-    const [teams, currentResultsFile, scoreboard] = await Promise.all([
+    const [teams, currentResultsFile, scoreboard, standings] = await Promise.all([
         readFile(teamsPath, "utf8").then(JSON.parse),
         readFile(resultsPath, "utf8").then(JSON.parse),
-        loadScoreboard()
+        loadScoreboard(),
+        loadStandings()
     ]);
 
     const currentNotes = new Map((currentResultsFile.results || []).map((result) => [result.teamId, result.notes || ""]));
@@ -365,6 +378,17 @@ async function main() {
         if (event.season?.slug === "final" && winnerId) {
             resultMap.get(winnerId).wonWorldCup = true;
         }
+    });
+
+    (standings.children || []).forEach((group) => {
+        (group.standings?.entries || []).forEach((entry) => {
+            const teamId = resolveTeam({ team: entry.team });
+            const advanced = (entry.stats || []).find((stat) => stat.name === "advanced");
+
+            if (teamId && Number(advanced?.value) === 1) {
+                resultMap.get(teamId).reachedRoundOf32 = true;
+            }
+        });
     });
 
     const roundOf32Teams = results.filter((result) => result.reachedRoundOf32).length;

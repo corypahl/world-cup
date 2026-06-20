@@ -848,17 +848,17 @@
     }
 
     function formatQualificationBid(teamId, result) {
-        const yesBidPercent = getQualificationBid(teamId);
-        if (yesBidPercent >= 0) {
-            return `${yesBidPercent}%`;
-        }
-
         if (result?.reachedRoundOf32) {
             return "100%";
         }
 
         if (result?.eliminated) {
             return "0%";
+        }
+
+        const yesBidPercent = getQualificationBid(teamId);
+        if (yesBidPercent >= 0) {
+            return `${yesBidPercent}%`;
         }
 
         return "—";
