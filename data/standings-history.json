@@ -3980,6 +3980,432 @@
           ]
         }
       ]
+    },
+    {
+      "date": "2026-06-20",
+      "capturedAt": "2026-06-20T12:27:38.142Z",
+      "standings": [
+        {
+          "participantId": "nick-mcbride",
+          "teamName": "Hubba Hubba CD's Nutz",
+          "rank": 1,
+          "score": 45,
+          "tiebreaker": 6,
+          "remainingTeams": 5,
+          "picks": [
+            {
+              "teamId": "ARG",
+              "teamName": "Argentina",
+              "points": 6
+            },
+            {
+              "teamId": "USA",
+              "teamName": "USA",
+              "points": 17
+            },
+            {
+              "teamId": "AUT",
+              "teamName": "Austria",
+              "points": 6
+            },
+            {
+              "teamId": "MEX",
+              "teamName": "Mexico",
+              "points": 14
+            },
+            {
+              "teamId": "POR",
+              "teamName": "Portugal",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "participantId": "randy-hebert",
+          "teamName": "Team Choo Choo",
+          "rank": 2,
+          "score": 44,
+          "tiebreaker": 6,
+          "remainingTeams": 5,
+          "picks": [
+            {
+              "teamId": "ENG",
+              "teamName": "England",
+              "points": 7
+            },
+            {
+              "teamId": "NED",
+              "teamName": "Netherlands",
+              "points": 3
+            },
+            {
+              "teamId": "USA",
+              "teamName": "USA",
+              "points": 17
+            },
+            {
+              "teamId": "JPN",
+              "teamName": "Japan",
+              "points": 3
+            },
+            {
+              "teamId": "MEX",
+              "teamName": "Mexico",
+              "points": 14
+            }
+          ]
+        },
+        {
+          "participantId": "eric-broadworth",
+          "teamName": "Team Godfather",
+          "rank": 3,
+          "score": 39,
+          "tiebreaker": 7,
+          "remainingTeams": 5,
+          "picks": [
+            {
+              "teamId": "FRA",
+              "teamName": "France",
+              "points": 6
+            },
+            {
+              "teamId": "NED",
+              "teamName": "Netherlands",
+              "points": 3
+            },
+            {
+              "teamId": "USA",
+              "teamName": "USA",
+              "points": 17
+            },
+            {
+              "teamId": "CAN",
+              "teamName": "Canada",
+              "points": 11
+            },
+            {
+              "teamId": "EGY",
+              "teamName": "Egypt",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "participantId": "michael-hebert",
+          "teamName": "Team Megatronless",
+          "rank": 4,
+          "score": 38,
+          "tiebreaker": 6,
+          "remainingTeams": 5,
+          "picks": [
+            {
+              "teamId": "NED",
+              "teamName": "Netherlands",
+              "points": 3
+            },
+            {
+              "teamId": "NOR",
+              "teamName": "Norway",
+              "points": 7
+            },
+            {
+              "teamId": "USA",
+              "teamName": "USA",
+              "points": 17
+            },
+            {
+              "teamId": "BRA",
+              "teamName": "Brazil",
+              "points": 8
+            },
+            {
+              "teamId": "NZL",
+              "teamName": "New Zealand",
+              "points": 3
+            }
+          ]
+        },
+        {
+          "participantId": "jordan-koyn",
+          "teamName": "Team Jordan",
+          "rank": 5,
+          "score": 35,
+          "tiebreaker": 6,
+          "remainingTeams": 5,
+          "picks": [
+            {
+              "teamId": "ARG",
+              "teamName": "Argentina",
+              "points": 6
+            },
+            {
+              "teamId": "USA",
+              "teamName": "USA",
+              "points": 17
+            },
+            {
+              "teamId": "JPN",
+              "teamName": "Japan",
+              "points": 3
+            },
+            {
+              "teamId": "CRO",
+              "teamName": "Croatia",
+              "points": 2
+            },
+            {
+              "teamId": "NOR",
+              "teamName": "Norway",
+              "points": 7
+            }
+          ]
+        },
+        {
+          "participantId": "andrew-magiril",
+          "teamName": "Brent's Daddy",
+          "rank": 6,
+          "score": 34,
+          "tiebreaker": 7,
+          "remainingTeams": 5,
+          "picks": [
+            {
+              "teamId": "POR",
+              "teamName": "Portugal",
+              "points": 2
+            },
+            {
+              "teamId": "USA",
+              "teamName": "USA",
+              "points": 17
+            },
+            {
+              "teamId": "GER",
+              "teamName": "Germany",
+              "points": 10
+            },
+            {
+              "teamId": "NED",
+              "teamName": "Netherlands",
+              "points": 3
+            },
+            {
+              "teamId": "EGY",
+              "teamName": "Egypt",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "participantId": "jon-koyn",
+          "teamName": "Team koyn",
+          "rank": 7,
+          "score": 33,
+          "tiebreaker": 6,
+          "remainingTeams": 5,
+          "picks": [
+            {
+              "teamId": "ARG",
+              "teamName": "Argentina",
+              "points": 6
+            },
+            {
+              "teamId": "NED",
+              "teamName": "Netherlands",
+              "points": 3
+            },
+            {
+              "teamId": "USA",
+              "teamName": "USA",
+              "points": 17
+            },
+            {
+              "teamId": "KOR",
+              "teamName": "South Korea",
+              "points": 5
+            },
+            {
+              "teamId": "BEL",
+              "teamName": "Belgium",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "participantId": "daniel-mack",
+          "teamName": "Team Mack",
+          "rank": 8,
+          "score": 30,
+          "tiebreaker": 6,
+          "remainingTeams": 5,
+          "picks": [
+            {
+              "teamId": "ESP",
+              "teamName": "Spain",
+              "points": 1
+            },
+            {
+              "teamId": "COL",
+              "teamName": "Colombia",
+              "points": 6
+            },
+            {
+              "teamId": "MAR",
+              "teamName": "Morocco",
+              "points": 6
+            },
+            {
+              "teamId": "ECU",
+              "teamName": "Ecuador",
+              "points": 0
+            },
+            {
+              "teamId": "USA",
+              "teamName": "USA",
+              "points": 17
+            }
+          ]
+        },
+        {
+          "participantId": "cory-pahl",
+          "teamName": "Team Pahl",
+          "rank": 9,
+          "score": 29,
+          "tiebreaker": 5,
+          "remainingTeams": 5,
+          "picks": [
+            {
+              "teamId": "BRA",
+              "teamName": "Brazil",
+              "points": 8
+            },
+            {
+              "teamId": "NED",
+              "teamName": "Netherlands",
+              "points": 3
+            },
+            {
+              "teamId": "MAR",
+              "teamName": "Morocco",
+              "points": 6
+            },
+            {
+              "teamId": "JPN",
+              "teamName": "Japan",
+              "points": 3
+            },
+            {
+              "teamId": "SUI",
+              "teamName": "Switzerland",
+              "points": 9
+            }
+          ]
+        },
+        {
+          "participantId": "brent-hull-allie-hull",
+          "teamName": "Bijan Mustard",
+          "rank": 10,
+          "score": 25,
+          "tiebreaker": 3,
+          "remainingTeams": 5,
+          "picks": [
+            {
+              "teamId": "FRA",
+              "teamName": "France",
+              "points": 6
+            },
+            {
+              "teamId": "NED",
+              "teamName": "Netherlands",
+              "points": 3
+            },
+            {
+              "teamId": "COL",
+              "teamName": "Colombia",
+              "points": 6
+            },
+            {
+              "teamId": "PAR",
+              "teamName": "Paraguay",
+              "points": 5
+            },
+            {
+              "teamId": "AUS",
+              "teamName": "Australia",
+              "points": 5
+            }
+          ]
+        },
+        {
+          "participantId": "robby-copeland",
+          "teamName": "Team Camouflage Cndm",
+          "rank": 11,
+          "score": 16,
+          "tiebreaker": 3,
+          "remainingTeams": 5,
+          "picks": [
+            {
+              "teamId": "ESP",
+              "teamName": "Spain",
+              "points": 1
+            },
+            {
+              "teamId": "ARG",
+              "teamName": "Argentina",
+              "points": 6
+            },
+            {
+              "teamId": "AUS",
+              "teamName": "Australia",
+              "points": 5
+            },
+            {
+              "teamId": "QAT",
+              "teamName": "Qatar",
+              "points": 2
+            },
+            {
+              "teamId": "KSA",
+              "teamName": "Saudi Arabia",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "participantId": "allen-fredrick",
+          "teamName": "Metcalf Hurts",
+          "rank": 12,
+          "score": 14,
+          "tiebreaker": 2,
+          "remainingTeams": 5,
+          "picks": [
+            {
+              "teamId": "ESP",
+              "teamName": "Spain",
+              "points": 1
+            },
+            {
+              "teamId": "NED",
+              "teamName": "Netherlands",
+              "points": 3
+            },
+            {
+              "teamId": "JPN",
+              "teamName": "Japan",
+              "points": 3
+            },
+            {
+              "teamId": "URU",
+              "teamName": "Uruguay",
+              "points": 2
+            },
+            {
+              "teamId": "KOR",
+              "teamName": "South Korea",
+              "points": 5
+            }
+          ]
+        }
+      ]
     }
   ]
 }
