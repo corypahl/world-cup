@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-20T19:36:29.137Z",
+  "lastUpdated": "2026-06-20T20:11:08.408Z",
   "matches": [
     {
       "id": "760415",
@@ -534,15 +534,15 @@
       "date": "2026-06-20T20:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "10'",
       "completed": false,
       "homeTeamId": "GER",
       "homeTeamName": "Germany",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "CIV",
       "awayTeamName": "Ivory Coast",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "BMO Field"
     },
     {
