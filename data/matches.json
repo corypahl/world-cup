@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-20T08:23:17.708Z",
+  "lastUpdated": "2026-06-20T17:15:14.789Z",
   "matches": [
     {
       "id": "760415",
@@ -518,15 +518,15 @@
       "date": "2026-06-20T17:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "15'",
       "completed": false,
       "homeTeamId": "NED",
       "homeTeamName": "Netherlands",
-      "homeScore": null,
+      "homeScore": 1,
       "awayTeamId": "SWE",
       "awayTeamName": "Sweden",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "NRG Stadium"
     },
     {
