@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-21T21:49:43.563Z",
+  "lastUpdated": "2026-06-21T22:59:33.917Z",
   "matches": [
     {
       "id": "760415",
@@ -614,15 +614,15 @@
       "date": "2026-06-21T22:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "HT",
       "completed": false,
       "homeTeamId": "URU",
       "homeTeamName": "Uruguay",
-      "homeScore": null,
+      "homeScore": 2,
       "awayTeamId": "CPV",
       "awayTeamName": "Cape Verde",
-      "awayScore": null,
+      "awayScore": 1,
       "venue": "Hard Rock Stadium"
     },
     {
