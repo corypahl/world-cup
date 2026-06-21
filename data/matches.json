@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-21T02:12:31.112Z",
+  "lastUpdated": "2026-06-21T07:05:55.922Z",
   "matches": [
     {
       "id": "760415",
@@ -566,15 +566,15 @@
       "date": "2026-06-21T04:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "FT",
+      "completed": true,
       "homeTeamId": "TUN",
       "homeTeamName": "Tunisia",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "JPN",
       "awayTeamName": "Japan",
-      "awayScore": null,
+      "awayScore": 4,
       "venue": "Estadio BBVA"
     },
     {
