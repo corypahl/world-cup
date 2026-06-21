@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-21T18:56:39.328Z",
+  "lastUpdated": "2026-06-21T20:21:10.552Z",
   "matches": [
     {
       "id": "760415",
@@ -598,15 +598,15 @@
       "date": "2026-06-21T19:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "55'",
       "completed": false,
       "homeTeamId": "BEL",
       "homeTeamName": "Belgium",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "IRN",
       "awayTeamName": "Iran",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "SoFi Stadium"
     },
     {
