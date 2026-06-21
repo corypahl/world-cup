@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-20T23:58:45.850Z",
+  "lastUpdated": "2026-06-21T02:12:31.112Z",
   "matches": [
     {
       "id": "760415",
@@ -550,15 +550,15 @@
       "date": "2026-06-21T00:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "FT",
+      "completed": true,
       "homeTeamId": "ECU",
       "homeTeamName": "Ecuador",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "CUW",
       "awayTeamName": "Curaçao",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "GEHA Field at Arrowhead Stadium"
     },
     {
