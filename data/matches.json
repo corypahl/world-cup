@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-22T00:13:35.246Z",
+  "lastUpdated": "2026-06-22T02:16:07.828Z",
   "matches": [
     {
       "id": "760415",
@@ -630,15 +630,15 @@
       "date": "2026-06-22T01:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "55'",
       "completed": false,
       "homeTeamId": "NZL",
       "homeTeamName": "New Zealand",
-      "homeScore": null,
+      "homeScore": 1,
       "awayTeamId": "EGY",
       "awayTeamName": "Egypt",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "BC Place"
     },
     {
