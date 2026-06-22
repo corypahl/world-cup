@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-22T19:17:49.872Z",
+  "lastUpdated": "2026-06-22T21:37:00.967Z",
   "matches": [
     {
       "id": "760415",
@@ -662,15 +662,15 @@
       "date": "2026-06-22T21:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "36'",
       "completed": false,
       "homeTeamId": "FRA",
       "homeTeamName": "France",
-      "homeScore": null,
+      "homeScore": 1,
       "awayTeamId": "IRQ",
       "awayTeamName": "Iraq",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "Lincoln Financial Field"
     },
     {
