@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-22T10:42:23.173Z",
+  "lastUpdated": "2026-06-22T19:17:49.872Z",
   "matches": [
     {
       "id": "760415",
@@ -646,15 +646,15 @@
       "date": "2026-06-22T17:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "FT",
+      "completed": true,
       "homeTeamId": "ARG",
       "homeTeamName": "Argentina",
-      "homeScore": null,
+      "homeScore": 2,
       "awayTeamId": "AUT",
       "awayTeamName": "Austria",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "AT&T Stadium"
     },
     {
