@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-23T08:31:05.005Z",
+  "lastUpdated": "2026-06-23T17:44:31.936Z",
   "matches": [
     {
       "id": "760415",
@@ -710,15 +710,15 @@
       "date": "2026-06-23T17:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "44'",
       "completed": false,
       "homeTeamId": "POR",
       "homeTeamName": "Portugal",
-      "homeScore": null,
+      "homeScore": 3,
       "awayTeamId": "UZB",
       "awayTeamName": "Uzbekistan",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "NRG Stadium"
     },
     {
