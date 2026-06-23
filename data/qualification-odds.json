@@ -1,25 +1,25 @@
 {
-  "lastUpdated": "2026-06-23T01:54:59.600Z",
+  "lastUpdated": "2026-06-23T05:56:27.993Z",
   "source": "Kalshi Yes bid",
   "odds": [
     {
       "teamId": "ALG",
-      "yesBidPercent": 61,
+      "yesBidPercent": 75,
       "ticker": "KXWCGROUPQUAL-26J-DZA"
     },
     {
       "teamId": "ARG",
-      "yesBidPercent": 99,
+      "yesBidPercent": 0,
       "ticker": "KXWCGROUPQUAL-26J-ARG"
     },
     {
       "teamId": "AUS",
-      "yesBidPercent": 90,
+      "yesBidPercent": 89,
       "ticker": "KXWCGROUPQUAL-26D-AUS"
     },
     {
       "teamId": "AUT",
-      "yesBidPercent": 95,
+      "yesBidPercent": 94,
       "ticker": "KXWCGROUPQUAL-26J-AUT"
     },
     {
@@ -29,7 +29,7 @@
     },
     {
       "teamId": "BIH",
-      "yesBidPercent": 63,
+      "yesBidPercent": 66,
       "ticker": "KXWCGROUPQUAL-26B-BIH"
     },
     {
@@ -44,12 +44,12 @@
     },
     {
       "teamId": "CIV",
-      "yesBidPercent": 96,
+      "yesBidPercent": 97,
       "ticker": "KXWCGROUPQUAL-26E-CIV"
     },
     {
       "teamId": "COD",
-      "yesBidPercent": 59,
+      "yesBidPercent": 60,
       "ticker": "KXWCGROUPQUAL-26K-COD"
     },
     {
@@ -64,7 +64,7 @@
     },
     {
       "teamId": "CRO",
-      "yesBidPercent": 78,
+      "yesBidPercent": 79,
       "ticker": "KXWCGROUPQUAL-26L-CRO"
     },
     {
@@ -99,7 +99,7 @@
     },
     {
       "teamId": "FRA",
-      "yesBidPercent": 99,
+      "yesBidPercent": 0,
       "ticker": "KXWCGROUPQUAL-26I-FRA"
     },
     {
@@ -109,7 +109,7 @@
     },
     {
       "teamId": "GHA",
-      "yesBidPercent": 75,
+      "yesBidPercent": 74,
       "ticker": "KXWCGROUPQUAL-26L-GHA"
     },
     {
@@ -124,22 +124,22 @@
     },
     {
       "teamId": "IRQ",
-      "yesBidPercent": 3,
+      "yesBidPercent": 2,
       "ticker": "KXWCGROUPQUAL-26I-IRQ"
     },
     {
       "teamId": "JOR",
-      "yesBidPercent": 10,
+      "yesBidPercent": 0,
       "ticker": "KXWCGROUPQUAL-26J-JOR"
     },
     {
       "teamId": "JPN",
-      "yesBidPercent": 98,
+      "yesBidPercent": 99,
       "ticker": "KXWCGROUPQUAL-26F-JPN"
     },
     {
       "teamId": "KOR",
-      "yesBidPercent": 93,
+      "yesBidPercent": 94,
       "ticker": "KXWCGROUPQUAL-26A-KOR"
     },
     {
@@ -159,27 +159,27 @@
     },
     {
       "teamId": "NED",
-      "yesBidPercent": 98,
+      "yesBidPercent": 99,
       "ticker": "KXWCGROUPQUAL-26F-NED"
     },
     {
       "teamId": "NOR",
-      "yesBidPercent": 99,
+      "yesBidPercent": 0,
       "ticker": "KXWCGROUPQUAL-26I-NOR"
     },
     {
       "teamId": "NZL",
-      "yesBidPercent": 7,
+      "yesBidPercent": 6,
       "ticker": "KXWCGROUPQUAL-26G-NZL"
     },
     {
       "teamId": "PAN",
-      "yesBidPercent": 10,
+      "yesBidPercent": 8,
       "ticker": "KXWCGROUPQUAL-26L-PAN"
     },
     {
       "teamId": "PAR",
-      "yesBidPercent": 82,
+      "yesBidPercent": 84,
       "ticker": "KXWCGROUPQUAL-26D-PAR"
     },
     {
@@ -194,17 +194,17 @@
     },
     {
       "teamId": "RSA",
-      "yesBidPercent": 16,
+      "yesBidPercent": 17,
       "ticker": "KXWCGROUPQUAL-26A-RSA"
     },
     {
       "teamId": "SCO",
-      "yesBidPercent": 76,
+      "yesBidPercent": 73,
       "ticker": "KXWCGROUPQUAL-26C-SCO"
     },
     {
       "teamId": "SEN",
-      "yesBidPercent": 42,
+      "yesBidPercent": 64,
       "ticker": "KXWCGROUPQUAL-26I-SEN"
     },
     {
@@ -214,7 +214,7 @@
     },
     {
       "teamId": "SWE",
-      "yesBidPercent": 88,
+      "yesBidPercent": 93,
       "ticker": "KXWCGROUPQUAL-26F-SWE"
     },
     {

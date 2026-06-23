@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-23T01:54:59.108Z",
+  "lastUpdated": "2026-06-23T05:56:27.600Z",
   "matches": [
     {
       "id": "760415",
@@ -678,9 +678,9 @@
       "date": "2026-06-23T00:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "in",
-      "statusLabel": "90'+6'",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "FT",
+      "completed": true,
       "homeTeamId": "NOR",
       "homeTeamName": "Norway",
       "homeScore": 3,
@@ -694,15 +694,15 @@
       "date": "2026-06-23T03:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "FT",
+      "completed": true,
       "homeTeamId": "JOR",
       "homeTeamName": "Jordan",
-      "homeScore": null,
+      "homeScore": 1,
       "awayTeamId": "ALG",
       "awayTeamName": "Algeria",
-      "awayScore": null,
+      "awayScore": 2,
       "venue": "Levi's Stadium"
     },
     {
