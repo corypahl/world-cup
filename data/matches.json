@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-22T23:05:49.112Z",
+  "lastUpdated": "2026-06-23T00:19:10.353Z",
   "matches": [
     {
       "id": "760415",
@@ -663,11 +663,11 @@
       "stage": "group-stage",
       "stageLabel": "Group Stage",
       "status": "in",
-      "statusLabel": "HT",
+      "statusLabel": "63'",
       "completed": false,
       "homeTeamId": "FRA",
       "homeTeamName": "France",
-      "homeScore": 1,
+      "homeScore": 2,
       "awayTeamId": "IRQ",
       "awayTeamName": "Iraq",
       "awayScore": 0,
@@ -678,15 +678,15 @@
       "date": "2026-06-23T00:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "19'",
       "completed": false,
       "homeTeamId": "NOR",
       "homeTeamName": "Norway",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "SEN",
       "awayTeamName": "Senegal",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "MetLife Stadium"
     },
     {
