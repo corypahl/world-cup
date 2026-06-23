@@ -1,10 +1,10 @@
 {
-  "lastUpdated": "2026-06-23T00:19:10.823Z",
+  "lastUpdated": "2026-06-23T01:54:59.600Z",
   "source": "Kalshi Yes bid",
   "odds": [
     {
       "teamId": "ALG",
-      "yesBidPercent": 62,
+      "yesBidPercent": 61,
       "ticker": "KXWCGROUPQUAL-26J-DZA"
     },
     {
@@ -14,7 +14,7 @@
     },
     {
       "teamId": "AUS",
-      "yesBidPercent": 91,
+      "yesBidPercent": 90,
       "ticker": "KXWCGROUPQUAL-26D-AUS"
     },
     {
@@ -24,12 +24,12 @@
     },
     {
       "teamId": "BEL",
-      "yesBidPercent": 91,
+      "yesBidPercent": 92,
       "ticker": "KXWCGROUPQUAL-26G-BEL"
     },
     {
       "teamId": "BIH",
-      "yesBidPercent": 64,
+      "yesBidPercent": 63,
       "ticker": "KXWCGROUPQUAL-26B-BIH"
     },
     {
@@ -44,7 +44,7 @@
     },
     {
       "teamId": "CIV",
-      "yesBidPercent": 97,
+      "yesBidPercent": 96,
       "ticker": "KXWCGROUPQUAL-26E-CIV"
     },
     {
@@ -59,12 +59,12 @@
     },
     {
       "teamId": "CPV",
-      "yesBidPercent": 70,
+      "yesBidPercent": 69,
       "ticker": "KXWCGROUPQUAL-26H-CPV"
     },
     {
       "teamId": "CRO",
-      "yesBidPercent": 79,
+      "yesBidPercent": 78,
       "ticker": "KXWCGROUPQUAL-26L-CRO"
     },
     {
@@ -139,7 +139,7 @@
     },
     {
       "teamId": "KOR",
-      "yesBidPercent": 94,
+      "yesBidPercent": 93,
       "ticker": "KXWCGROUPQUAL-26A-KOR"
     },
     {
@@ -159,12 +159,12 @@
     },
     {
       "teamId": "NED",
-      "yesBidPercent": 99,
+      "yesBidPercent": 98,
       "ticker": "KXWCGROUPQUAL-26F-NED"
     },
     {
       "teamId": "NOR",
-      "yesBidPercent": 98,
+      "yesBidPercent": 99,
       "ticker": "KXWCGROUPQUAL-26I-NOR"
     },
     {
@@ -179,7 +179,7 @@
     },
     {
       "teamId": "PAR",
-      "yesBidPercent": 83,
+      "yesBidPercent": 82,
       "ticker": "KXWCGROUPQUAL-26D-PAR"
     },
     {
@@ -204,7 +204,7 @@
     },
     {
       "teamId": "SEN",
-      "yesBidPercent": 68,
+      "yesBidPercent": 42,
       "ticker": "KXWCGROUPQUAL-26I-SEN"
     },
     {
@@ -214,7 +214,7 @@
     },
     {
       "teamId": "SWE",
-      "yesBidPercent": 85,
+      "yesBidPercent": 88,
       "ticker": "KXWCGROUPQUAL-26F-SWE"
     },
     {
@@ -239,7 +239,7 @@
     },
     {
       "teamId": "UZB",
-      "yesBidPercent": 18,
+      "yesBidPercent": 19,
       "ticker": "KXWCGROUPQUAL-26K-UZB"
     }
   ]
