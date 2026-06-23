@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-23T19:31:47.037Z",
+  "lastUpdated": "2026-06-23T21:18:48.287Z",
   "matches": [
     {
       "id": "760415",
@@ -726,15 +726,15 @@
       "date": "2026-06-23T20:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "55'",
       "completed": false,
       "homeTeamId": "ENG",
       "homeTeamName": "England",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "GHA",
       "awayTeamName": "Ghana",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "Gillette Stadium"
     },
     {
