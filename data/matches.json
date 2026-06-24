@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-24T22:38:25.464Z",
+  "lastUpdated": "2026-06-24T23:47:36.176Z",
   "matches": [
     {
       "id": "760415",
@@ -807,14 +807,14 @@
       "stage": "group-stage",
       "stageLabel": "Group Stage",
       "status": "in",
-      "statusLabel": "37'",
+      "statusLabel": "84'",
       "completed": false,
       "homeTeamId": "MAR",
       "homeTeamName": "Morocco",
-      "homeScore": 0,
+      "homeScore": 3,
       "awayTeamId": "HAI",
       "awayTeamName": "Haiti",
-      "awayScore": 1,
+      "awayScore": 2,
       "venue": "Mercedes-Benz Stadium"
     },
     {
@@ -823,14 +823,14 @@
       "stage": "group-stage",
       "stageLabel": "Group Stage",
       "status": "in",
-      "statusLabel": "37'",
+      "statusLabel": "82'",
       "completed": false,
       "homeTeamId": "SCO",
       "homeTeamName": "Scotland",
       "homeScore": 0,
       "awayTeamId": "BRA",
       "awayTeamName": "Brazil",
-      "awayScore": 1,
+      "awayScore": 3,
       "venue": "Hard Rock Stadium"
     },
     {
