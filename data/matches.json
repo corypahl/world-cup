@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-24T01:53:29.701Z",
+  "lastUpdated": "2026-06-24T05:55:26.688Z",
   "matches": [
     {
       "id": "760415",
@@ -758,15 +758,15 @@
       "date": "2026-06-24T02:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "FT",
+      "completed": true,
       "homeTeamId": "COL",
       "homeTeamName": "Colombia",
-      "homeScore": null,
+      "homeScore": 1,
       "awayTeamId": "COD",
       "awayTeamName": "DR Congo",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "Estadio Akron"
     },
     {
