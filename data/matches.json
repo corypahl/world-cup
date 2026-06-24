@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-24T17:47:03.016Z",
+  "lastUpdated": "2026-06-24T19:25:46.849Z",
   "matches": [
     {
       "id": "760415",
@@ -774,15 +774,15 @@
       "date": "2026-06-24T19:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "25'",
       "completed": false,
       "homeTeamId": "BIH",
       "homeTeamName": "Bosnia & Herzegovina",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "QAT",
       "awayTeamName": "Qatar",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "Lumen Field"
     },
     {
@@ -790,15 +790,15 @@
       "date": "2026-06-24T19:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "25'",
       "completed": false,
       "homeTeamId": "SUI",
       "homeTeamName": "Switzerland",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "CAN",
       "awayTeamName": "Canada",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "BC Place"
     },
     {

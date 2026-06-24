@@ -1,10 +1,10 @@
 {
-  "lastUpdated": "2026-06-24T17:47:03.573Z",
+  "lastUpdated": "2026-06-24T19:25:47.371Z",
   "source": "Kalshi Yes bid",
   "odds": [
     {
       "teamId": "ALG",
-      "yesBidPercent": 80,
+      "yesBidPercent": 81,
       "ticker": "KXWCGROUPQUAL-26J-DZA"
     },
     {
@@ -14,7 +14,7 @@
     },
     {
       "teamId": "AUS",
-      "yesBidPercent": 88,
+      "yesBidPercent": 89,
       "ticker": "KXWCGROUPQUAL-26D-AUS"
     },
     {
@@ -29,7 +29,7 @@
     },
     {
       "teamId": "BIH",
-      "yesBidPercent": 67,
+      "yesBidPercent": 64,
       "ticker": "KXWCGROUPQUAL-26B-BIH"
     },
     {
@@ -59,7 +59,7 @@
     },
     {
       "teamId": "CPV",
-      "yesBidPercent": 70,
+      "yesBidPercent": 71,
       "ticker": "KXWCGROUPQUAL-26H-CPV"
     },
     {
@@ -69,22 +69,22 @@
     },
     {
       "teamId": "CUW",
-      "yesBidPercent": 4,
+      "yesBidPercent": 5,
       "ticker": "KXWCGROUPQUAL-26E-CUW"
     },
     {
       "teamId": "CZE",
-      "yesBidPercent": 24,
+      "yesBidPercent": 25,
       "ticker": "KXWCGROUPQUAL-26A-CZE"
     },
     {
       "teamId": "ECU",
-      "yesBidPercent": 26,
+      "yesBidPercent": 24,
       "ticker": "KXWCGROUPQUAL-26E-ECU"
     },
     {
       "teamId": "EGY",
-      "yesBidPercent": 99,
+      "yesBidPercent": 98,
       "ticker": "KXWCGROUPQUAL-26G-EGY"
     },
     {
@@ -119,12 +119,12 @@
     },
     {
       "teamId": "IRN",
-      "yesBidPercent": 60,
+      "yesBidPercent": 57,
       "ticker": "KXWCGROUPQUAL-26G-IRI"
     },
     {
       "teamId": "IRQ",
-      "yesBidPercent": 4,
+      "yesBidPercent": 2,
       "ticker": "KXWCGROUPQUAL-26I-IRQ"
     },
     {
@@ -194,17 +194,17 @@
     },
     {
       "teamId": "RSA",
-      "yesBidPercent": 11,
+      "yesBidPercent": 12,
       "ticker": "KXWCGROUPQUAL-26A-RSA"
     },
     {
       "teamId": "SCO",
-      "yesBidPercent": 71,
+      "yesBidPercent": 50,
       "ticker": "KXWCGROUPQUAL-26C-SCO"
     },
     {
       "teamId": "SEN",
-      "yesBidPercent": 62,
+      "yesBidPercent": 65,
       "ticker": "KXWCGROUPQUAL-26I-SEN"
     },
     {
