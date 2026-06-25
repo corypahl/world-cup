@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-25T18:02:11.664Z",
+  "lastUpdated": "2026-06-25T20:20:58.333Z",
   "matches": [
     {
       "id": "760415",
@@ -870,15 +870,15 @@
       "date": "2026-06-25T20:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "19'",
       "completed": false,
       "homeTeamId": "CUW",
       "homeTeamName": "Curaçao",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "CIV",
       "awayTeamName": "Ivory Coast",
-      "awayScore": null,
+      "awayScore": 1,
       "venue": "Lincoln Financial Field"
     },
     {
@@ -886,15 +886,15 @@
       "date": "2026-06-25T20:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "21'",
       "completed": false,
       "homeTeamId": "ECU",
       "homeTeamName": "Ecuador",
-      "homeScore": null,
+      "homeScore": 1,
       "awayTeamId": "GER",
       "awayTeamName": "Germany",
-      "awayScore": null,
+      "awayScore": 1,
       "venue": "MetLife Stadium"
     },
     {
