@@ -1,10 +1,10 @@
 {
-  "lastUpdated": "2026-06-25T20:20:58.867Z",
+  "lastUpdated": "2026-06-25T21:58:16.556Z",
   "source": "Kalshi Yes bid",
   "odds": [
     {
       "teamId": "ALG",
-      "yesBidPercent": 74,
+      "yesBidPercent": 69,
       "ticker": "KXWCGROUPQUAL-26J-DZA"
     },
     {
@@ -14,7 +14,7 @@
     },
     {
       "teamId": "AUS",
-      "yesBidPercent": 89,
+      "yesBidPercent": 88,
       "ticker": "KXWCGROUPQUAL-26D-AUS"
     },
     {
@@ -24,7 +24,7 @@
     },
     {
       "teamId": "BEL",
-      "yesBidPercent": 94,
+      "yesBidPercent": 93,
       "ticker": "KXWCGROUPQUAL-26G-BEL"
     },
     {
@@ -44,7 +44,7 @@
     },
     {
       "teamId": "CIV",
-      "yesBidPercent": 96,
+      "yesBidPercent": 99,
       "ticker": "KXWCGROUPQUAL-26E-CIV"
     },
     {
@@ -64,12 +64,12 @@
     },
     {
       "teamId": "CRO",
-      "yesBidPercent": 92,
+      "yesBidPercent": 91,
       "ticker": "KXWCGROUPQUAL-26L-CRO"
     },
     {
       "teamId": "CUW",
-      "yesBidPercent": 1,
+      "yesBidPercent": 0,
       "ticker": "KXWCGROUPQUAL-26E-CUW"
     },
     {
@@ -79,7 +79,7 @@
     },
     {
       "teamId": "ECU",
-      "yesBidPercent": 23,
+      "yesBidPercent": 99,
       "ticker": "KXWCGROUPQUAL-26E-ECU"
     },
     {
@@ -119,7 +119,7 @@
     },
     {
       "teamId": "IRN",
-      "yesBidPercent": 56,
+      "yesBidPercent": 55,
       "ticker": "KXWCGROUPQUAL-26G-IRI"
     },
     {
@@ -139,7 +139,7 @@
     },
     {
       "teamId": "KOR",
-      "yesBidPercent": 88,
+      "yesBidPercent": 71,
       "ticker": "KXWCGROUPQUAL-26A-KOR"
     },
     {
@@ -199,12 +199,12 @@
     },
     {
       "teamId": "SCO",
-      "yesBidPercent": 26,
+      "yesBidPercent": 11,
       "ticker": "KXWCGROUPQUAL-26C-SCO"
     },
     {
       "teamId": "SEN",
-      "yesBidPercent": 67,
+      "yesBidPercent": 56,
       "ticker": "KXWCGROUPQUAL-26I-SEN"
     },
     {
@@ -214,7 +214,7 @@
     },
     {
       "teamId": "SWE",
-      "yesBidPercent": 91,
+      "yesBidPercent": 89,
       "ticker": "KXWCGROUPQUAL-26F-SWE"
     },
     {
