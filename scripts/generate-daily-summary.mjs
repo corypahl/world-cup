@@ -5,6 +5,16 @@ const model = process.env.GEMINI_MODEL || "gemini-2.5-flash-lite";
 const inputPath = resolve(process.argv[2] || ".tmp/daily-summary-input.json");
 const outputPath = resolve(process.argv[3] || ".tmp/gemini-summary-response.json");
 const apiKey = process.env.GEMINI_API_KEY;
+const retryableStatuses = new Set([429, 500, 502, 503, 504]);
+
+function readPositiveIntegerEnv(name, defaultValue) {
+    const value = Number.parseInt(process.env[name] || `${defaultValue}`, 10);
+    return Number.isFinite(value) && value > 0 ? value : defaultValue;
+}
+
+const maxAttempts = readPositiveIntegerEnv("GEMINI_MAX_ATTEMPTS", 5);
+const initialRetryDelayMs = readPositiveIntegerEnv("GEMINI_INITIAL_RETRY_DELAY_MS", 15000);
+const maxRetryDelayMs = readPositiveIntegerEnv("GEMINI_MAX_RETRY_DELAY_MS", 120000);
 
 const responseSchema = {
     type: "object",
@@ -89,6 +99,60 @@ function extractResponseText(response) {
     return text;
 }
 
+function sleep(ms) {
+    return new Promise((resolveSleep) => setTimeout(resolveSleep, ms));
+}
+
+function retryDelayMs(attempt) {
+    const exponentialDelay = Math.min(maxRetryDelayMs, initialRetryDelayMs * (2 ** (attempt - 1)));
+    const jitter = Math.floor(Math.random() * 5000);
+    return exponentialDelay + jitter;
+}
+
+async function parseResponseBody(response) {
+    const text = await response.text();
+    if (!text) return null;
+
+    try {
+        return JSON.parse(text);
+    } catch {
+        return text;
+    }
+}
+
+async function generateContent(endpoint, requestBody) {
+    let lastError;
+
+    for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+        const response = await fetch(endpoint, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "x-goog-api-key": apiKey
+            },
+            body: JSON.stringify(requestBody)
+        });
+
+        const body = await parseResponseBody(response);
+
+        if (response.ok) {
+            return body;
+        }
+
+        lastError = new Error(`Gemini request failed: ${response.status} ${JSON.stringify(body)}`);
+
+        if (!retryableStatuses.has(response.status) || attempt === maxAttempts) {
+            throw lastError;
+        }
+
+        const delayMs = retryDelayMs(attempt);
+        console.warn(`Gemini request attempt ${attempt}/${maxAttempts} failed with ${response.status}. Retrying in ${Math.round(delayMs / 1000)}s.`);
+        await sleep(delayMs);
+    }
+
+    throw lastError;
+}
+
 async function main() {
     if (!apiKey) {
         throw new Error("GEMINI_API_KEY is required. Add it as a GitHub Actions repository secret.");
@@ -96,34 +160,21 @@ async function main() {
 
     const input = await readFile(inputPath, "utf8").then(JSON.parse);
     const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`;
-    const response = await fetch(endpoint, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "x-goog-api-key": apiKey
+    const body = await generateContent(endpoint, {
+        systemInstruction: {
+            parts: [{ text: systemInstruction }]
         },
-        body: JSON.stringify({
-            systemInstruction: {
-                parts: [{ text: systemInstruction }]
-            },
-            contents: [{
-                role: "user",
-                parts: [{ text: buildPrompt(input) }]
-            }],
-            generationConfig: {
-                temperature: 0.4,
-                maxOutputTokens: 700,
-                responseMimeType: "application/json",
-                responseSchema
-            }
-        })
+        contents: [{
+            role: "user",
+            parts: [{ text: buildPrompt(input) }]
+        }],
+        generationConfig: {
+            temperature: 0.4,
+            maxOutputTokens: 700,
+            responseMimeType: "application/json",
+            responseSchema
+        }
     });
-
-    const body = await response.json();
-
-    if (!response.ok) {
-        throw new Error(`Gemini request failed: ${response.status} ${JSON.stringify(body)}`);
-    }
 
     await writeFile(outputPath, `${extractResponseText(body)}\n`);
     console.log(`Wrote Gemini response using ${model} to ${outputPath}`);
