@@ -1,10 +1,10 @@
 {
-  "lastUpdated": "2026-06-25T01:57:03.644Z",
+  "lastUpdated": "2026-06-25T05:59:29.875Z",
   "source": "Kalshi Yes bid",
   "odds": [
     {
       "teamId": "ALG",
-      "yesBidPercent": 81,
+      "yesBidPercent": 78,
       "ticker": "KXWCGROUPQUAL-26J-DZA"
     },
     {
@@ -14,12 +14,12 @@
     },
     {
       "teamId": "AUS",
-      "yesBidPercent": 91,
+      "yesBidPercent": 88,
       "ticker": "KXWCGROUPQUAL-26D-AUS"
     },
     {
       "teamId": "AUT",
-      "yesBidPercent": 95,
+      "yesBidPercent": 96,
       "ticker": "KXWCGROUPQUAL-26J-AUT"
     },
     {
@@ -44,7 +44,7 @@
     },
     {
       "teamId": "CIV",
-      "yesBidPercent": 98,
+      "yesBidPercent": 97,
       "ticker": "KXWCGROUPQUAL-26E-CIV"
     },
     {
@@ -74,12 +74,12 @@
     },
     {
       "teamId": "CZE",
-      "yesBidPercent": 21,
+      "yesBidPercent": 0,
       "ticker": "KXWCGROUPQUAL-26A-CZE"
     },
     {
       "teamId": "ECU",
-      "yesBidPercent": 24,
+      "yesBidPercent": 17,
       "ticker": "KXWCGROUPQUAL-26E-ECU"
     },
     {
@@ -139,7 +139,7 @@
     },
     {
       "teamId": "KOR",
-      "yesBidPercent": 95,
+      "yesBidPercent": 81,
       "ticker": "KXWCGROUPQUAL-26A-KOR"
     },
     {
@@ -179,7 +179,7 @@
     },
     {
       "teamId": "PAR",
-      "yesBidPercent": 83,
+      "yesBidPercent": 80,
       "ticker": "KXWCGROUPQUAL-26D-PAR"
     },
     {
@@ -194,17 +194,17 @@
     },
     {
       "teamId": "RSA",
-      "yesBidPercent": 21,
+      "yesBidPercent": 0,
       "ticker": "KXWCGROUPQUAL-26A-RSA"
     },
     {
       "teamId": "SCO",
-      "yesBidPercent": 46,
+      "yesBidPercent": 23,
       "ticker": "KXWCGROUPQUAL-26C-SCO"
     },
     {
       "teamId": "SEN",
-      "yesBidPercent": 67,
+      "yesBidPercent": 70,
       "ticker": "KXWCGROUPQUAL-26I-SEN"
     },
     {
@@ -214,7 +214,7 @@
     },
     {
       "teamId": "SWE",
-      "yesBidPercent": 91,
+      "yesBidPercent": 92,
       "ticker": "KXWCGROUPQUAL-26F-SWE"
     },
     {
@@ -239,7 +239,7 @@
     },
     {
       "teamId": "UZB",
-      "yesBidPercent": 4,
+      "yesBidPercent": 2,
       "ticker": "KXWCGROUPQUAL-26K-UZB"
     }
   ]
