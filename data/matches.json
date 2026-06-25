@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-25T00:16:03.099Z",
+  "lastUpdated": "2026-06-25T01:57:03.163Z",
   "matches": [
     {
       "id": "760415",
@@ -838,15 +838,15 @@
       "date": "2026-06-25T01:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "HT",
       "completed": false,
       "homeTeamId": "CZE",
       "homeTeamName": "Czechia",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "MEX",
       "awayTeamName": "Mexico",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "Estadio Banorte"
     },
     {
@@ -854,15 +854,15 @@
       "date": "2026-06-25T01:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "HT",
       "completed": false,
       "homeTeamId": "RSA",
       "homeTeamName": "South Africa",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "KOR",
       "awayTeamName": "South Korea",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "Estadio BBVA"
     },
     {
