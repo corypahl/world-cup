@@ -1157,39 +1157,59 @@ details[open] summary::after {
 @media (max-width: 520px) {
     main,
     .site-header__inner {
-        width: min(100% - 1rem, 1180px);
+        width: min(100% - 0.5rem, 1180px);
     }
 
     .section-band {
-        padding: 0.65rem;
-        box-shadow: 4px 4px 0 var(--ink);
+        padding: 0.5rem;
+        box-shadow: 3px 3px 0 var(--ink);
     }
 
     .leaderboard-table,
     .team-table {
-        font-size: 0.82rem;
+        font-size: 0.78rem;
     }
 
     .leaderboard-table th,
     .leaderboard-table td,
     .team-table th,
     .team-table td {
-        padding: 0.5rem 0.42rem;
+        padding: 0.48rem 0.35rem;
     }
 
     .leaderboard-table th:first-child,
     .leaderboard-table td:first-child {
-        width: 3rem;
+        width: 2.25rem;
     }
 
     .leaderboard-table th:nth-child(3),
     .leaderboard-table td:nth-child(3) {
-        width: 4rem;
+        width: 3.6rem;
     }
 
     .leaderboard-table th:last-child,
     .leaderboard-table td:last-child {
-        width: 5.6rem;
+        width: 8.2rem;
+    }
+
+    .leaderboard-table .budget-note {
+        display: none;
+    }
+
+    .leaderboard-table th {
+        font-size: 0.68rem;
+        letter-spacing: 0.05em;
+    }
+
+    .leaderboard-table .alive-status-strip {
+        gap: 0.12rem;
+    }
+
+    .leaderboard-table .alive-status-icon {
+        width: 1.38rem;
+        height: 1.38rem;
+        font-size: 0.62rem;
+        border-width: 2px;
     }
 
     .team-table th:first-child,
