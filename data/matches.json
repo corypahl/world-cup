@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-26T01:59:00.051Z",
+  "lastUpdated": "2026-06-26T06:08:49.117Z",
   "matches": [
     {
       "id": "760415",
@@ -934,15 +934,15 @@
       "date": "2026-06-26T02:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "FT",
+      "completed": true,
       "homeTeamId": "PAR",
       "homeTeamName": "Paraguay",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "AUS",
       "awayTeamName": "Australia",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "Levi's Stadium"
     },
     {
@@ -950,15 +950,15 @@
       "date": "2026-06-26T02:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "FT",
+      "completed": true,
       "homeTeamId": "TUR",
       "homeTeamName": "Türkiye",
-      "homeScore": null,
+      "homeScore": 3,
       "awayTeamId": "USA",
       "awayTeamName": "USA",
-      "awayScore": null,
+      "awayScore": 2,
       "venue": "SoFi Stadium"
     },
     {
