@@ -178,7 +178,7 @@ The leaderboard sorts by:
 2. Tiebreaker, descending
 3. Original participant order if still tied
 
-Rows with equal current points and tiebreaker display the same rank. The Alive column is informational and shows how many of the participant's five teams have not been eliminated.
+Rows with equal current points and tiebreaker display the same rank. The Alive column is informational and shows one icon per picked team: green check for clinched, red X for eliminated, and yellow pending for teams still waiting on a Round-of-32 outcome.
 
 ## Deploy to GitHub Pages
 

@@ -642,7 +642,8 @@ tbody tr:hover {
 }
 
 .qualification-check,
-.qualification-x {
+.qualification-x,
+.qualification-pending {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -665,6 +666,31 @@ tbody tr:hover {
     border: 2px solid var(--red);
     color: #8b160d;
     background: var(--red-soft);
+}
+
+.qualification-pending {
+    border: 2px solid var(--yellow-dark);
+    color: #694500;
+    background: var(--yellow-soft);
+}
+
+.alive-cell {
+    white-space: nowrap;
+}
+
+.alive-status-strip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.2rem;
+}
+
+.alive-status-icon {
+    width: 1.05rem;
+    height: 1.05rem;
+    border-width: 2px;
+    border-radius: 0.22rem;
+    font-size: 0.72rem;
 }
 
 .match-picks {

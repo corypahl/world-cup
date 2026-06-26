@@ -613,7 +613,7 @@
                         ${entry.totalPoints}
                         <span class="row-cue" aria-hidden="true">${isExpanded ? "Close" : "View"}</span>
                     </td>
-                    <td data-label="Alive" class="numeric strong">${entry.remainingTeams}/5</td>
+                    <td data-label="Alive" class="alive-cell">${renderAliveStatusIcons(entry)}</td>
                 </tr>
                 ${isExpanded ? renderLeaderboardDetails(entry) : ""}
             `;
@@ -654,6 +654,41 @@
                 </td>
             </tr>
         `;
+    }
+
+    function renderAliveStatusIcons(entry) {
+        const picks = [...entry.pickDetails];
+        while (picks.length < 5) {
+            picks.push({
+                teamId: "Pending pick",
+                team: null,
+                result: {},
+                eliminated: false
+            });
+        }
+
+        const aliveCount = picks.filter((pick) => pick.team && !pick.eliminated).length;
+        const summary = `${aliveCount} of 5 teams alive`;
+
+        return `
+            <div class="alive-status-strip" aria-label="${escapeHtml(summary)}" title="${escapeHtml(summary)}">
+                ${picks.slice(0, 5).map(renderAliveStatusIcon).join("")}
+            </div>
+        `;
+    }
+
+    function renderAliveStatusIcon(pick) {
+        const teamLabel = pick.team?.name || pick.teamId || "Pending pick";
+
+        if (pick.result?.reachedRoundOf32) {
+            return `<span class="qualification-check alive-status-icon" title="${escapeHtml(`${teamLabel}: Clinched Round of 32`)}" aria-label="${escapeHtml(`${teamLabel}: Clinched Round of 32`)}">✓</span>`;
+        }
+
+        if (pick.eliminated) {
+            return `<span class="qualification-x alive-status-icon" title="${escapeHtml(`${teamLabel}: Eliminated from Round of 32`)}" aria-label="${escapeHtml(`${teamLabel}: Eliminated from Round of 32`)}">×</span>`;
+        }
+
+        return `<span class="qualification-pending alive-status-icon" title="${escapeHtml(`${teamLabel}: Pending Round of 32 status`)}" aria-label="${escapeHtml(`${teamLabel}: Pending Round of 32 status`)}">•</span>`;
     }
 
     function renderTeamScores(teamScores) {
