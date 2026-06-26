@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-26T17:28:56.781Z",
+  "lastUpdated": "2026-06-26T19:18:44.048Z",
   "matches": [
     {
       "id": "760415",
@@ -966,15 +966,15 @@
       "date": "2026-06-26T19:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "17'",
       "completed": false,
       "homeTeamId": "NOR",
       "homeTeamName": "Norway",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "FRA",
       "awayTeamName": "France",
-      "awayScore": null,
+      "awayScore": 1,
       "venue": "Gillette Stadium"
     },
     {
@@ -982,15 +982,15 @@
       "date": "2026-06-26T19:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "16'",
       "completed": false,
       "homeTeamId": "SEN",
       "homeTeamName": "Senegal",
-      "homeScore": null,
+      "homeScore": 1,
       "awayTeamId": "IRQ",
       "awayTeamName": "Iraq",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "BMO Field"
     },
     {
