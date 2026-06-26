@@ -641,20 +641,30 @@ tbody tr:hover {
     white-space: nowrap;
 }
 
-.qualification-check {
+.qualification-check,
+.qualification-x {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 1.25rem;
     height: 1.25rem;
-    border: 2px solid var(--green-dark);
     border-radius: 0.25rem;
-    color: #263500;
-    background: var(--green);
     font-size: 0.85rem;
     font-weight: 1000;
     line-height: 1;
     vertical-align: middle;
+}
+
+.qualification-check {
+    border: 2px solid var(--green-dark);
+    color: #263500;
+    background: var(--green);
+}
+
+.qualification-x {
+    border: 2px solid var(--red);
+    color: #8b160d;
+    background: var(--red-soft);
 }
 
 .match-picks {

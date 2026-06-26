@@ -129,7 +129,8 @@
 
     function buildContestState(data) {
         const teamMap = window.WorldCupScoring.buildLookup(data.teams, "id");
-        const resultMap = window.WorldCupScoring.buildLookup(data.teamResults, "teamId");
+        const qualificationOdds = window.WorldCupScoring.buildLookup(data.qualificationOdds, "teamId");
+        const resultMap = buildQualifiedResultMap(data.teamResults, qualificationOdds);
         const matches = [...(data.matches || [])].sort((a, b) => new Date(a.date) - new Date(b.date));
         const todayKey = getEasternDateKey(new Date());
 
@@ -143,7 +144,7 @@
         ));
 
         state.resultMap = resultMap;
-        state.qualificationOdds = window.WorldCupScoring.buildLookup(data.qualificationOdds, "teamId");
+        state.qualificationOdds = qualificationOdds;
         state.entries = window.WorldCupScoring.sortLeaderboard(entries);
         const ranks = window.WorldCupScoring.calculateRanks(state.entries);
         state.entries.forEach((entry, index) => {
@@ -178,6 +179,22 @@
 
             return a.team.name.localeCompare(b.team.name);
         });
+    }
+
+    function buildQualifiedResultMap(teamResults, qualificationOdds) {
+        return new Map((teamResults || []).map((result) => {
+            const yesBidPercent = getQualificationBidFromMap(qualificationOdds, result.teamId);
+            const isEliminated = Boolean(result.eliminated)
+                || (!result.reachedRoundOf32 && yesBidPercent === 0);
+
+            return [
+                result.teamId,
+                {
+                    ...result,
+                    eliminated: isEliminated
+                }
+            ];
+        }));
     }
 
     function calculateOwnership(participants, teamMap) {
@@ -853,7 +870,7 @@
         }
 
         if (result?.eliminated) {
-            return "0%";
+            return `<span class="qualification-x" title="Eliminated from Round of 32" aria-label="Eliminated from Round of 32">×</span>`;
         }
 
         const yesBidPercent = getQualificationBid(teamId);
@@ -865,7 +882,11 @@
     }
 
     function getQualificationBid(teamId) {
-        const rawYesBid = state.qualificationOdds.get(teamId)?.yesBidPercent;
+        return getQualificationBidFromMap(state.qualificationOdds, teamId);
+    }
+
+    function getQualificationBidFromMap(qualificationOdds, teamId) {
+        const rawYesBid = qualificationOdds.get(teamId)?.yesBidPercent;
         const yesBidPercent = rawYesBid === null || rawYesBid === undefined
             ? null
             : Number(rawYesBid);
