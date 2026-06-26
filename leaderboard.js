@@ -613,7 +613,7 @@
                         ${entry.totalPoints}
                         <span class="row-cue" aria-hidden="true">${isExpanded ? "Close" : "View"}</span>
                     </td>
-                    <td data-label="Alive" class="alive-cell">${renderAliveStatusIcons(entry)}</td>
+                    <td data-label="Status" class="alive-cell">${renderAliveStatusIcons(entry)}</td>
                 </tr>
                 ${isExpanded ? renderLeaderboardDetails(entry) : ""}
             `;
