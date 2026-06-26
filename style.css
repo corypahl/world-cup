@@ -641,6 +641,22 @@ tbody tr:hover {
     white-space: nowrap;
 }
 
+.qualification-check {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid var(--green-dark);
+    border-radius: 0.25rem;
+    color: #263500;
+    background: var(--green);
+    font-size: 0.85rem;
+    font-weight: 1000;
+    line-height: 1;
+    vertical-align: middle;
+}
+
 .match-picks {
     display: flex;
     flex-wrap: wrap;

@@ -606,7 +606,7 @@
     function renderLeaderboardDetails(entry) {
         const picks = entry.pickDetails.length
             ? [...entry.pickDetails]
-                .sort((a, b) => getQualificationBid(b.teamId) - getQualificationBid(a.teamId))
+                .sort((a, b) => getQualificationSortValue(b) - getQualificationSortValue(a))
                 .map(renderDetailedPickRow)
                 .join("")
             : `<tr><td colspan="5" class="empty-cell">Awaiting picks</td></tr>`;
@@ -849,7 +849,7 @@
 
     function formatQualificationBid(teamId, result) {
         if (result?.reachedRoundOf32) {
-            return "100%";
+            return `<span class="qualification-check" title="Clinched Round of 32" aria-label="Clinched Round of 32">✓</span>`;
         }
 
         if (result?.eliminated) {
@@ -874,6 +874,18 @@
         }
 
         return -1;
+    }
+
+    function getQualificationSortValue(pick) {
+        if (pick.result?.reachedRoundOf32) {
+            return 100;
+        }
+
+        if (pick.result?.eliminated) {
+            return 0;
+        }
+
+        return getQualificationBid(pick.teamId);
     }
 
     function renderTeamStatus(result) {
