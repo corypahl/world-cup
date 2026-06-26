@@ -178,7 +178,7 @@ The leaderboard sorts by:
 2. Tiebreaker, descending
 3. Original participant order if still tied
 
-Rows with equal current points and tiebreaker display the same rank. The Remaining column is informational and shows how many of the participant's five teams have not been eliminated.
+Rows with equal current points and tiebreaker display the same rank. The Alive column is informational and shows how many of the participant's five teams have not been eliminated.
 
 ## Deploy to GitHub Pages
 
