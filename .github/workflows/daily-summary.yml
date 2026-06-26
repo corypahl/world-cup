@@ -37,6 +37,7 @@ jobs:
       - name: Generate daily recap with Gemini
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: gemini-3.1-flash-lite
         run: node scripts/generate-daily-summary.mjs .tmp/daily-summary-input.json .tmp/gemini-summary-response.json
 
       - name: Save summary

@@ -86,14 +86,14 @@ It fetches FIFA World Cup match data from ESPN's public soccer scoreboard endpoi
 
 ## Daily AI Summary
 
-The workflow at `.github/workflows/daily-summary.yml` runs at 9:00 AM ET and can also be started manually. It:
+The workflow at `.github/workflows/daily-summary.yml` runs at 7:17 AM ET and can also be started manually. It:
 
 1. Calculates the current contest leaderboard from the checked-in data.
 2. Selects completed matches from the previous Eastern Time calendar day.
 3. Compares the current leaderboard against `data/standings-history.json`.
 4. Calculates point gains, rank movement, remaining-team changes, and which picks produced points.
 5. Adds ownership and rank context for yesterday's results and today's matches.
-6. Sends those grounded facts to `gemini-2.5-flash-lite`.
+6. Sends those grounded facts to `gemini-3.1-flash-lite`.
 7. Writes yesterday's contest impact, leaderboard movement, and today's leverage watch as concise bullet lists to `data/daily-summary.json`.
 8. Saves the current standings snapshot, commits the generated files, and deploys GitHub Pages.
 

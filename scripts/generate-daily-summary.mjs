@@ -1,7 +1,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 
-const model = process.env.GEMINI_MODEL || "gemini-2.5-flash-lite";
+const model = process.env.GEMINI_MODEL || "gemini-3.1-flash-lite";
 const inputPath = resolve(process.argv[2] || ".tmp/daily-summary-input.json");
 const outputPath = resolve(process.argv[3] || ".tmp/gemini-summary-response.json");
 const apiKey = process.env.GEMINI_API_KEY;
