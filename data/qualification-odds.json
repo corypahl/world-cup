@@ -1,10 +1,10 @@
 {
-  "lastUpdated": "2026-06-25T23:16:41.305Z",
+  "lastUpdated": "2026-06-26T01:34:52.335Z",
   "source": "Kalshi Yes bid",
   "odds": [
     {
       "teamId": "ALG",
-      "yesBidPercent": 66,
+      "yesBidPercent": 67,
       "ticker": "KXWCGROUPQUAL-26J-DZA"
     },
     {
@@ -14,12 +14,12 @@
     },
     {
       "teamId": "AUS",
-      "yesBidPercent": 85,
+      "yesBidPercent": 82,
       "ticker": "KXWCGROUPQUAL-26D-AUS"
     },
     {
       "teamId": "AUT",
-      "yesBidPercent": 95,
+      "yesBidPercent": 89,
       "ticker": "KXWCGROUPQUAL-26J-AUT"
     },
     {
@@ -64,7 +64,7 @@
     },
     {
       "teamId": "CRO",
-      "yesBidPercent": 88,
+      "yesBidPercent": 87,
       "ticker": "KXWCGROUPQUAL-26L-CRO"
     },
     {
@@ -119,12 +119,12 @@
     },
     {
       "teamId": "IRN",
-      "yesBidPercent": 54,
+      "yesBidPercent": 55,
       "ticker": "KXWCGROUPQUAL-26G-IRI"
     },
     {
       "teamId": "IRQ",
-      "yesBidPercent": 1,
+      "yesBidPercent": 2,
       "ticker": "KXWCGROUPQUAL-26I-IRQ"
     },
     {
@@ -139,12 +139,12 @@
     },
     {
       "teamId": "KOR",
-      "yesBidPercent": 71,
+      "yesBidPercent": 57,
       "ticker": "KXWCGROUPQUAL-26A-KOR"
     },
     {
       "teamId": "KSA",
-      "yesBidPercent": 33,
+      "yesBidPercent": 32,
       "ticker": "KXWCGROUPQUAL-26H-KSA"
     },
     {
@@ -179,7 +179,7 @@
     },
     {
       "teamId": "PAR",
-      "yesBidPercent": 76,
+      "yesBidPercent": 77,
       "ticker": "KXWCGROUPQUAL-26D-PAR"
     },
     {
@@ -204,7 +204,7 @@
     },
     {
       "teamId": "SEN",
-      "yesBidPercent": 56,
+      "yesBidPercent": 57,
       "ticker": "KXWCGROUPQUAL-26I-SEN"
     },
     {
@@ -214,7 +214,7 @@
     },
     {
       "teamId": "SWE",
-      "yesBidPercent": 88,
+      "yesBidPercent": 99,
       "ticker": "KXWCGROUPQUAL-26F-SWE"
     },
     {
@@ -239,7 +239,7 @@
     },
     {
       "teamId": "UZB",
-      "yesBidPercent": 0,
+      "yesBidPercent": 1,
       "ticker": "KXWCGROUPQUAL-26K-UZB"
     }
   ]
