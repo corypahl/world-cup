@@ -672,23 +672,38 @@
 
         return `
             <div class="alive-status-strip" aria-label="${escapeHtml(summary)}" title="${escapeHtml(summary)}">
-                ${picks.slice(0, 5).map(renderAliveStatusIcon).join("")}
+                ${sortAliveStatusPicks(picks).slice(0, 5).map(renderAliveStatusIcon).join("")}
             </div>
         `;
     }
 
+    function sortAliveStatusPicks(picks) {
+        return picks
+            .map((pick, index) => ({ pick, index }))
+            .sort((a, b) => {
+                const scoreDelta = (Number(b.pick.score) || 0) - (Number(a.pick.score) || 0);
+                if (scoreDelta !== 0) {
+                    return scoreDelta;
+                }
+
+                return a.index - b.index;
+            })
+            .map((entry) => entry.pick);
+    }
+
     function renderAliveStatusIcon(pick) {
         const teamLabel = pick.team?.name || pick.teamId || "Pending pick";
+        const scoreLabel = pick.team ? Number(pick.score) || 0 : "—";
 
         if (pick.result?.reachedRoundOf32) {
-            return `<span class="qualification-check alive-status-icon" title="${escapeHtml(`${teamLabel}: Clinched Round of 32`)}" aria-label="${escapeHtml(`${teamLabel}: Clinched Round of 32`)}">✓</span>`;
+            return `<span class="qualification-check alive-status-icon" title="${escapeHtml(`${teamLabel}: ${scoreLabel} points, clinched Round of 32`)}" aria-label="${escapeHtml(`${teamLabel}: ${scoreLabel} points, clinched Round of 32`)}">${escapeHtml(scoreLabel)}</span>`;
         }
 
         if (pick.eliminated) {
-            return `<span class="qualification-x alive-status-icon" title="${escapeHtml(`${teamLabel}: Eliminated from Round of 32`)}" aria-label="${escapeHtml(`${teamLabel}: Eliminated from Round of 32`)}">×</span>`;
+            return `<span class="qualification-x alive-status-icon" title="${escapeHtml(`${teamLabel}: ${scoreLabel} points, eliminated from Round of 32`)}" aria-label="${escapeHtml(`${teamLabel}: ${scoreLabel} points, eliminated from Round of 32`)}">${escapeHtml(scoreLabel)}</span>`;
         }
 
-        return `<span class="qualification-pending alive-status-icon" title="${escapeHtml(`${teamLabel}: Pending Round of 32 status`)}" aria-label="${escapeHtml(`${teamLabel}: Pending Round of 32 status`)}">•</span>`;
+        return `<span class="qualification-pending alive-status-icon" title="${escapeHtml(`${teamLabel}: ${scoreLabel} points, pending Round of 32 status`)}" aria-label="${escapeHtml(`${teamLabel}: ${scoreLabel} points, pending Round of 32 status`)}">${escapeHtml(scoreLabel)}</span>`;
     }
 
     function renderTeamScores(teamScores) {
