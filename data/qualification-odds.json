@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-27T01:32:45.146Z",
+  "lastUpdated": "2026-06-27T01:52:34.876Z",
   "source": "Kalshi Yes bid",
   "odds": [
     {
@@ -59,12 +59,12 @@
     },
     {
       "teamId": "CPV",
-      "yesBidPercent": 76,
+      "yesBidPercent": 80,
       "ticker": "KXWCGROUPQUAL-26H-CPV"
     },
     {
       "teamId": "CRO",
-      "yesBidPercent": 84,
+      "yesBidPercent": 85,
       "ticker": "KXWCGROUPQUAL-26L-CRO"
     },
     {
@@ -139,12 +139,12 @@
     },
     {
       "teamId": "KOR",
-      "yesBidPercent": 31,
+      "yesBidPercent": 41,
       "ticker": "KXWCGROUPQUAL-26A-KOR"
     },
     {
       "teamId": "KSA",
-      "yesBidPercent": 18,
+      "yesBidPercent": 11,
       "ticker": "KXWCGROUPQUAL-26H-KSA"
     },
     {
@@ -229,7 +229,7 @@
     },
     {
       "teamId": "URU",
-      "yesBidPercent": 15,
+      "yesBidPercent": 7,
       "ticker": "KXWCGROUPQUAL-26H-URU"
     },
     {

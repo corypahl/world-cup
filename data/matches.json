@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-27T01:32:44.842Z",
+  "lastUpdated": "2026-06-27T01:52:34.484Z",
   "matches": [
     {
       "id": "760415",
@@ -999,7 +999,7 @@
       "stage": "group-stage",
       "stageLabel": "Group Stage",
       "status": "in",
-      "statusLabel": "69'",
+      "statusLabel": "89'",
       "completed": false,
       "homeTeamId": "CPV",
       "homeTeamName": "Cape Verde",
@@ -1015,7 +1015,7 @@
       "stage": "group-stage",
       "stageLabel": "Group Stage",
       "status": "in",
-      "statusLabel": "68'",
+      "statusLabel": "88'",
       "completed": false,
       "homeTeamId": "URU",
       "homeTeamName": "Uruguay",
