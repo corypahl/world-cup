@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-26T23:40:11.792Z",
+  "lastUpdated": "2026-06-27T01:32:44.842Z",
   "matches": [
     {
       "id": "760415",
@@ -998,15 +998,15 @@
       "date": "2026-06-27T00:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "69'",
       "completed": false,
       "homeTeamId": "CPV",
       "homeTeamName": "Cape Verde",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "KSA",
       "awayTeamName": "Saudi Arabia",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "NRG Stadium"
     },
     {
@@ -1014,15 +1014,15 @@
       "date": "2026-06-27T00:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "68'",
       "completed": false,
       "homeTeamId": "URU",
       "homeTeamName": "Uruguay",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "ESP",
       "awayTeamName": "Spain",
-      "awayScore": null,
+      "awayScore": 1,
       "venue": "Estadio Akron"
     },
     {
