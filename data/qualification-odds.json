@@ -1,10 +1,10 @@
 {
-  "lastUpdated": "2026-06-27T17:56:05.144Z",
+  "lastUpdated": "2026-06-27T19:06:30.061Z",
   "source": "Kalshi Yes bid",
   "odds": [
     {
       "teamId": "ALG",
-      "yesBidPercent": 63,
+      "yesBidPercent": 64,
       "ticker": "KXWCGROUPQUAL-26J-DZA"
     },
     {
@@ -139,7 +139,7 @@
     },
     {
       "teamId": "KOR",
-      "yesBidPercent": 19,
+      "yesBidPercent": 20,
       "ticker": "KXWCGROUPQUAL-26A-KOR"
     },
     {
