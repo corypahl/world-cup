@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-27T21:35:29.330Z",
+  "lastUpdated": "2026-06-27T22:41:57.056Z",
   "matches": [
     {
       "id": "760415",
@@ -1063,14 +1063,14 @@
       "stage": "group-stage",
       "stageLabel": "Group Stage",
       "status": "in",
-      "statusLabel": "34'",
+      "statusLabel": "80'",
       "completed": false,
       "homeTeamId": "CRO",
       "homeTeamName": "Croatia",
       "homeScore": 1,
       "awayTeamId": "GHA",
       "awayTeamName": "Ghana",
-      "awayScore": 0,
+      "awayScore": 1,
       "venue": "Lincoln Financial Field"
     },
     {
@@ -1079,14 +1079,14 @@
       "stage": "group-stage",
       "stageLabel": "Group Stage",
       "status": "in",
-      "statusLabel": "34'",
+      "statusLabel": "82'",
       "completed": false,
       "homeTeamId": "PAN",
       "homeTeamName": "Panama",
       "homeScore": 0,
       "awayTeamId": "ENG",
       "awayTeamName": "England",
-      "awayScore": 0,
+      "awayScore": 2,
       "venue": "MetLife Stadium"
     },
     {

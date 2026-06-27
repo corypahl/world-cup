@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-27T21:35:29.854Z",
+  "lastUpdated": "2026-06-27T22:41:57.701Z",
   "source": "Kalshi Yes bid",
   "odds": [
     {
@@ -19,7 +19,7 @@
     },
     {
       "teamId": "AUT",
-      "yesBidPercent": 78,
+      "yesBidPercent": 82,
       "ticker": "KXWCGROUPQUAL-26J-AUT"
     },
     {
@@ -49,7 +49,7 @@
     },
     {
       "teamId": "COD",
-      "yesBidPercent": 58,
+      "yesBidPercent": 59,
       "ticker": "KXWCGROUPQUAL-26K-COD"
     },
     {
@@ -64,7 +64,7 @@
     },
     {
       "teamId": "CRO",
-      "yesBidPercent": 95,
+      "yesBidPercent": 81,
       "ticker": "KXWCGROUPQUAL-26L-CRO"
     },
     {
@@ -109,7 +109,7 @@
     },
     {
       "teamId": "GHA",
-      "yesBidPercent": 99,
+      "yesBidPercent": 98,
       "ticker": "KXWCGROUPQUAL-26L-GHA"
     },
     {
@@ -119,7 +119,7 @@
     },
     {
       "teamId": "IRN",
-      "yesBidPercent": 70,
+      "yesBidPercent": 68,
       "ticker": "KXWCGROUPQUAL-26G-IRI"
     },
     {
@@ -139,7 +139,7 @@
     },
     {
       "teamId": "KOR",
-      "yesBidPercent": 10,
+      "yesBidPercent": 12,
       "ticker": "KXWCGROUPQUAL-26A-KOR"
     },
     {
@@ -179,7 +179,7 @@
     },
     {
       "teamId": "PAR",
-      "yesBidPercent": 99,
+      "yesBidPercent": 98,
       "ticker": "KXWCGROUPQUAL-26D-PAR"
     },
     {
