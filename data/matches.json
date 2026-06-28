@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-28T18:02:53.849Z",
+  "lastUpdated": "2026-06-28T19:43:41.027Z",
   "matches": [
     {
       "id": "760415",
@@ -1158,15 +1158,15 @@
       "date": "2026-06-28T19:00Z",
       "stage": "round-of-32",
       "stageLabel": "Round of 32",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "43'",
       "completed": false,
       "homeTeamId": "RSA",
       "homeTeamName": "South Africa",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "CAN",
       "awayTeamName": "Canada",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "SoFi Stadium"
     },
     {
