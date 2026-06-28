@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-28T02:02:41.028Z",
+  "lastUpdated": "2026-06-28T06:36:06.833Z",
   "matches": [
     {
       "id": "760415",
@@ -1126,15 +1126,15 @@
       "date": "2026-06-28T02:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "in",
-      "statusLabel": "2'",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "FT",
+      "completed": true,
       "homeTeamId": "ALG",
       "homeTeamName": "Algeria",
-      "homeScore": 0,
+      "homeScore": 3,
       "awayTeamId": "AUT",
       "awayTeamName": "Austria",
-      "awayScore": 0,
+      "awayScore": 3,
       "venue": "GEHA Field at Arrowhead Stadium"
     },
     {
@@ -1142,15 +1142,15 @@
       "date": "2026-06-28T02:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "in",
-      "statusLabel": "2'",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "FT",
+      "completed": true,
       "homeTeamId": "JOR",
       "homeTeamName": "Jordan",
-      "homeScore": 0,
+      "homeScore": 1,
       "awayTeamId": "ARG",
       "awayTeamName": "Argentina",
-      "awayScore": 0,
+      "awayScore": 3,
       "venue": "AT&T Stadium"
     },
     {
@@ -1314,6 +1314,22 @@
       "venue": "Levi's Stadium"
     },
     {
+      "id": "760497",
+      "date": "2026-07-02T19:00Z",
+      "stage": "round-of-32",
+      "stageLabel": "Round of 32",
+      "status": "pre",
+      "statusLabel": "Scheduled",
+      "completed": false,
+      "homeTeamId": "ESP",
+      "homeTeamName": "Spain",
+      "homeScore": null,
+      "awayTeamId": "AUT",
+      "awayTeamName": "Austria",
+      "awayScore": null,
+      "venue": "SoFi Stadium"
+    },
+    {
       "id": "760496",
       "date": "2026-07-02T23:00Z",
       "stage": "round-of-32",
@@ -1328,6 +1344,22 @@
       "awayTeamName": "Croatia",
       "awayScore": null,
       "venue": "BMO Field"
+    },
+    {
+      "id": "760498",
+      "date": "2026-07-03T03:00Z",
+      "stage": "round-of-32",
+      "stageLabel": "Round of 32",
+      "status": "pre",
+      "statusLabel": "Scheduled",
+      "completed": false,
+      "homeTeamId": "SUI",
+      "homeTeamName": "Switzerland",
+      "homeScore": null,
+      "awayTeamId": "ALG",
+      "awayTeamName": "Algeria",
+      "awayScore": null,
+      "venue": "BC Place"
     },
     {
       "id": "760499",
