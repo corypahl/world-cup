@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-28T01:50:34.250Z",
+  "lastUpdated": "2026-06-28T02:02:41.028Z",
   "matches": [
     {
       "id": "760415",
@@ -1126,15 +1126,15 @@
       "date": "2026-06-28T02:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "2'",
       "completed": false,
       "homeTeamId": "ALG",
       "homeTeamName": "Algeria",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "AUT",
       "awayTeamName": "Austria",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "GEHA Field at Arrowhead Stadium"
     },
     {
@@ -1142,15 +1142,15 @@
       "date": "2026-06-28T02:00Z",
       "stage": "group-stage",
       "stageLabel": "Group Stage",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "2'",
       "completed": false,
       "homeTeamId": "JOR",
       "homeTeamName": "Jordan",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "ARG",
       "awayTeamName": "Argentina",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "AT&T Stadium"
     },
     {
