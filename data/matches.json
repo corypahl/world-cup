@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-29T09:50:21.387Z",
+  "lastUpdated": "2026-06-29T18:02:49.935Z",
   "matches": [
     {
       "id": "760415",
@@ -1174,15 +1174,15 @@
       "date": "2026-06-29T17:00Z",
       "stage": "round-of-32",
       "stageLabel": "Round of 32",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "HT",
       "completed": false,
       "homeTeamId": "BRA",
       "homeTeamName": "Brazil",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "JPN",
       "awayTeamName": "Japan",
-      "awayScore": null,
+      "awayScore": 1,
       "venue": "NRG Stadium"
     },
     {
