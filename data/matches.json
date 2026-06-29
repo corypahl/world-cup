@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-29T22:40:59.450Z",
+  "lastUpdated": "2026-06-29T23:40:04.755Z",
   "matches": [
     {
       "id": "760415",
@@ -1190,9 +1190,9 @@
       "date": "2026-06-29T20:30Z",
       "stage": "round-of-32",
       "stageLabel": "Round of 32",
-      "status": "in",
-      "statusLabel": "98'",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "FT-Pens",
+      "completed": true,
       "homeTeamId": "GER",
       "homeTeamName": "Germany",
       "homeScore": 1,
