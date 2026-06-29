@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-29T20:14:25.986Z",
+  "lastUpdated": "2026-06-29T21:44:18.557Z",
   "matches": [
     {
       "id": "760415",
@@ -1190,15 +1190,15 @@
       "date": "2026-06-29T20:30Z",
       "stage": "round-of-32",
       "stageLabel": "Round of 32",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "51'",
       "completed": false,
       "homeTeamId": "GER",
       "homeTeamName": "Germany",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "PAR",
       "awayTeamName": "Paraguay",
-      "awayScore": null,
+      "awayScore": 1,
       "venue": "Gillette Stadium"
     },
     {
