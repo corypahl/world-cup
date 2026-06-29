@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-29T18:02:49.935Z",
+  "lastUpdated": "2026-06-29T20:14:25.986Z",
   "matches": [
     {
       "id": "760415",
@@ -1174,12 +1174,12 @@
       "date": "2026-06-29T17:00Z",
       "stage": "round-of-32",
       "stageLabel": "Round of 32",
-      "status": "in",
-      "statusLabel": "HT",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "FT",
+      "completed": true,
       "homeTeamId": "BRA",
       "homeTeamName": "Brazil",
-      "homeScore": 0,
+      "homeScore": 2,
       "awayTeamId": "JPN",
       "awayTeamName": "Japan",
       "awayScore": 1,
