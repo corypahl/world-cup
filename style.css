@@ -238,9 +238,20 @@ tbody tr:hover {
     border: 1px solid currentColor;
 }
 
-.status-badge--alive {
+.status-badge--alive,
+.status-badge--advanced {
     color: #3d4f00;
     background: #efffbc;
+}
+
+.status-badge--pending {
+    color: #694500;
+    background: var(--yellow-soft);
+}
+
+.status-badge--playing-today {
+    color: #07306f;
+    background: #dcebff;
 }
 
 .status-badge--eliminated {
@@ -684,6 +695,7 @@ tbody tr:hover {
 
 .qualification-check,
 .qualification-x,
+.qualification-today,
 .qualification-pending {
     display: inline-flex;
     align-items: center;
@@ -707,6 +719,12 @@ tbody tr:hover {
     border: 2px solid var(--red);
     color: #8b160d;
     background: var(--red-soft);
+}
+
+.qualification-today {
+    border: 2px solid var(--blue);
+    color: #07306f;
+    background: #dcebff;
 }
 
 .qualification-pending {

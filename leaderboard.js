@@ -23,6 +23,43 @@
         "2026-07-16",
         "2026-07-20"
     ];
+    const KNOCKOUT_ROUNDS = [
+        {
+            stageSlugs: ["round-of-32"],
+            reachedKey: "reachedRoundOf32",
+            nextKey: "reachedRoundOf16",
+            currentLabel: "Round of 32",
+            nextLabel: "Round of 16"
+        },
+        {
+            stageSlugs: ["round-of-16", "rd-of-16"],
+            reachedKey: "reachedRoundOf16",
+            nextKey: "reachedQuarterfinal",
+            currentLabel: "Round of 16",
+            nextLabel: "Quarterfinal"
+        },
+        {
+            stageSlugs: ["quarterfinals"],
+            reachedKey: "reachedQuarterfinal",
+            nextKey: "reachedSemifinal",
+            currentLabel: "Quarterfinal",
+            nextLabel: "Semifinal"
+        },
+        {
+            stageSlugs: ["semifinals"],
+            reachedKey: "reachedSemifinal",
+            nextKey: "reachedFinal",
+            currentLabel: "Semifinal",
+            nextLabel: "Final"
+        },
+        {
+            stageSlugs: ["final"],
+            reachedKey: "reachedFinal",
+            nextKey: "wonWorldCup",
+            currentLabel: "Final",
+            nextLabel: "World Cup title"
+        }
+    ];
 
     const state = {
         data: null,
@@ -33,6 +70,8 @@
         qualificationOdds: new Map(),
         todayMatches: [],
         todayTeamIds: new Set(),
+        todayPendingTeamIds: new Set(),
+        activeKnockoutRound: null,
         expandedParticipantId: null,
         expandedTeamId: null,
         teamSearch: ""
@@ -155,6 +194,10 @@
         state.ownership = calculateOwnership(data.participants, teamMap);
         state.todayMatches = matches.filter((match) => getEasternDateKey(match.date) === todayKey);
         state.todayTeamIds = new Set(state.todayMatches.flatMap((match) => [match.homeTeamId, match.awayTeamId]));
+        state.todayPendingTeamIds = new Set(state.todayMatches
+            .filter((match) => !match.completed)
+            .flatMap((match) => [match.homeTeamId, match.awayTeamId]));
+        state.activeKnockoutRound = getActiveKnockoutRound(matches);
         state.teamScores = data.teams.map((team) => {
             const result = resultMap.get(team.id) || window.WorldCupScoring.emptyTeamResult(team.id);
             const teamMatches = matches.filter((match) => match.homeTeamId === team.id || match.awayTeamId === team.id);
@@ -180,6 +223,26 @@
 
             return a.team.name.localeCompare(b.team.name);
         });
+    }
+
+    function getActiveKnockoutRound(matches) {
+        const knockoutMatches = (matches || []).filter((match) => match.stage !== "group-stage");
+
+        for (const round of KNOCKOUT_ROUNDS) {
+            const roundMatches = knockoutMatches.filter((match) => round.stageSlugs.includes(match.stage));
+            if (roundMatches.some((match) => !match.completed)) {
+                return round;
+            }
+        }
+
+        for (let index = KNOCKOUT_ROUNDS.length - 1; index >= 0; index -= 1) {
+            const round = KNOCKOUT_ROUNDS[index];
+            if (knockoutMatches.some((match) => round.stageSlugs.includes(match.stage))) {
+                return round;
+            }
+        }
+
+        return KNOCKOUT_ROUNDS[0];
     }
 
     function buildQualifiedResultMap(teamResults, qualificationOdds) {
@@ -437,6 +500,7 @@
 
     function renderTodayMatchTeam(teamId) {
         const pickedBy = state.ownership.get(teamId) || [];
+        const result = state.resultMap.get(teamId) || window.WorldCupScoring.emptyTeamResult(teamId);
         const participants = pickedBy.length
             ? pickedBy.map(renderMatchParticipant).join("")
             : `<span class="match-picks-empty">Not picked</span>`;
@@ -444,8 +508,8 @@
         return `
             <div class="match-team">
                 <div class="match-team__identity">
-                    <span class="team-code team-code--today">${escapeHtml(teamId)}</span>
-                    <span class="qualification-chance">R32 bid ${formatQualificationBid(teamId, state.resultMap.get(teamId))}</span>
+                    <span class="${getTeamCodeClasses(teamId, result)}">${escapeHtml(teamId)}</span>
+                    <span class="qualification-chance">${escapeHtml(getTeamStatusLabel(teamId, result))}</span>
                 </div>
                 <div class="match-picks" aria-label="${escapeHtml(teamId)} picked by">${participants}</div>
             </div>
@@ -553,7 +617,7 @@
                 output += `<strong class="summary-participant">${escapeHtml(match.label)}</strong>`;
             } else {
                 const result = state.resultMap.get(match.teamId) || window.WorldCupScoring.emptyTeamResult(match.teamId);
-                const classes = getSummaryTeamClasses(result, state.todayTeamIds.has(match.teamId));
+                const classes = getSummaryTeamClasses(match.teamId, result);
                 output += `<span class="${classes}">${escapeHtml(match.label)}</span>`;
             }
 
@@ -563,18 +627,9 @@
         return output + escapeHtml(text.slice(cursor));
     }
 
-    function getSummaryTeamClasses(result, playsToday) {
+    function getSummaryTeamClasses(teamId, result) {
         const classes = ["pick-chip", "summary-team-pill"];
-
-        if (playsToday) {
-            classes.push("pick-chip--today");
-        } else if (result.eliminated) {
-            classes.push("pick-chip--eliminated");
-        } else if (result.reachedRoundOf32) {
-            classes.push("pick-chip--clinched");
-        } else {
-            classes.push("pick-chip--group-active");
-        }
+        classes.push(getPickChipStatusClass(teamId, result));
 
         return classes.join(" ");
     }
@@ -695,16 +750,22 @@
     function renderAliveStatusIcon(pick) {
         const teamLabel = pick.team?.name || pick.teamId || "Pending pick";
         const scoreLabel = pick.team ? Number(pick.score) || 0 : "—";
+        const status = getTeamVisualStatus(pick.teamId, pick.result);
+        const statusLabel = getTeamStatusLabel(pick.teamId, pick.result).toLowerCase();
 
-        if (pick.eliminated) {
-            return `<span class="qualification-x alive-status-icon" title="${escapeHtml(`${teamLabel}: ${scoreLabel} points, eliminated from Round of 32`)}" aria-label="${escapeHtml(`${teamLabel}: ${scoreLabel} points, eliminated from Round of 32`)}">${escapeHtml(scoreLabel)}</span>`;
+        if (status === "eliminated") {
+            return `<span class="qualification-x alive-status-icon" title="${escapeHtml(`${teamLabel}: ${scoreLabel} points, ${statusLabel}`)}" aria-label="${escapeHtml(`${teamLabel}: ${scoreLabel} points, ${statusLabel}`)}">${escapeHtml(scoreLabel)}</span>`;
         }
 
-        if (pick.result?.reachedRoundOf32) {
-            return `<span class="qualification-check alive-status-icon" title="${escapeHtml(`${teamLabel}: ${scoreLabel} points, clinched Round of 32`)}" aria-label="${escapeHtml(`${teamLabel}: ${scoreLabel} points, clinched Round of 32`)}">${escapeHtml(scoreLabel)}</span>`;
+        if (status === "playing-today") {
+            return `<span class="qualification-today alive-status-icon" title="${escapeHtml(`${teamLabel}: ${scoreLabel} points, ${statusLabel}`)}" aria-label="${escapeHtml(`${teamLabel}: ${scoreLabel} points, ${statusLabel}`)}">${escapeHtml(scoreLabel)}</span>`;
         }
 
-        return `<span class="qualification-pending alive-status-icon" title="${escapeHtml(`${teamLabel}: ${scoreLabel} points, pending Round of 32 status`)}" aria-label="${escapeHtml(`${teamLabel}: ${scoreLabel} points, pending Round of 32 status`)}">${escapeHtml(scoreLabel)}</span>`;
+        if (status === "advanced") {
+            return `<span class="qualification-check alive-status-icon" title="${escapeHtml(`${teamLabel}: ${scoreLabel} points, ${statusLabel}`)}" aria-label="${escapeHtml(`${teamLabel}: ${scoreLabel} points, ${statusLabel}`)}">${escapeHtml(scoreLabel)}</span>`;
+        }
+
+        return `<span class="qualification-pending alive-status-icon" title="${escapeHtml(`${teamLabel}: ${scoreLabel} points, ${statusLabel}`)}" aria-label="${escapeHtml(`${teamLabel}: ${scoreLabel} points, ${statusLabel}`)}">${escapeHtml(scoreLabel)}</span>`;
     }
 
     function renderTeamScores(teamScores) {
@@ -747,7 +808,7 @@
             return `
                 <tr class="${rowClasses.join(" ")}" data-team-id="${escapeHtml(teamScore.team.id)}" tabindex="0" role="button" aria-expanded="${isExpanded}" aria-controls="team-details-${escapeHtml(teamScore.team.id)}">
                     <td data-label="Team">
-                        <span class="${getTeamCodeClasses(result, teamScore.playsToday)}">${escapeHtml(teamScore.team.id)}</span>
+                        <span class="${getTeamCodeClasses(teamScore.team.id, result)}">${escapeHtml(teamScore.team.id)}</span>
                     </td>
                     <td data-label="Points" class="numeric strong">${teamScore.points}</td>
                     <td data-label="R32 Bid" class="numeric strong">${formatQualificationBid(teamScore.team.id, result)}</td>
@@ -947,15 +1008,7 @@
         }
 
         const classes = ["pick-chip"];
-        if (state.todayTeamIds.has(pick.team.id)) {
-            classes.push("pick-chip--today");
-        } else if (pick.eliminated) {
-            classes.push("pick-chip--eliminated");
-        } else if (pick.result.reachedRoundOf32) {
-            classes.push("pick-chip--clinched");
-        } else {
-            classes.push("pick-chip--group-active");
-        }
+        classes.push(getPickChipStatusClass(pick.team.id, pick.result));
 
         return `
             <tr>
@@ -1002,39 +1055,107 @@
     }
 
     function getQualificationSortValue(pick) {
-        if (pick.result?.reachedRoundOf32) {
-            return 100;
-        }
-
         if (pick.result?.eliminated) {
             return 0;
+        }
+
+        if (pick.result?.reachedRoundOf32) {
+            return 100;
         }
 
         return getQualificationBid(pick.teamId);
     }
 
     function renderTeamStatus(result) {
-        if (result.eliminated) {
-            return `<span class="status-badge status-badge--eliminated">Eliminated</span>`;
-        }
-
-        return `<span class="status-badge status-badge--alive">Alive</span>`;
+        return `<span class="status-badge status-badge--${getTeamVisualStatus(result.teamId, result)}">${escapeHtml(getTeamStatusLabel(result.teamId, result))}</span>`;
     }
 
-    function getTeamCodeClasses(result, playsToday) {
+    function getTeamCodeClasses(teamId, result) {
         const classes = ["team-code"];
-
-        if (playsToday) {
-            classes.push("team-code--today");
-        } else if (result.eliminated) {
-            classes.push("team-code--eliminated");
-        } else if (result.reachedRoundOf32) {
-            classes.push("team-code--clinched");
-        } else {
-            classes.push("team-code--group-active");
-        }
+        classes.push(getTeamCodeStatusClass(teamId, result));
 
         return classes.join(" ");
+    }
+
+    function getTeamVisualStatus(teamId, result) {
+        if (result?.eliminated) {
+            return "eliminated";
+        }
+
+        if (state.todayPendingTeamIds.has(teamId) && isTeamInActiveRound(result)) {
+            return "playing-today";
+        }
+
+        if (state.activeKnockoutRound && result?.[state.activeKnockoutRound.nextKey]) {
+            return "advanced";
+        }
+
+        if (state.activeKnockoutRound && result?.[state.activeKnockoutRound.reachedKey]) {
+            return "pending";
+        }
+
+        return "pending";
+    }
+
+    function isTeamInActiveRound(result) {
+        return Boolean(
+            state.activeKnockoutRound
+            && result?.[state.activeKnockoutRound.reachedKey]
+            && !result?.[state.activeKnockoutRound.nextKey]
+            && !result?.eliminated
+        );
+    }
+
+    function getTeamStatusLabel(teamId, result) {
+        const status = getTeamVisualStatus(teamId, result);
+
+        if (status === "eliminated") {
+            return "Eliminated";
+        }
+
+        if (status === "playing-today") {
+            return "Plays today";
+        }
+
+        if (status === "advanced") {
+            return `Into ${state.activeKnockoutRound?.nextLabel || "next round"}`;
+        }
+
+        return `Still in ${state.activeKnockoutRound?.currentLabel || "current round"}`;
+    }
+
+    function getPickChipStatusClass(teamId, result) {
+        const status = getTeamVisualStatus(teamId, result);
+        if (status === "eliminated") {
+            return "pick-chip--eliminated";
+        }
+
+        if (status === "playing-today") {
+            return "pick-chip--today";
+        }
+
+        if (status === "advanced") {
+            return "pick-chip--clinched";
+        }
+
+        return "pick-chip--group-active";
+    }
+
+    function getTeamCodeStatusClass(teamId, result) {
+        const status = getTeamVisualStatus(teamId, result);
+        if (status === "eliminated") {
+            return "team-code--eliminated";
+        }
+
+        if (status === "playing-today") {
+            return "team-code--today";
+        }
+
+        if (status === "advanced") {
+            return "team-code--clinched";
+        }
+
+        return "team-code--group-active";
     }
 
     function getOpponentName(match, teamId) {
