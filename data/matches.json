@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-30T08:32:13.807Z",
+  "lastUpdated": "2026-06-30T17:46:12.417Z",
   "matches": [
     {
       "id": "760415",
@@ -1222,15 +1222,15 @@
       "date": "2026-06-30T17:00Z",
       "stage": "round-of-32",
       "stageLabel": "Round of 32",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "45'+1'",
       "completed": false,
       "homeTeamId": "CIV",
       "homeTeamName": "Ivory Coast",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "NOR",
       "awayTeamName": "Norway",
-      "awayScore": null,
+      "awayScore": 1,
       "venue": "AT&T Stadium"
     },
     {
