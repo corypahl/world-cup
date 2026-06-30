@@ -695,12 +695,12 @@
         const teamLabel = pick.team?.name || pick.teamId || "Pending pick";
         const scoreLabel = pick.team ? Number(pick.score) || 0 : "—";
 
-        if (pick.result?.reachedRoundOf32) {
-            return `<span class="qualification-check alive-status-icon" title="${escapeHtml(`${teamLabel}: ${scoreLabel} points, clinched Round of 32`)}" aria-label="${escapeHtml(`${teamLabel}: ${scoreLabel} points, clinched Round of 32`)}">${escapeHtml(scoreLabel)}</span>`;
-        }
-
         if (pick.eliminated) {
             return `<span class="qualification-x alive-status-icon" title="${escapeHtml(`${teamLabel}: ${scoreLabel} points, eliminated from Round of 32`)}" aria-label="${escapeHtml(`${teamLabel}: ${scoreLabel} points, eliminated from Round of 32`)}">${escapeHtml(scoreLabel)}</span>`;
+        }
+
+        if (pick.result?.reachedRoundOf32) {
+            return `<span class="qualification-check alive-status-icon" title="${escapeHtml(`${teamLabel}: ${scoreLabel} points, clinched Round of 32`)}" aria-label="${escapeHtml(`${teamLabel}: ${scoreLabel} points, clinched Round of 32`)}">${escapeHtml(scoreLabel)}</span>`;
         }
 
         return `<span class="qualification-pending alive-status-icon" title="${escapeHtml(`${teamLabel}: ${scoreLabel} points, pending Round of 32 status`)}" aria-label="${escapeHtml(`${teamLabel}: ${scoreLabel} points, pending Round of 32 status`)}">${escapeHtml(scoreLabel)}</span>`;
@@ -915,12 +915,12 @@
     }
 
     function formatQualificationBid(teamId, result) {
-        if (result?.reachedRoundOf32) {
-            return `<span class="qualification-check" title="Clinched Round of 32" aria-label="Clinched Round of 32">✓</span>`;
-        }
-
         if (result?.eliminated) {
             return `<span class="qualification-x" title="Eliminated from Round of 32" aria-label="Eliminated from Round of 32">×</span>`;
+        }
+
+        if (result?.reachedRoundOf32) {
+            return `<span class="qualification-check" title="Clinched Round of 32" aria-label="Clinched Round of 32">✓</span>`;
         }
 
         const yesBidPercent = getQualificationBid(teamId);
