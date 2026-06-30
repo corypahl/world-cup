@@ -163,6 +163,7 @@
                 team,
                 result,
                 points: window.WorldCupScoring.calculateTeamScore(result, data.scoringConfig),
+                pointBreakdown: buildTeamPointBreakdown(result, data.scoringConfig),
                 roundReached: window.WorldCupScoring.getRoundReached(result),
                 playsToday: state.todayTeamIds.has(team.id),
                 matches: teamMatches,
@@ -788,6 +789,7 @@
                             <span class="detail-label">Round</span>
                             <strong>${escapeHtml(teamScore.roundReached)}</strong>
                         </div>
+                        ${renderTeamPointBreakdown(teamScore)}
                         <div class="detail-group detail-group--picks detail-group--picked-by">
                             <span class="detail-label">Picked By</span>
                             <div class="pick-strip">${pickedBy}</div>
@@ -796,6 +798,58 @@
                     </div>
                 </td>
             </tr>
+        `;
+    }
+
+    function buildTeamPointBreakdown(result, config) {
+        const rows = [
+            buildPointBreakdownRow("Group wins", Number(result.groupWins) || 0, Number(config.groupWin) || 0),
+            buildPointBreakdownRow("Group draws", Number(result.groupDraws) || 0, Number(config.groupDraw) || 0),
+            buildPointBreakdownRow("Goals scored", Number(result.goalsFor) || 0, Number(config.goal) || 0)
+        ];
+
+        window.WorldCupScoring.ADVANCEMENT_STEPS.forEach((step) => {
+            const earned = Boolean(result[step.resultKey]);
+            const value = Number(config[step.configKey]) || 0;
+            rows.push({
+                label: step.label,
+                detail: earned ? "Earned" : "Not earned",
+                points: earned ? value : 0
+            });
+        });
+
+        return rows;
+    }
+
+    function buildPointBreakdownRow(label, count, value) {
+        return {
+            label,
+            detail: `${count} × ${value}`,
+            points: count * value
+        };
+    }
+
+    function renderTeamPointBreakdown(teamScore) {
+        const rows = teamScore.pointBreakdown || [];
+
+        return `
+            <div class="detail-group detail-group--points-breakdown">
+                <span class="detail-label">Points Breakdown</span>
+                <div class="points-breakdown" aria-label="${escapeHtml(`${teamScore.team.name} points breakdown`)}">
+                    ${rows.map((row) => `
+                        <div class="points-breakdown__row">
+                            <span>${escapeHtml(row.label)}</span>
+                            <span>${escapeHtml(row.detail)}</span>
+                            <strong>${Number(row.points) || 0}</strong>
+                        </div>
+                    `).join("")}
+                    <div class="points-breakdown__row points-breakdown__row--total">
+                        <span>Total</span>
+                        <span></span>
+                        <strong>${teamScore.points}</strong>
+                    </div>
+                </div>
+            </div>
         `;
     }
 

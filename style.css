@@ -464,6 +464,47 @@ tbody tr:hover {
     grid-column: 1 / -1;
 }
 
+.detail-group--points-breakdown {
+    grid-column: 1 / -1;
+}
+
+.points-breakdown {
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+    background: #fffdf4;
+}
+
+.points-breakdown__row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(5.5rem, auto) minmax(3rem, auto);
+    gap: 0.75rem;
+    align-items: center;
+    border-bottom: 1px solid var(--line);
+    padding: 0.42rem 0.55rem;
+    font-size: 0.84rem;
+}
+
+.points-breakdown__row:last-child {
+    border-bottom: 0;
+}
+
+.points-breakdown__row span:nth-child(2) {
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-align: right;
+}
+
+.points-breakdown__row strong {
+    text-align: right;
+}
+
+.points-breakdown__row--total {
+    background: #f8f1ce;
+    font-weight: 900;
+}
+
 .budget-note,
 .muted {
     display: block;
