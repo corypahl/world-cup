@@ -679,10 +679,17 @@
     function renderLeaderboardDetails(entry) {
         const picks = entry.pickDetails.length
             ? [...entry.pickDetails]
-                .sort((a, b) => getQualificationSortValue(b) - getQualificationSortValue(a))
+                .sort((a, b) => {
+                    const scoreDelta = b.score - a.score;
+                    if (scoreDelta !== 0) {
+                        return scoreDelta;
+                    }
+
+                    return a.teamId.localeCompare(b.teamId);
+                })
                 .map(renderDetailedPickRow)
                 .join("")
-            : `<tr><td colspan="5" class="empty-cell">Awaiting picks</td></tr>`;
+            : `<tr><td colspan="4" class="empty-cell">Awaiting picks</td></tr>`;
 
         return `
             <tr class="detail-row" id="details-${escapeHtml(entry.participant.id)}">
@@ -696,7 +703,6 @@
                                         <th>Points</th>
                                         <th>Record</th>
                                         <th>Goals</th>
-                                        <th>R32 Bid</th>
                                     </tr>
                                 </thead>
                                 <tbody>${picks}</tbody>
@@ -792,7 +798,7 @@
         });
 
         if (!filteredScores.length) {
-            tbody.innerHTML = `<tr><td colspan="4" class="empty-cell">No teams match that search.</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="3" class="empty-cell">No teams match that search.</td></tr>`;
             return;
         }
 
@@ -811,7 +817,6 @@
                         <span class="${getTeamCodeClasses(teamScore.team.id, result)}">${escapeHtml(teamScore.team.id)}</span>
                     </td>
                     <td data-label="Points" class="numeric strong">${teamScore.points}</td>
-                    <td data-label="R32 Bid" class="numeric strong">${formatQualificationBid(teamScore.team.id, result)}</td>
                     <td data-label="Picked By" class="numeric strong">${teamScore.pickedBy.length}</td>
                 </tr>
                 ${isExpanded ? renderTeamDetails(teamScore) : ""}
@@ -827,7 +832,7 @@
 
         return `
             <tr class="detail-row" id="team-details-${escapeHtml(teamScore.team.id)}">
-                <td colspan="4" class="detail-cell">
+                <td colspan="3" class="detail-cell">
                     <div class="expanded-details team-details">
                         <div class="detail-group detail-group--picks">
                             <span class="detail-label">Team</span>
@@ -1016,30 +1021,8 @@
                 <td class="numeric strong">${pick.score}</td>
                 <td class="numeric">${formatRecord(pick.result)}</td>
                 <td class="numeric">${pick.goals}</td>
-                <td class="numeric strong">${formatQualificationBid(pick.team.id, pick.result)}</td>
             </tr>
         `;
-    }
-
-    function formatQualificationBid(teamId, result) {
-        if (result?.eliminated) {
-            return `<span class="qualification-x" title="Eliminated from Round of 32" aria-label="Eliminated from Round of 32">×</span>`;
-        }
-
-        if (result?.reachedRoundOf32) {
-            return `<span class="qualification-check" title="Clinched Round of 32" aria-label="Clinched Round of 32">✓</span>`;
-        }
-
-        const yesBidPercent = getQualificationBid(teamId);
-        if (yesBidPercent >= 0) {
-            return `${yesBidPercent}%`;
-        }
-
-        return "—";
-    }
-
-    function getQualificationBid(teamId) {
-        return getQualificationBidFromMap(state.qualificationOdds, teamId);
     }
 
     function getQualificationBidFromMap(qualificationOdds, teamId) {
@@ -1052,18 +1035,6 @@
         }
 
         return -1;
-    }
-
-    function getQualificationSortValue(pick) {
-        if (pick.result?.eliminated) {
-            return 0;
-        }
-
-        if (pick.result?.reachedRoundOf32) {
-            return 100;
-        }
-
-        return getQualificationBid(pick.teamId);
     }
 
     function renderTeamStatus(result) {
