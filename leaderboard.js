@@ -1138,12 +1138,18 @@
             return "";
         }
 
-        return `${Number(match.awayScore)}-${Number(match.homeScore)}`;
+        const baseScore = `${Number(match.awayScore)}-${Number(match.homeScore)}`;
+        if (!hasShootoutScore(match)) {
+            return baseScore;
+        }
+
+        return `${baseScore} (${Number(match.awayShootoutScore)}-${Number(match.homeShootoutScore)} pens)`;
     }
 
     function getTeamMatchResult(match, teamId) {
         const teamScore = match.homeTeamId === teamId ? Number(match.homeScore) : Number(match.awayScore);
         const opponentScore = match.homeTeamId === teamId ? Number(match.awayScore) : Number(match.homeScore);
+        const shootoutSuffix = getTeamShootoutSuffix(match, teamId);
 
         if (teamScore > opponentScore) {
             return `W ${teamScore}-${opponentScore}`;
@@ -1153,7 +1159,30 @@
             return `L ${teamScore}-${opponentScore}`;
         }
 
+        if (match.winnerTeamId) {
+            return `${match.winnerTeamId === teamId ? "W" : "L"} ${teamScore}-${opponentScore}${shootoutSuffix}`;
+        }
+
         return `D ${teamScore}-${opponentScore}`;
+    }
+
+    function hasShootoutScore(match) {
+        return Number.isFinite(Number(match.homeShootoutScore)) && Number.isFinite(Number(match.awayShootoutScore));
+    }
+
+    function getTeamShootoutSuffix(match, teamId) {
+        if (!hasShootoutScore(match)) {
+            return "";
+        }
+
+        const teamShootoutScore = match.homeTeamId === teamId
+            ? Number(match.homeShootoutScore)
+            : Number(match.awayShootoutScore);
+        const opponentShootoutScore = match.homeTeamId === teamId
+            ? Number(match.awayShootoutScore)
+            : Number(match.homeShootoutScore);
+
+        return ` (${teamShootoutScore}-${opponentShootoutScore} pens)`;
     }
 
     function renderFatalError(error) {

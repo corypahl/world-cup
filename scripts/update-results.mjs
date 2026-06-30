@@ -136,6 +136,11 @@ function getDisplayScore(competitor, competition) {
     return state === "pre" ? null : getScore(competitor);
 }
 
+function getShootoutScore(competitor) {
+    const parsed = Number(competitor?.shootoutScore);
+    return Number.isFinite(parsed) ? parsed : null;
+}
+
 function buildTeamResolver(teams) {
     const ids = new Set(teams.map((team) => team.id));
     const names = new Map();
@@ -212,6 +217,16 @@ function getVenueName(event, competition) {
 }
 
 function buildMatch(event, competition, competitors, homeId, awayId, teamNames, completed) {
+    const score = {
+        home: getScore(competitors.home),
+        away: getScore(competitors.away)
+    };
+    const homeShootoutScore = getShootoutScore(competitors.home);
+    const awayShootoutScore = getShootoutScore(competitors.away);
+    const hasShootoutScore = homeShootoutScore !== null && awayShootoutScore !== null;
+    const winnerTeamId = completed ? getWinnerId(homeId, awayId, competitors.home, competitors.away, score) : null;
+    const decidedByShootout = completed && hasShootoutScore;
+
     return {
         id: event.id || competition.id,
         date: competition.date || event.date,
@@ -226,6 +241,13 @@ function buildMatch(event, competition, competitors, homeId, awayId, teamNames, 
         awayTeamId: awayId,
         awayTeamName: teamNames.get(awayId) || awayId,
         awayScore: getDisplayScore(competitors.away, competition),
+        ...(decidedByShootout ? {
+            homeShootoutScore,
+            awayShootoutScore,
+            winnerTeamId,
+            decidedByShootout
+        } : {}),
+        ...(!decidedByShootout && winnerTeamId && score.home === score.away ? { winnerTeamId } : {}),
         venue: getVenueName(event, competition)
     };
 }
