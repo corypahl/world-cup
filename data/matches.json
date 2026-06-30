@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-29T23:40:04.755Z",
+  "lastUpdated": "2026-06-30T01:35:24.499Z",
   "matches": [
     {
       "id": "760415",
@@ -1206,15 +1206,15 @@
       "date": "2026-06-30T01:00Z",
       "stage": "round-of-32",
       "stageLabel": "Round of 32",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "35'",
       "completed": false,
       "homeTeamId": "NED",
       "homeTeamName": "Netherlands",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "MAR",
       "awayTeamName": "Morocco",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "Estadio BBVA"
     },
     {
