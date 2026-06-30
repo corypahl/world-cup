@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-30T19:30:22.177Z",
+  "lastUpdated": "2026-06-30T21:18:40.454Z",
   "matches": [
     {
       "id": "760415",
@@ -1238,15 +1238,15 @@
       "date": "2026-06-30T21:00Z",
       "stage": "round-of-32",
       "stageLabel": "Round of 32",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "18'",
       "completed": false,
       "homeTeamId": "FRA",
       "homeTeamName": "France",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "SWE",
       "awayTeamName": "Sweden",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "MetLife Stadium"
     },
     {
