@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-01T08:50:44.573Z",
+  "lastUpdated": "2026-07-01T17:46:16.174Z",
   "matches": [
     {
       "id": "760415",
@@ -1278,15 +1278,15 @@
       "date": "2026-07-01T16:00Z",
       "stage": "round-of-32",
       "stageLabel": "Round of 32",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "82'",
       "completed": false,
       "homeTeamId": "ENG",
       "homeTeamName": "England",
-      "homeScore": null,
+      "homeScore": 1,
       "awayTeamId": "COD",
       "awayTeamName": "DR Congo",
-      "awayScore": null,
+      "awayScore": 1,
       "venue": "Mercedes-Benz Stadium"
     },
     {
