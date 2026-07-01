@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-01T02:03:38.446Z",
+  "lastUpdated": "2026-07-01T06:43:14.737Z",
   "matches": [
     {
       "id": "760415",
@@ -1262,12 +1262,12 @@
       "date": "2026-07-01T02:00Z",
       "stage": "round-of-32",
       "stageLabel": "Round of 32",
-      "status": "in",
-      "statusLabel": "2'",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "FT",
+      "completed": true,
       "homeTeamId": "MEX",
       "homeTeamName": "Mexico",
-      "homeScore": 0,
+      "homeScore": 2,
       "awayTeamId": "ECU",
       "awayTeamName": "Ecuador",
       "awayScore": 0,
