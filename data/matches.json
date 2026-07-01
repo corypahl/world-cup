@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-01T21:06:31.554Z",
+  "lastUpdated": "2026-07-01T22:38:38.363Z",
   "matches": [
     {
       "id": "760415",
@@ -1295,14 +1295,14 @@
       "stage": "round-of-32",
       "stageLabel": "Round of 32",
       "status": "in",
-      "statusLabel": "HT",
+      "statusLabel": "120'+1'",
       "completed": false,
       "homeTeamId": "BEL",
       "homeTeamName": "Belgium",
-      "homeScore": 0,
+      "homeScore": 2,
       "awayTeamId": "SEN",
       "awayTeamName": "Senegal",
-      "awayScore": 1,
+      "awayScore": 2,
       "venue": "Lumen Field"
     },
     {
