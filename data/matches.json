@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-30T23:57:38.977Z",
+  "lastUpdated": "2026-07-01T02:03:38.446Z",
   "matches": [
     {
       "id": "760415",
@@ -1259,18 +1259,18 @@
     },
     {
       "id": "760491",
-      "date": "2026-07-01T01:00Z",
+      "date": "2026-07-01T02:00Z",
       "stage": "round-of-32",
       "stageLabel": "Round of 32",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "2'",
       "completed": false,
       "homeTeamId": "MEX",
       "homeTeamName": "Mexico",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "ECU",
       "awayTeamName": "Ecuador",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "Estadio Banorte"
     },
     {
