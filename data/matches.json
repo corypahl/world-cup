@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-02T18:55:09.250Z",
+  "lastUpdated": "2026-07-02T20:14:24.338Z",
   "matches": [
     {
       "id": "760415",
@@ -1326,15 +1326,15 @@
       "date": "2026-07-02T19:00Z",
       "stage": "round-of-32",
       "stageLabel": "Round of 32",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "52'",
       "completed": false,
       "homeTeamId": "ESP",
       "homeTeamName": "Spain",
-      "homeScore": null,
+      "homeScore": 1,
       "awayTeamId": "AUT",
       "awayTeamName": "Austria",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "SoFi Stadium"
     },
     {
