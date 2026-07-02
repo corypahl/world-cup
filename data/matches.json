@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-01T23:53:58.216Z",
+  "lastUpdated": "2026-07-02T01:56:56.966Z",
   "matches": [
     {
       "id": "760415",
@@ -1310,15 +1310,15 @@
       "date": "2026-07-02T00:00Z",
       "stage": "round-of-32",
       "stageLabel": "Round of 32",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "90'",
       "completed": false,
       "homeTeamId": "USA",
       "homeTeamName": "USA",
-      "homeScore": null,
+      "homeScore": 2,
       "awayTeamId": "BIH",
       "awayTeamName": "Bosnia & Herzegovina",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "Levi's Stadium"
     },
     {
