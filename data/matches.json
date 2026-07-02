@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-02T20:14:24.338Z",
+  "lastUpdated": "2026-07-02T21:32:24.062Z",
   "matches": [
     {
       "id": "760415",
@@ -1326,12 +1326,12 @@
       "date": "2026-07-02T19:00Z",
       "stage": "round-of-32",
       "stageLabel": "Round of 32",
-      "status": "in",
-      "statusLabel": "52'",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "FT",
+      "completed": true,
       "homeTeamId": "ESP",
       "homeTeamName": "Spain",
-      "homeScore": 1,
+      "homeScore": 3,
       "awayTeamId": "AUT",
       "awayTeamName": "Austria",
       "awayScore": 0,
