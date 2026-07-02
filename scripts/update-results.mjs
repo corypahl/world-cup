@@ -284,11 +284,22 @@ function applyGroupRecord(result, scored, conceded) {
     }
 }
 
-function applyKnockoutElimination(resultMap, winnerId, homeId, awayId) {
+function applyKnockoutElimination(resultMap, winnerId, homeId, awayId, stageKey) {
     const loserId = winnerId === homeId ? awayId : winnerId === awayId ? homeId : null;
 
     if (loserId) {
         resultMap.get(loserId).eliminated = true;
+    }
+
+    if (!winnerId || !stageKey) {
+        return;
+    }
+
+    const currentStageIndex = stageOrder.indexOf(stageKey);
+    const nextStageKey = stageOrder[currentStageIndex + 1];
+
+    if (nextStageKey) {
+        resultMap.get(winnerId)[nextStageKey] = true;
     }
 }
 
@@ -395,7 +406,7 @@ async function main() {
         awayResult.goalsFor += score.away;
 
         const winnerId = getWinnerId(homeId, awayId, competitors.home, competitors.away, score);
-        applyKnockoutElimination(resultMap, winnerId, homeId, awayId);
+        applyKnockoutElimination(resultMap, winnerId, homeId, awayId, stageKey);
 
         if (event.season?.slug === "final" && winnerId) {
             resultMap.get(winnerId).wonWorldCup = true;
