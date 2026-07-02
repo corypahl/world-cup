@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-02T22:44:28.575Z",
+  "lastUpdated": "2026-07-02T23:21:16.904Z",
   "matches": [
     {
       "id": "760415",
@@ -1342,15 +1342,15 @@
       "date": "2026-07-02T23:00Z",
       "stage": "round-of-32",
       "stageLabel": "Round of 32",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "21'",
       "completed": false,
       "homeTeamId": "POR",
       "homeTeamName": "Portugal",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "CRO",
       "awayTeamName": "Croatia",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "BMO Field"
     },
     {
