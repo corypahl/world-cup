@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-03T01:26:56.350Z",
+  "lastUpdated": "2026-07-03T05:08:21.657Z",
   "matches": [
     {
       "id": "760415",
@@ -1358,15 +1358,15 @@
       "date": "2026-07-03T03:00Z",
       "stage": "round-of-32",
       "stageLabel": "Round of 32",
-      "status": "pre",
-      "statusLabel": "Scheduled",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "FT",
+      "completed": true,
       "homeTeamId": "SUI",
       "homeTeamName": "Switzerland",
-      "homeScore": null,
+      "homeScore": 2,
       "awayTeamId": "ALG",
       "awayTeamName": "Algeria",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "BC Place"
     },
     {
