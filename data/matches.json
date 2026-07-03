@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-03T21:21:41.865Z",
+  "lastUpdated": "2026-07-03T22:30:55.843Z",
   "matches": [
     {
       "id": "760415",
@@ -1394,15 +1394,15 @@
       "date": "2026-07-03T22:00Z",
       "stage": "round-of-32",
       "stageLabel": "Round of 32",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "31'",
       "completed": false,
       "homeTeamId": "ARG",
       "homeTeamName": "Argentina",
-      "homeScore": null,
+      "homeScore": 1,
       "awayTeamId": "CPV",
       "awayTeamName": "Cape Verde",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "Hard Rock Stadium"
     },
     {
