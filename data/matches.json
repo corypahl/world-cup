@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-03T20:02:18.297Z",
+  "lastUpdated": "2026-07-03T21:21:41.865Z",
   "matches": [
     {
       "id": "760415",
@@ -1374,15 +1374,19 @@
       "date": "2026-07-03T18:00Z",
       "stage": "round-of-32",
       "stageLabel": "Round of 32",
-      "status": "in",
-      "statusLabel": "ET",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "FT-Pens",
+      "completed": true,
       "homeTeamId": "AUS",
       "homeTeamName": "Australia",
       "homeScore": 1,
       "awayTeamId": "EGY",
       "awayTeamName": "Egypt",
       "awayScore": 1,
+      "homeShootoutScore": 2,
+      "awayShootoutScore": 4,
+      "winnerTeamId": "EGY",
+      "decidedByShootout": true,
       "venue": "AT&T Stadium"
     },
     {
