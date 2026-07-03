@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-02T23:56:21.705Z",
+  "lastUpdated": "2026-07-03T01:26:56.350Z",
   "matches": [
     {
       "id": "760415",
@@ -1342,15 +1342,15 @@
       "date": "2026-07-02T23:00Z",
       "stage": "round-of-32",
       "stageLabel": "Round of 32",
-      "status": "in",
-      "statusLabel": "HT",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "FT",
+      "completed": true,
       "homeTeamId": "POR",
       "homeTeamName": "Portugal",
-      "homeScore": 0,
+      "homeScore": 2,
       "awayTeamId": "CRO",
       "awayTeamName": "Croatia",
-      "awayScore": 0,
+      "awayScore": 1,
       "venue": "BMO Field"
     },
     {
@@ -1480,6 +1480,22 @@
       "awayTeamName": "England",
       "awayScore": null,
       "venue": "Estadio Banorte"
+    },
+    {
+      "id": "760506",
+      "date": "2026-07-06T19:00Z",
+      "stage": "round-of-16",
+      "stageLabel": "Round of 16",
+      "status": "pre",
+      "statusLabel": "Scheduled",
+      "completed": false,
+      "homeTeamId": "POR",
+      "homeTeamName": "Portugal",
+      "homeScore": null,
+      "awayTeamId": "ESP",
+      "awayTeamName": "Spain",
+      "awayScore": null,
+      "venue": "AT&T Stadium"
     },
     {
       "id": "760507",
