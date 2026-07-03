@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-03T18:38:20.683Z",
+  "lastUpdated": "2026-07-03T20:02:18.297Z",
   "matches": [
     {
       "id": "760415",
@@ -1375,11 +1375,11 @@
       "stage": "round-of-32",
       "stageLabel": "Round of 32",
       "status": "in",
-      "statusLabel": "38'",
+      "statusLabel": "ET",
       "completed": false,
       "homeTeamId": "AUS",
       "homeTeamName": "Australia",
-      "homeScore": 0,
+      "homeScore": 1,
       "awayTeamId": "EGY",
       "awayTeamName": "Egypt",
       "awayScore": 1,
