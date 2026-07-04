@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-03T23:40:50.482Z",
+  "lastUpdated": "2026-07-04T01:14:36.792Z",
   "matches": [
     {
       "id": "760415",
@@ -1394,15 +1394,15 @@
       "date": "2026-07-03T22:00Z",
       "stage": "round-of-32",
       "stageLabel": "Round of 32",
-      "status": "in",
-      "statusLabel": "80'",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "AET",
+      "completed": true,
       "homeTeamId": "ARG",
       "homeTeamName": "Argentina",
-      "homeScore": 1,
+      "homeScore": 3,
       "awayTeamId": "CPV",
       "awayTeamName": "Cape Verde",
-      "awayScore": 1,
+      "awayScore": 2,
       "venue": "Hard Rock Stadium"
     },
     {
@@ -1516,6 +1516,22 @@
       "awayTeamName": "Belgium",
       "awayScore": null,
       "venue": "Lumen Field"
+    },
+    {
+      "id": "760509",
+      "date": "2026-07-07T16:00Z",
+      "stage": "round-of-16",
+      "stageLabel": "Round of 16",
+      "status": "pre",
+      "statusLabel": "Scheduled",
+      "completed": false,
+      "homeTeamId": "ARG",
+      "homeTeamName": "Argentina",
+      "homeScore": null,
+      "awayTeamId": "EGY",
+      "awayTeamName": "Egypt",
+      "awayScore": null,
+      "venue": "Mercedes-Benz Stadium"
     }
   ]
 }
