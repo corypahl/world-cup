@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-04T17:55:14.807Z",
+  "lastUpdated": "2026-07-04T18:55:54.495Z",
   "matches": [
     {
       "id": "760415",
@@ -1427,14 +1427,14 @@
       "stage": "round-of-16",
       "stageLabel": "Round of 16",
       "status": "in",
-      "statusLabel": "HT",
+      "statusLabel": "90'+1'",
       "completed": false,
       "homeTeamId": "CAN",
       "homeTeamName": "Canada",
       "homeScore": 0,
       "awayTeamId": "MAR",
       "awayTeamName": "Morocco",
-      "awayScore": 0,
+      "awayScore": 2,
       "venue": "NRG Stadium"
     },
     {
