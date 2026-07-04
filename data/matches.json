@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-04T20:05:04.580Z",
+  "lastUpdated": "2026-07-04T21:12:16.748Z",
   "matches": [
     {
       "id": "760415",
@@ -1442,15 +1442,15 @@
       "date": "2026-07-04T21:00Z",
       "stage": "round-of-16",
       "stageLabel": "Round of 16",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "8'",
       "completed": false,
       "homeTeamId": "PAR",
       "homeTeamName": "Paraguay",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "FRA",
       "awayTeamName": "France",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "Lincoln Financial Field"
     },
     {
