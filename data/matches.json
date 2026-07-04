@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-04T01:26:51.131Z",
+  "lastUpdated": "2026-07-04T05:01:52.180Z",
   "matches": [
     {
       "id": "760415",
@@ -1410,15 +1410,15 @@
       "date": "2026-07-04T01:30Z",
       "stage": "round-of-32",
       "stageLabel": "Round of 32",
-      "status": "pre",
-      "statusLabel": "Scheduled",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "FT",
+      "completed": true,
       "homeTeamId": "COL",
       "homeTeamName": "Colombia",
-      "homeScore": null,
+      "homeScore": 1,
       "awayTeamId": "GHA",
       "awayTeamName": "Ghana",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "GEHA Field at Arrowhead Stadium"
     },
     {
@@ -1532,6 +1532,22 @@
       "awayTeamName": "Egypt",
       "awayScore": null,
       "venue": "Mercedes-Benz Stadium"
+    },
+    {
+      "id": "760508",
+      "date": "2026-07-07T20:00Z",
+      "stage": "round-of-16",
+      "stageLabel": "Round of 16",
+      "status": "pre",
+      "statusLabel": "Scheduled",
+      "completed": false,
+      "homeTeamId": "SUI",
+      "homeTeamName": "Switzerland",
+      "homeScore": null,
+      "awayTeamId": "COL",
+      "awayTeamName": "Colombia",
+      "awayScore": null,
+      "venue": "BC Place"
     }
   ]
 }
