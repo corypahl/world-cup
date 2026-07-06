@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-06T18:03:54.041Z",
+  "lastUpdated": "2026-07-06T20:12:21.043Z",
   "matches": [
     {
       "id": "760415",
@@ -1490,15 +1490,15 @@
       "date": "2026-07-06T19:00Z",
       "stage": "round-of-16",
       "stageLabel": "Round of 16",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "49'",
       "completed": false,
       "homeTeamId": "POR",
       "homeTeamName": "Portugal",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "ESP",
       "awayTeamName": "Spain",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "AT&T Stadium"
     },
     {
