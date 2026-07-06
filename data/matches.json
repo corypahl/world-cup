@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-06T01:22:32.266Z",
+  "lastUpdated": "2026-07-06T01:46:54.725Z",
   "matches": [
     {
       "id": "760415",
@@ -1475,14 +1475,14 @@
       "stage": "round-of-16",
       "stageLabel": "Round of 16",
       "status": "in",
-      "statusLabel": "23'",
+      "statusLabel": "45'+2'",
       "completed": false,
       "homeTeamId": "MEX",
       "homeTeamName": "Mexico",
-      "homeScore": 0,
+      "homeScore": 1,
       "awayTeamId": "ENG",
       "awayTeamName": "England",
-      "awayScore": 0,
+      "awayScore": 2,
       "venue": "Estadio Banorte"
     },
     {
