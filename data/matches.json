@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-07T22:21:05.408Z",
+  "lastUpdated": "2026-07-07T23:27:01.983Z",
   "matches": [
     {
       "id": "760415",
@@ -1538,15 +1538,19 @@
       "date": "2026-07-07T20:00Z",
       "stage": "round-of-16",
       "stageLabel": "Round of 16",
-      "status": "in",
-      "statusLabel": "107'",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "FT-Pens",
+      "completed": true,
       "homeTeamId": "SUI",
       "homeTeamName": "Switzerland",
       "homeScore": 0,
       "awayTeamId": "COL",
       "awayTeamName": "Colombia",
       "awayScore": 0,
+      "homeShootoutScore": 4,
+      "awayShootoutScore": 3,
+      "winnerTeamId": "SUI",
+      "decidedByShootout": true,
       "venue": "BC Place"
     },
     {
@@ -1596,6 +1600,22 @@
       "awayTeamName": "England",
       "awayScore": null,
       "venue": "Hard Rock Stadium"
+    },
+    {
+      "id": "760513",
+      "date": "2026-07-12T01:00Z",
+      "stage": "quarterfinals",
+      "stageLabel": "Quarterfinal",
+      "status": "pre",
+      "statusLabel": "Scheduled",
+      "completed": false,
+      "homeTeamId": "ARG",
+      "homeTeamName": "Argentina",
+      "homeScore": null,
+      "awayTeamId": "SUI",
+      "awayTeamName": "Switzerland",
+      "awayScore": null,
+      "venue": "GEHA Field at Arrowhead Stadium"
     }
   ]
 }
