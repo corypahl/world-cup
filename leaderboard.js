@@ -669,7 +669,7 @@
                         ${entry.totalPoints}
                         <span class="row-cue" aria-hidden="true">${isExpanded ? "Close" : "View"}</span>
                     </td>
-                    <td data-label="Status" class="alive-cell">${renderAliveStatusIcons(entry)}</td>
+                    <td data-label="Remaining" class="alive-cell">${renderRemainingTeamPills(entry)}</td>
                 </tr>
                 ${isExpanded ? renderLeaderboardDetails(entry) : ""}
             `;
@@ -772,6 +772,66 @@
         }
 
         return `<span class="qualification-pending alive-status-icon" title="${escapeHtml(`${teamLabel}: ${scoreLabel} points, ${statusLabel}`)}" aria-label="${escapeHtml(`${teamLabel}: ${scoreLabel} points, ${statusLabel}`)}">${escapeHtml(scoreLabel)}</span>`;
+    }
+
+    function renderRemainingTeamPills(entry) {
+        const remainingPicks = sortRemainingTeamPicks(entry.pickDetails)
+            .filter((pick) => pick.team && !pick.eliminated);
+        const summary = remainingPicks.length === 1
+            ? "1 team remaining"
+            : `${remainingPicks.length} teams remaining`;
+
+        if (!remainingPicks.length) {
+            return `<span class="remaining-teams-empty" aria-label="${escapeHtml(summary)}" title="${escapeHtml(summary)}">None</span>`;
+        }
+
+        return `
+            <div class="remaining-team-strip" aria-label="${escapeHtml(summary)}" title="${escapeHtml(summary)}">
+                ${remainingPicks.map(renderRemainingTeamPill).join("")}
+            </div>
+        `;
+    }
+
+    function sortRemainingTeamPicks(picks) {
+        return [...picks]
+            .map((pick, index) => ({ pick, index }))
+            .sort((a, b) => {
+                const statusDelta = getRemainingStatusWeight(b.pick) - getRemainingStatusWeight(a.pick);
+                if (statusDelta !== 0) {
+                    return statusDelta;
+                }
+
+                return a.index - b.index;
+            })
+            .map((entry) => entry.pick);
+    }
+
+    function getRemainingStatusWeight(pick) {
+        const status = getTeamVisualStatus(pick.teamId, pick.result);
+        if (status === "advanced") {
+            return 3;
+        }
+
+        if (status === "playing-today") {
+            return 2;
+        }
+
+        return 1;
+    }
+
+    function renderRemainingTeamPill(pick) {
+        const teamLabel = pick.team?.name || pick.teamId;
+        const teamCode = pick.team?.id || pick.teamId;
+        const statusLabel = getTeamStatusLabel(pick.teamId, pick.result).toLowerCase();
+
+        return `<span class="${getRemainingTeamPillClasses(pick.teamId, pick.result)}" title="${escapeHtml(`${teamLabel}: ${statusLabel}`)}" aria-label="${escapeHtml(`${teamLabel}: ${statusLabel}`)}">${escapeHtml(teamCode)}</span>`;
+    }
+
+    function getRemainingTeamPillClasses(teamId, result) {
+        const classes = ["pick-chip", "remaining-team-pill"];
+        classes.push(isTeamInActiveRound(result) ? "pick-chip--today" : getPickChipStatusClass(teamId, result));
+
+        return classes.join(" ");
     }
 
     function renderTeamScores(teamScores) {
