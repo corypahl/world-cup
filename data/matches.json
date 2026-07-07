@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-07T01:45:00.730Z",
+  "lastUpdated": "2026-07-07T02:27:42.484Z",
   "matches": [
     {
       "id": "760415",
@@ -1506,15 +1506,15 @@
       "date": "2026-07-07T00:00Z",
       "stage": "round-of-16",
       "stageLabel": "Round of 16",
-      "status": "in",
-      "statusLabel": "81'",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "FT",
+      "completed": true,
       "homeTeamId": "USA",
       "homeTeamName": "USA",
       "homeScore": 1,
       "awayTeamId": "BEL",
       "awayTeamName": "Belgium",
-      "awayScore": 3,
+      "awayScore": 4,
       "venue": "Lumen Field"
     },
     {
@@ -1564,6 +1564,22 @@
       "awayTeamName": "Morocco",
       "awayScore": null,
       "venue": "Gillette Stadium"
+    },
+    {
+      "id": "760511",
+      "date": "2026-07-10T19:00Z",
+      "stage": "quarterfinals",
+      "stageLabel": "Quarterfinal",
+      "status": "pre",
+      "statusLabel": "Scheduled",
+      "completed": false,
+      "homeTeamId": "ESP",
+      "homeTeamName": "Spain",
+      "homeScore": null,
+      "awayTeamId": "BEL",
+      "awayTeamName": "Belgium",
+      "awayScore": null,
+      "venue": "SoFi Stadium"
     },
     {
       "id": "760512",
