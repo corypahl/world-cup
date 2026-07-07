@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-07T00:02:14.653Z",
+  "lastUpdated": "2026-07-07T01:45:00.730Z",
   "matches": [
     {
       "id": "760415",
@@ -1507,14 +1507,14 @@
       "stage": "round-of-16",
       "stageLabel": "Round of 16",
       "status": "in",
-      "statusLabel": "2'",
+      "statusLabel": "81'",
       "completed": false,
       "homeTeamId": "USA",
       "homeTeamName": "USA",
-      "homeScore": 0,
+      "homeScore": 1,
       "awayTeamId": "BEL",
       "awayTeamName": "Belgium",
-      "awayScore": 0,
+      "awayScore": 3,
       "venue": "Lumen Field"
     },
     {
