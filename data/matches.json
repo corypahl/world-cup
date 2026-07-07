@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-07T17:50:55.580Z",
+  "lastUpdated": "2026-07-07T18:25:32.074Z",
   "matches": [
     {
       "id": "760415",
@@ -1522,12 +1522,12 @@
       "date": "2026-07-07T16:00Z",
       "stage": "round-of-16",
       "stageLabel": "Round of 16",
-      "status": "in",
-      "statusLabel": "87'",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "FT",
+      "completed": true,
       "homeTeamId": "ARG",
       "homeTeamName": "Argentina",
-      "homeScore": 2,
+      "homeScore": 3,
       "awayTeamId": "EGY",
       "awayTeamName": "Egypt",
       "awayScore": 2,
