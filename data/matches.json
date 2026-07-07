@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-07T08:25:55.579Z",
+  "lastUpdated": "2026-07-07T17:50:55.580Z",
   "matches": [
     {
       "id": "760415",
@@ -1522,15 +1522,15 @@
       "date": "2026-07-07T16:00Z",
       "stage": "round-of-16",
       "stageLabel": "Round of 16",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "87'",
       "completed": false,
       "homeTeamId": "ARG",
       "homeTeamName": "Argentina",
-      "homeScore": null,
+      "homeScore": 2,
       "awayTeamId": "EGY",
       "awayTeamName": "Egypt",
-      "awayScore": null,
+      "awayScore": 2,
       "venue": "Mercedes-Benz Stadium"
     },
     {
