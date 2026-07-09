@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-09T20:59:43.351Z",
+  "lastUpdated": "2026-07-09T22:23:34.458Z",
   "matches": [
     {
       "id": "760415",
@@ -1558,12 +1558,12 @@
       "date": "2026-07-09T20:00Z",
       "stage": "quarterfinals",
       "stageLabel": "Quarterfinal",
-      "status": "in",
-      "statusLabel": "HT",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "FT",
+      "completed": true,
       "homeTeamId": "FRA",
       "homeTeamName": "France",
-      "homeScore": 0,
+      "homeScore": 2,
       "awayTeamId": "MAR",
       "awayTeamName": "Morocco",
       "awayScore": 0,
