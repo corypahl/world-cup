@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-09T19:21:22.561Z",
+  "lastUpdated": "2026-07-09T20:59:43.351Z",
   "matches": [
     {
       "id": "760415",
@@ -1558,15 +1558,15 @@
       "date": "2026-07-09T20:00Z",
       "stage": "quarterfinals",
       "stageLabel": "Quarterfinal",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "HT",
       "completed": false,
       "homeTeamId": "FRA",
       "homeTeamName": "France",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "MAR",
       "awayTeamName": "Morocco",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "Gillette Stadium"
     },
     {
