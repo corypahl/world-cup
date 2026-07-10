@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-10T19:07:57.393Z",
+  "lastUpdated": "2026-07-10T20:41:00.962Z",
   "matches": [
     {
       "id": "760415",
@@ -1575,14 +1575,14 @@
       "stage": "quarterfinals",
       "stageLabel": "Quarterfinal",
       "status": "in",
-      "statusLabel": "7'",
+      "statusLabel": "78'",
       "completed": false,
       "homeTeamId": "ESP",
       "homeTeamName": "Spain",
-      "homeScore": 0,
+      "homeScore": 1,
       "awayTeamId": "BEL",
       "awayTeamName": "Belgium",
-      "awayScore": 0,
+      "awayScore": 1,
       "venue": "SoFi Stadium"
     },
     {
