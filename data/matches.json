@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-10T20:41:00.962Z",
+  "lastUpdated": "2026-07-10T21:40:09.945Z",
   "matches": [
     {
       "id": "760415",
@@ -1574,12 +1574,12 @@
       "date": "2026-07-10T19:00Z",
       "stage": "quarterfinals",
       "stageLabel": "Quarterfinal",
-      "status": "in",
-      "statusLabel": "78'",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "FT",
+      "completed": true,
       "homeTeamId": "ESP",
       "homeTeamName": "Spain",
-      "homeScore": 1,
+      "homeScore": 2,
       "awayTeamId": "BEL",
       "awayTeamName": "Belgium",
       "awayScore": 1,
@@ -1616,6 +1616,22 @@
       "awayTeamName": "Switzerland",
       "awayScore": null,
       "venue": "GEHA Field at Arrowhead Stadium"
+    },
+    {
+      "id": "760514",
+      "date": "2026-07-14T19:00Z",
+      "stage": "semifinals",
+      "stageLabel": "Semifinal",
+      "status": "pre",
+      "statusLabel": "Scheduled",
+      "completed": false,
+      "homeTeamId": "FRA",
+      "homeTeamName": "France",
+      "homeScore": null,
+      "awayTeamId": "ESP",
+      "awayTeamName": "Spain",
+      "awayScore": null,
+      "venue": "AT&T Stadium"
     }
   ]
 }
