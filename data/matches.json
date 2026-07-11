@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-11T20:37:34.541Z",
+  "lastUpdated": "2026-07-11T21:30:45.628Z",
   "matches": [
     {
       "id": "760415",
@@ -1590,15 +1590,15 @@
       "date": "2026-07-11T21:00Z",
       "stage": "quarterfinals",
       "stageLabel": "Quarterfinal",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "29'",
       "completed": false,
       "homeTeamId": "NOR",
       "homeTeamName": "Norway",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "ENG",
       "awayTeamName": "England",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "Hard Rock Stadium"
     },
     {
