@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-12T01:02:31.249Z",
+  "lastUpdated": "2026-07-12T01:19:00.425Z",
   "matches": [
     {
       "id": "760415",
@@ -1607,11 +1607,11 @@
       "stage": "quarterfinals",
       "stageLabel": "Quarterfinal",
       "status": "in",
-      "statusLabel": "2'",
+      "statusLabel": "18'",
       "completed": false,
       "homeTeamId": "ARG",
       "homeTeamName": "Argentina",
-      "homeScore": 0,
+      "homeScore": 1,
       "awayTeamId": "SUI",
       "awayTeamName": "Switzerland",
       "awayScore": 0,
