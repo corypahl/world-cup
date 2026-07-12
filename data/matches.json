@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-12T01:19:00.425Z",
+  "lastUpdated": "2026-07-12T04:44:32.186Z",
   "matches": [
     {
       "id": "760415",
@@ -1606,15 +1606,15 @@
       "date": "2026-07-12T01:00Z",
       "stage": "quarterfinals",
       "stageLabel": "Quarterfinal",
-      "status": "in",
-      "statusLabel": "18'",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "AET",
+      "completed": true,
       "homeTeamId": "ARG",
       "homeTeamName": "Argentina",
-      "homeScore": 1,
+      "homeScore": 3,
       "awayTeamId": "SUI",
       "awayTeamName": "Switzerland",
-      "awayScore": 0,
+      "awayScore": 1,
       "venue": "GEHA Field at Arrowhead Stadium"
     },
     {
@@ -1632,6 +1632,22 @@
       "awayTeamName": "Spain",
       "awayScore": null,
       "venue": "AT&T Stadium"
+    },
+    {
+      "id": "760515",
+      "date": "2026-07-15T19:00Z",
+      "stage": "semifinals",
+      "stageLabel": "Semifinal",
+      "status": "pre",
+      "statusLabel": "Scheduled",
+      "completed": false,
+      "homeTeamId": "ENG",
+      "homeTeamName": "England",
+      "homeScore": null,
+      "awayTeamId": "ARG",
+      "awayTeamName": "Argentina",
+      "awayScore": null,
+      "venue": "Mercedes-Benz Stadium"
     }
   ]
 }
