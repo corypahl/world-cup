@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-14T19:49:56.712Z",
+  "lastUpdated": "2026-07-14T20:49:00.969Z",
   "matches": [
     {
       "id": "760415",
@@ -1623,14 +1623,14 @@
       "stage": "semifinals",
       "stageLabel": "Semifinal",
       "status": "in",
-      "statusLabel": "45'+5'",
+      "statusLabel": "87'",
       "completed": false,
       "homeTeamId": "FRA",
       "homeTeamName": "France",
       "homeScore": 0,
       "awayTeamId": "ESP",
       "awayTeamName": "Spain",
-      "awayScore": 1,
+      "awayScore": 2,
       "venue": "AT&T Stadium"
     },
     {
