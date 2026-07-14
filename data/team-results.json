@@ -1,8 +1,8 @@
 {
-  "lastUpdated": "2026-07-14T20:49:00.969Z",
+  "lastUpdated": "2026-07-14T21:46:06.453Z",
   "results": [
-    { "teamId": "FRA", "groupWins": 3, "groupLosses": 0, "groupDraws": 0, "goalsFor": 16, "reachedRoundOf32": true, "reachedRoundOf16": true, "reachedQuarterfinal": true, "reachedSemifinal": true, "reachedFinal": false, "wonWorldCup": false, "eliminated": false, "notes": "" },
-    { "teamId": "ESP", "groupWins": 2, "groupLosses": 0, "groupDraws": 1, "goalsFor": 11, "reachedRoundOf32": true, "reachedRoundOf16": true, "reachedQuarterfinal": true, "reachedSemifinal": true, "reachedFinal": false, "wonWorldCup": false, "eliminated": false, "notes": "" },
+    { "teamId": "FRA", "groupWins": 3, "groupLosses": 0, "groupDraws": 0, "goalsFor": 16, "reachedRoundOf32": true, "reachedRoundOf16": true, "reachedQuarterfinal": true, "reachedSemifinal": true, "reachedFinal": false, "wonWorldCup": false, "eliminated": true, "notes": "" },
+    { "teamId": "ESP", "groupWins": 2, "groupLosses": 0, "groupDraws": 1, "goalsFor": 13, "reachedRoundOf32": true, "reachedRoundOf16": true, "reachedQuarterfinal": true, "reachedSemifinal": true, "reachedFinal": true, "wonWorldCup": false, "eliminated": false, "notes": "" },
     { "teamId": "ENG", "groupWins": 2, "groupLosses": 0, "groupDraws": 1, "goalsFor": 13, "reachedRoundOf32": true, "reachedRoundOf16": true, "reachedQuarterfinal": true, "reachedSemifinal": true, "reachedFinal": false, "wonWorldCup": false, "eliminated": false, "notes": "" },
     { "teamId": "BRA", "groupWins": 2, "groupLosses": 0, "groupDraws": 1, "goalsFor": 10, "reachedRoundOf32": true, "reachedRoundOf16": true, "reachedQuarterfinal": false, "reachedSemifinal": false, "reachedFinal": false, "wonWorldCup": false, "eliminated": true, "notes": "" },
     { "teamId": "ARG", "groupWins": 3, "groupLosses": 0, "groupDraws": 0, "goalsFor": 17, "reachedRoundOf32": true, "reachedRoundOf16": true, "reachedQuarterfinal": true, "reachedSemifinal": true, "reachedFinal": false, "wonWorldCup": false, "eliminated": false, "notes": "" },
