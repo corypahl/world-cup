@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-15T19:43:33.101Z",
+  "lastUpdated": "2026-07-15T20:41:58.764Z",
   "matches": [
     {
       "id": "760415",
@@ -1639,11 +1639,11 @@
       "stage": "semifinals",
       "stageLabel": "Semifinal",
       "status": "in",
-      "statusLabel": "43'",
+      "statusLabel": "80'",
       "completed": false,
       "homeTeamId": "ENG",
       "homeTeamName": "England",
-      "homeScore": 0,
+      "homeScore": 1,
       "awayTeamId": "ARG",
       "awayTeamName": "Argentina",
       "awayScore": 0,
