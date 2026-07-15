@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-15T18:18:19.889Z",
+  "lastUpdated": "2026-07-15T19:43:33.101Z",
   "matches": [
     {
       "id": "760415",
@@ -1638,15 +1638,15 @@
       "date": "2026-07-15T19:00Z",
       "stage": "semifinals",
       "stageLabel": "Semifinal",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "43'",
       "completed": false,
       "homeTeamId": "ENG",
       "homeTeamName": "England",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "ARG",
       "awayTeamName": "Argentina",
-      "awayScore": null,
+      "awayScore": 0,
       "venue": "Mercedes-Benz Stadium"
     }
   ]
