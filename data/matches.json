@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-15T20:41:58.764Z",
+  "lastUpdated": "2026-07-15T21:37:45.507Z",
   "matches": [
     {
       "id": "760415",
@@ -1638,16 +1638,48 @@
       "date": "2026-07-15T19:00Z",
       "stage": "semifinals",
       "stageLabel": "Semifinal",
-      "status": "in",
-      "statusLabel": "80'",
-      "completed": false,
+      "status": "post",
+      "statusLabel": "FT",
+      "completed": true,
       "homeTeamId": "ENG",
       "homeTeamName": "England",
       "homeScore": 1,
       "awayTeamId": "ARG",
       "awayTeamName": "Argentina",
-      "awayScore": 0,
+      "awayScore": 2,
       "venue": "Mercedes-Benz Stadium"
+    },
+    {
+      "id": "760516",
+      "date": "2026-07-18T21:00Z",
+      "stage": "3rd-place-match",
+      "stageLabel": "Third Place",
+      "status": "pre",
+      "statusLabel": "Scheduled",
+      "completed": false,
+      "homeTeamId": "FRA",
+      "homeTeamName": "France",
+      "homeScore": null,
+      "awayTeamId": "ENG",
+      "awayTeamName": "England",
+      "awayScore": null,
+      "venue": "Hard Rock Stadium"
+    },
+    {
+      "id": "760517",
+      "date": "2026-07-19T19:00Z",
+      "stage": "final",
+      "stageLabel": "Final",
+      "status": "pre",
+      "statusLabel": "Scheduled",
+      "completed": false,
+      "homeTeamId": "ESP",
+      "homeTeamName": "Spain",
+      "homeScore": null,
+      "awayTeamId": "ARG",
+      "awayTeamName": "Argentina",
+      "awayScore": null,
+      "venue": "MetLife Stadium"
     }
   ]
 }
