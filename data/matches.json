@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-18T20:36:51.786Z",
+  "lastUpdated": "2026-07-18T21:32:01.873Z",
   "matches": [
     {
       "id": "760415",
@@ -1654,15 +1654,15 @@
       "date": "2026-07-18T21:00Z",
       "stage": "3rd-place-match",
       "stageLabel": "Third Place",
-      "status": "pre",
-      "statusLabel": "Scheduled",
+      "status": "in",
+      "statusLabel": "32'",
       "completed": false,
       "homeTeamId": "FRA",
       "homeTeamName": "France",
-      "homeScore": null,
+      "homeScore": 0,
       "awayTeamId": "ENG",
       "awayTeamName": "England",
-      "awayScore": null,
+      "awayScore": 2,
       "venue": "Hard Rock Stadium"
     },
     {
