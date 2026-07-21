@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-20T23:41:06.232Z",
+  "lastUpdated": "2026-07-21T01:06:12.609Z",
   "results": [
     { "teamId": "FRA", "groupWins": 3, "groupLosses": 0, "groupDraws": 0, "goalsFor": 20, "reachedRoundOf32": true, "reachedRoundOf16": true, "reachedQuarterfinal": true, "reachedSemifinal": true, "reachedFinal": false, "wonWorldCup": false, "eliminated": true, "notes": "" },
     { "teamId": "ESP", "groupWins": 2, "groupLosses": 0, "groupDraws": 1, "goalsFor": 14, "reachedRoundOf32": true, "reachedRoundOf16": true, "reachedQuarterfinal": true, "reachedSemifinal": true, "reachedFinal": true, "wonWorldCup": true, "eliminated": false, "notes": "" },
