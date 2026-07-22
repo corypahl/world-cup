@@ -2,10 +2,10 @@ name: Generate Daily AI Summary
 
 on:
   workflow_dispatch:
-  schedule:
+  #schedule:
     # 7:17 AM ET during the June/July tournament window. Avoid minute 0,
     # when GitHub Actions scheduled workflows are most likely to be delayed.
-    - cron: "17 11 * * *"
+    # cron: "17 11 * * *"
 
 permissions:
   contents: write
